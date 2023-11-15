@@ -18,7 +18,9 @@ const config: Config = {
     },
     extend: {
       colors: {
+        'primary': '#343434',
         'secondary': '#9a9a9a',
+        'highlight': '#0000ff',
       },
     }
   },

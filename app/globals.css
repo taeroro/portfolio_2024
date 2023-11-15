@@ -38,9 +38,19 @@ body {
   line-height: 1;
 }
 
-.title-text {
-  font-size: max(1.25vw, 18px);
+.h2-text {
+  font-size: 3rem;
   line-height: 1;
+}
+
+.title-text {
+  font-size: max(1.25vw, 1.25rem);
+  line-height: 1;
+}
+
+.body-text {
+  font-size: 1.125rem;
+  letter-spacing: -0.05rem;
 }
 
 /************** Container Styles ***************/
