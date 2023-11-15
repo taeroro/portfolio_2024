@@ -2,26 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/************** Root Styles ***************/
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --foreground-hex: #343434;
+  --background-hex: #ffffff;
+  --secondary-hex: #9a9a9a;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground-hex);
+  background: var(--background-hex);
+}
+
+/************** Type Styles ***************/
+.display-name {
+  font-size: 31.1vw;
+  letter-spacing: -0.055em;
+  line-height: .655;
+}
+
+.display-archive {
+  font-size: 30.1vw;
+  letter-spacing: -0.055em;
+  line-height: .655;
+}
+
+.h1-display {
+  font-size: 3.5rem;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.h1-text {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.title-text {
+  font-size: max(1.25vw, 18px);
+  line-height: 1;
+}
+
+/************** Container Styles ***************/
+.nav {
+  width: calc(100% - theme('spacing.16'));
+  border-bottom: 10px solid var(--secondary-hex);
 }
