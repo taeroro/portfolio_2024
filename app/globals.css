@@ -14,6 +14,7 @@ body {
   background: var(--background-hex);
 }
 
+/************** Importing Fonts ***************/
 @font-face {
   font-family: 'Graphik';
   src: url('/fonts/Graphik-Medium-Web.woff2') format('woff2'),
@@ -54,25 +55,25 @@ body {
 .display-name {
   font-size: 31.1vw;
   letter-spacing: -0.055em;
-  line-height: .655;
+  line-height: .695;
 }
 
 .display-work {
   font-size: 37.3vw;
   letter-spacing: -0.055em;
-  line-height: .655;
+  line-height: .695;
 }
 
 .display-archive {
-  font-size: 30.1vw;
+  font-size: 30vw;
   letter-spacing: -0.055em;
-  line-height: .655;
+  line-height: .695;
 }
 
 .display-who {
   font-size: 36.2vw;
   letter-spacing: -0.055em;
-  line-height: .655;
+  line-height: .695;
 }
 
 .h1-display {
