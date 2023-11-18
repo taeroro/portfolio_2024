@@ -1,6 +1,7 @@
 'use client';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 import Link from "next/link";
 import { useLayoutEffect, useRef } from "react";
 
@@ -161,7 +162,11 @@ function SingleWork(props: {workData: workData}) {
       </span>
 
       <div className={styles.imgWrapper}>
-        <img className={styles.img} src={props.workData.thumbnailURL} />
+        <Image 
+          className={styles.img}
+          src={props.workData.thumbnailURL}
+          alt={"Project thumbnail."}
+        />
       </div>
     </Link>
   )
