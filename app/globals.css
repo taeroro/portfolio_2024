@@ -34,6 +34,13 @@ body {
   font-display: auto;
 }
 
+@layer utilities {
+  .h-svh-screen {
+    height: 100vh;
+    height: 100svh;
+  }
+}
+
 /************** Type Styles ***************/
 .display-name {
   font-size: 31.1vw;

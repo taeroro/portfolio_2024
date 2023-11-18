@@ -48,7 +48,7 @@ export default function Who() {
       'flex flex-col',
     ].join(' '),
     sectionTitleContainer: [
-      'w-full h-screen',
+      'w-full h-svh-screen',
       'flex flex-col justify-end',
     ].join(' '),
     h1: [
