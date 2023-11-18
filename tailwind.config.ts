@@ -17,6 +17,9 @@ const config: Config = {
       normal: '-0.08rem',
     },
     extend: {
+      height: {
+        screen: ['100vh', '100svh'],
+      },
       colors: {
         'primary': '#343434',
         'secondary': '#9a9a9a',

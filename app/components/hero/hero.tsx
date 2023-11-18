@@ -22,7 +22,7 @@ export default function Hero() {
   /************** Style classNames ***************/
   const styles = {
     heroContainer: [
-      'w-full h-screen min-h-[600px]',
+      'w-full h-screen h-[100svh] min-h-[600px]',
       'flex flex-col justify-end',
     ].join(' '),
 
