@@ -5,18 +5,22 @@
 /****************************************************/
 
 export default function Navigation() {
+
   /************** Defining variables ***************/
-  const currentPath: String[] = ["ryan.fan"]
-  const activePath: String = "/work"
-  const menuGlyph: String = "+"
+  const currentPath: string[] = ["ryan.fan"]
+  const activePath: string = "/work"
+  const menuGlyph: string = "+"
   
   /************** Style classNames ***************/
   const styles = {
-    navigationContainer: [
+    navigationOuterContainer: [
       'fixed top-0 left-0 z-50',
+      'w-full bg-white',
+    ].join(' '),
+    navigationContainer: [
       'pt-4 mx-8',
       'flex flex-row justify-between',
-      'bg-white nav',
+      'nav',
     ].join(' '),
     pathingContainer: [
       'font-display font-bold text-secondary h1-display',
@@ -27,13 +31,15 @@ export default function Navigation() {
   }
     
   return (
-    <div className={styles.navigationContainer}>
-      <div className={styles.pathingContainer}>
-        {currentPath.toString()}
-      </div>
-      
-      <div className={styles.menuButtonWrapper}>
-        <h1>{menuGlyph}</h1>
+    <div className={styles.navigationOuterContainer}>
+      <div className={styles.navigationContainer}>
+        <div className={styles.pathingContainer}>
+          {currentPath.toString()}
+        </div>
+        
+        <div className={styles.menuButtonWrapper}>
+          <h1>{menuGlyph}</h1>
+        </div>
       </div>
     </div>
   )

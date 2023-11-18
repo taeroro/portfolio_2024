@@ -14,7 +14,7 @@ const config: Config = {
     fontSize: {
     },
     letterSpacing: {
-      normal: '-0.08em',
+      normal: '-0.08rem',
     },
     extend: {
       colors: {

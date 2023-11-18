@@ -1,18 +1,20 @@
+'use client';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
+
+
 /****************************************************/
 /*                                                  */
 /* Hero Component                                   */
 /*                                                  */
 /****************************************************/
 
-'use client';
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect, useRef } from "react";
-
 export default function Hero() {
+
   /************** Defining variables ***************/
-  const title: String = "ryan.fan"
-  const description: String = "is a Product Designer and Technologist helping humans understand machines better based in New York City."
+  const title: string = "ryan.fan"
+  const description: string = "is a New York City based Product Designer and Technologist helping humans understand machines better."
   
   const heroContainerRef = useRef(null)
   const h1DisplayRef = useRef(null)
@@ -20,7 +22,7 @@ export default function Hero() {
   /************** Style classNames ***************/
   const styles = {
     heroContainer: [
-      'w-full h-screen',
+      'w-full h-screen min-h-[600px]',
       'flex flex-col justify-end',
     ].join(' '),
 
@@ -36,6 +38,7 @@ export default function Hero() {
     
     h1: [
       'font-display font-bold display-name',
+      'select-none pointer-events-none',
     ].join(' '),
   }
 

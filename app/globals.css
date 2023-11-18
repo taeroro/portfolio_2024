@@ -21,8 +21,20 @@ body {
   line-height: .655;
 }
 
+.display-work {
+  font-size: 37.3vw;
+  letter-spacing: -0.055em;
+  line-height: .655;
+}
+
 .display-archive {
   font-size: 30.1vw;
+  letter-spacing: -0.055em;
+  line-height: .655;
+}
+
+.display-who {
+  font-size: 36.2vw;
   letter-spacing: -0.055em;
   line-height: .655;
 }
@@ -44,7 +56,7 @@ body {
 }
 
 .title-text {
-  font-size: max(1.25vw, 1.25rem);
+  font-size: clamp(1.25rem ,1.25vw, 2rem);
   line-height: 1;
 }
 

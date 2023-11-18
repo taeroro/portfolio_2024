@@ -5,14 +5,12 @@ import { useLayoutEffect, useRef } from "react";
 
 /************** Temp - TO BE DELETED ***************/
 interface archiveData {
-  client: String,
-  project: String,
-  category: String,
-  isComingSoon: Boolean,
+  client: string,
+  project: string,
+  category: string,
+  isComingSoon: boolean,
 }
 /************** Temp - TO BE DELETED ***************/
-
-
 
 
 /****************************************************/
@@ -22,8 +20,9 @@ interface archiveData {
 /****************************************************/
 
 export default function Archive() {
+
   /************** Defining variables ***************/
-  const title: String = "/archive"
+  const title: string = "/archive"
   const archiveList: archiveData[] = [
     {
       client: 'JPMorgan Chase', 
@@ -101,7 +100,6 @@ export default function Archive() {
     archiveContainer: [
       'w-full min-h-screen',
       'flex flex-col',
-      // 'bg-red-100',
     ].join(' '),
     sectionTitleContainer: [
       'w-full h-screen',
@@ -109,6 +107,7 @@ export default function Archive() {
     ].join(' '),
     h1: [
       'font-display font-bold display-archive',
+      'select-none pointer-events-none',
     ].join(' '),
     contentContainer: [
       'w-full px-8 mt-16',
@@ -160,6 +159,7 @@ export default function Archive() {
 /****************************************************/
 
 function SingleArchive(props: {archiveData: archiveData}) {
+
     /************** Style classNames ***************/
     const styles = {
       singleArchiveContainer: [
@@ -170,13 +170,13 @@ function SingleArchive(props: {archiveData: archiveData}) {
       ].join(' '),
       clientWrapper: [
         'col-span-6',
-        'flex flex-row gap-1',
+        'flex flex-row ',
         'font-bold h2-text',
       ].join(' '),
       comingSoonTag: [
         'self-start px-3 py-1',
         'rounded-full border-2 border-highlight bg-white',
-        'rotate-6 -translate-y-2',
+        'rotate-12 -translate-y-2',
         'font-medium leading-none text-highlight body-text',
       ].join(' '),
       projectWrapper: [
@@ -193,7 +193,7 @@ function SingleArchive(props: {archiveData: archiveData}) {
     <div className={styles.singleArchiveContainer}>
       <div className={styles.clientWrapper}>
         <h2>
-          {props.archiveData.client}
+          { props.archiveData.client }
         </h2>
 
         { props.archiveData.isComingSoon 
@@ -208,13 +208,13 @@ function SingleArchive(props: {archiveData: archiveData}) {
 
       <div className={styles.projectWrapper}>
         <span>
-          {props.archiveData.project}
+          { props.archiveData.project }
         </span>
       </div>
 
       <div className={styles.categoryWrapper}>
         <span>
-          {props.archiveData.category}
+          { props.archiveData.category }
         </span>
       </div>
     </div>
