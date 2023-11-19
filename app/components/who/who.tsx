@@ -117,12 +117,12 @@ function WhoContent(props: {whoContentData: whoContentData}) {
     contentContainer: [
       'w-full min-h-screen px-8 my-16',
       'grid grid-cols-12 auto-rows-min gap-8',
-      'max-sm:px-2 max-sm:my-8',
+      'max-sm:px-2 max-sm:my-8 max-sm:gap-4',
     ].join(' '),
     introTextWrapper: [
       'col-span-8',
       'flex flex-col gap-4',
-      'max-lg:col-span-12 max-xl:col-span-10',
+      'max-lg:col-span-12 max-xl:col-span-10 max-sm:gap-4',
     ].join(' '),
     subtitle: [
       'font-bold h2-text',
@@ -160,18 +160,19 @@ function WhoSeach(props: {searchData: searchData}) {
     searchOuterContainer: [
       'col-span-8',
       'flex flex-col gap-8',
-      'max-lg:col-span-12 max-xl:col-span-10',
+      'max-lg:col-span-12 max-xl:col-span-10 max-sm:gap-4',
     ].join(' '),
     searchContainer: [
       'w-full',
       'flex flex-col gap-2',
     ].join(' '),
     inputContainer: [
-      'w-full py-1 pl-8',
+      'w-full py-1 pl-8 rounded-none',
       'border-b-4 border-primary',
       'font-bold title-text tracking-normal',
       'placeholder:text-secondary',
-      'focus:outline-none'
+      'focus:outline-none',
+      'max-sm:border-b-[3px]',
     ].join(' '),
     inputIcon: [
       'absolute pointer-events-none p-1',
