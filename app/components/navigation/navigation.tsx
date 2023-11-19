@@ -50,9 +50,9 @@ export default function Navigation() {
     ].join(' '),
     menuButtonWrapper: [
       'font-bold text-secondary h1-text',
-      'transition duration-300 origin-[50%_55%]',
-      'select-none',
-      'group-hover:text-primary group-hover:rotate-90',
+      'transition-none origin-[50%_55%]',
+      'select-none transition-colors duration-300',
+      'group-hover:transition-all group-hover:duration-300 group-hover:text-primary group-hover:rotate-90',
     ].join(' '),
     menuButtonWrapperOpen: [
       ' !text-white !group-hover:text-white',
