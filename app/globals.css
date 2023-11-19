@@ -5,13 +5,13 @@
 
 /************** Root Styles ***************/
 :root {
-  --foreground-hex: #343434;
+  --primary-hex: #343434;
   --background-hex: #ffffff;
   --secondary-hex: #9a9a9a;
 }
 
 body {
-  color: var(--foreground-hex);
+  color: var(--primary-hex);
   background: var(--background-hex);
 }
 
@@ -111,7 +111,6 @@ body {
 /************** Container Styles ***************/
 .nav {
   width: calc(100% - theme('spacing.16'));
-  border-bottom: 10px solid var(--secondary-hex);
 }
 
 .img-hover {
@@ -138,6 +137,5 @@ body {
 
   .nav {
     width: calc(100% - theme('spacing.4'));
-    border-bottom: 6px solid var(--secondary-hex);
   }
 }
