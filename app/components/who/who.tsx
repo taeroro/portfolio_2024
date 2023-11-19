@@ -29,7 +29,7 @@ export default function Who() {
   /************** Defining variables ***************/
   const title: string = "/who?"
   const whoContentData: whoContentData = {
-    subtitle: 'Who is Ryan Fan?',
+    subtitle: 'Who is Ryan?',
     description: 'Unleash the power of AI and see what it can do.',
     search: {
       placeholder: 'Type in any question about me here...',
@@ -65,6 +65,7 @@ export default function Who() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const mm = gsap.matchMedia();
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: whoContainerRef.current,
@@ -74,8 +75,16 @@ export default function Who() {
       }
     })
 
-    tl
-      .to(h1DisplayRef.current, { x: 32, fontSize: '3.5rem' })
+    mm.add({
+      isMobile: "(max-width: 640px)",
+      isDesktop: "(min-width: 641px)",
+    }, (context)=> {
+      let cdt = false;
+      if(context.conditions) cdt = context.conditions.isMobile;
+
+      tl
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+    })
 
   }, [])
 

@@ -119,6 +119,7 @@ export default function Archive() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const mm = gsap.matchMedia();
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: archiveContainerRef.current,
@@ -128,8 +129,16 @@ export default function Archive() {
       }
     })
 
-    tl
-      .to(h1DisplayRef.current, { x: 32, fontSize: '3.5rem' })
+    mm.add({
+      isMobile: "(max-width: 640px)",
+      isDesktop: "(min-width: 641px)",
+    }, (context)=> {
+      let cdt = false;
+      if(context.conditions) cdt = context.conditions.isMobile;
+
+      tl
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+    })
       
   }, [])
 
@@ -176,7 +185,7 @@ function SingleArchive(props: {archiveData: archiveData}) {
         'max-xl:col-span-12',
       ].join(' '),
       comingSoonTag: [
-        'self-start px-3 py-1',
+        'self-start px-2 py-1',
         'rounded-full border-2 border-highlight bg-white',
         'rotate-12 -translate-y-2',
         'font-medium leading-none text-highlight body-text whitespace-nowrap',

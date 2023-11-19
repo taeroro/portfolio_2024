@@ -85,6 +85,7 @@ export default function WorkOverview() {
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const mm = gsap.matchMedia();
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: workOverviewContainerRef.current,
@@ -94,8 +95,16 @@ export default function WorkOverview() {
       }
     })
 
-    tl
-      .to(h1DisplayRef.current, { x: 32, fontSize: '3.5rem' })
+    mm.add({
+      isMobile: "(max-width: 640px)",
+      isDesktop: "(min-width: 641px)",
+    }, (context)=> {
+      let cdt = false;
+      if(context.conditions) cdt = context.conditions.isMobile;
+
+      tl
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+    })
       
   }, [])
 

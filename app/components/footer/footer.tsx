@@ -44,7 +44,7 @@ export default function Footer() {
   /************** Style classNames ***************/
   const styles = {
     footerContainer: [
-      'w-full h-svh-screen min-h-[600px] bg-primary',
+      'w-full h-screen min-h-[600px] bg-primary',
       'fixed bottom-0 z-0',
       'flex flex-col justify-end overflow-hidden',
     ].join(' '),
@@ -68,6 +68,7 @@ export default function Footer() {
       'no-underline border-solid border-white border-b-4',
       'transition duration-300',
       'hover:border-highlight hover:bg-highlight font-white',
+      'max-sm:border-b-2',
     ].join(' '),
     h1: [
       'font-display font-bold text-white display-name',

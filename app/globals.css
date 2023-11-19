@@ -108,9 +108,18 @@ body {
   border-bottom: 10px solid var(--secondary-hex);
 }
 
+/************** Media Query ***************/
 @media only screen and (max-width: theme('screens.sm')) {
+  .h1-display, .h1-text {
+    font-size: 2.25rem;
+  }
+
+  .h2-text {
+    font-size: 2rem;
+  }
+
   .nav {
     width: calc(100% - theme('spacing.4'));
-    border-bottom: 8px solid var(--secondary-hex);
+    border-bottom: 6px solid var(--secondary-hex);
   }
 }
