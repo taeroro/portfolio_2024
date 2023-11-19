@@ -18,7 +18,7 @@ export default function Navigation() {
   const activePath: string = "/"
   const menuGlyph: string = "+"
 
-  const navRef = useRef(null)
+  const navRef = useRef<HTMLInputElement>(null)
   
   /************** Style classNames ***************/
   const styles = {
