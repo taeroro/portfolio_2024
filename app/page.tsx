@@ -7,7 +7,7 @@ import Footer from './components/footer/footer'
 
 export default function Home() {
   return (
-    <main className="min-h-screen m-0 fullpage overflow-auto">
+    <main className="min-h-screen m-0 fullpage overflow-y-auto overflow-x-hidden">
       <Navigation />
 
       <div className="z-10 relative bg-white">

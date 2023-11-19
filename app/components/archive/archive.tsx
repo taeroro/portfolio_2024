@@ -112,6 +112,7 @@ export default function Archive() {
     contentContainer: [
       'w-full px-8 mt-16',
       'flex flex-col',
+      'max-sm:px-2 max-sm:mt-8',
     ].join(' '),
   }
 
@@ -172,20 +173,23 @@ function SingleArchive(props: {archiveData: archiveData}) {
         'col-span-6',
         'flex flex-row ',
         'font-bold h2-text',
+        'max-xl:col-span-12',
       ].join(' '),
       comingSoonTag: [
         'self-start px-3 py-1',
         'rounded-full border-2 border-highlight bg-white',
         'rotate-12 -translate-y-2',
-        'font-medium leading-none text-highlight body-text',
+        'font-medium leading-none text-highlight body-text whitespace-nowrap',
       ].join(' '),
       projectWrapper: [
         'self-end col-span-3',
         'font-bold title-text',
+        'max-xl:col-span-12',
       ].join(' '),
       categoryWrapper: [
         'self-end col-span-3',
         'font-medium leading-6 body-text',
+        'max-xl:col-span-12',
       ].join(' '),
     }
 

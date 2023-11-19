@@ -58,6 +58,7 @@ export default function Who() {
     contentContainer: [
       'w-full px-8 mt-16',
       'flex flex-col',
+      'max-sm:px-2 max-sm:mt-8',
     ].join(' '),
   }
 
@@ -107,10 +108,12 @@ function WhoContent(props: {whoContentData: whoContentData}) {
     contentContainer: [
       'w-full min-h-screen px-8 my-16',
       'grid grid-cols-12 auto-rows-min gap-8',
+      'max-sm:px-2 max-sm:my-8',
     ].join(' '),
     introTextWrapper: [
       'col-span-8',
       'flex flex-col gap-4',
+      'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
     subtitle: [
       'font-bold h2-text',
@@ -148,6 +151,7 @@ function WhoSeach(props: {searchData: searchData}) {
     searchOuterContainer: [
       'col-span-8',
       'flex flex-col gap-8',
+      'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
     searchContainer: [
       'w-full',

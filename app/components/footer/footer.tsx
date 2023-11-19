@@ -50,7 +50,8 @@ export default function Footer() {
     ].join(' '),
     footerTextContainer: [
       'w-full px-8',
-      'grid grid-cols-12 gap-2'
+      'grid grid-cols-12 gap-2',
+      'max-sm:px-2',
     ].join(' '),
     copyright: [
       'row-start-1 col-span-6',

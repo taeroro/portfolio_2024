@@ -78,6 +78,7 @@ export default function WorkOverview() {
       contentContainer: [
         'w-full px-8 mt-16',
         'grid grid-cols-2 gap-x-8 gap-y-16',
+        'max-lg:grid-cols-1 max-sm:px-2 max-sm:mt-8',
       ].join(' '),
     }
 
@@ -145,7 +146,7 @@ function SingleWork(props: {workData: workData}) {
       'bg-gray-300',
     ].join(' '),
     img: [
-      'w-full object-cover',
+      'w-full h-full object-cover',
     ].join(' '),
   }
 

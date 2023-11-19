@@ -25,17 +25,16 @@ export default function Hero() {
       'w-full h-svh-screen min-h-[600px]',
       'flex flex-col justify-end',
     ].join(' '),
-
     descriptionContainer: [
       'w-full px-8',
       'grid grid-cols-12 gap-8',
+      'max-sm:px-2',
     ].join(' '),
-    
     description: [
       'col-span-6',
       'font-bold title-text',
+      'max-sm:col-span-7',
     ].join(' '),
-    
     h1: [
       'font-display font-bold display-name',
       'select-none pointer-events-none',

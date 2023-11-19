@@ -21,6 +21,7 @@ export default function Navigation() {
       'pt-4 mx-8',
       'flex flex-row justify-between',
       'nav',
+      'max-sm:mx-2 max-sm:pt-1',
     ].join(' '),
     pathingContainer: [
       'font-display font-bold text-secondary h1-display',
