@@ -172,7 +172,7 @@ function WhoSeach(props: {searchData: searchData}) {
       'font-bold title-text tracking-normal',
       'placeholder:text-secondary',
       'focus:outline-none',
-      'max-sm:border-b-[3px]',
+      'max-sm:border-b-[3px] max-sm:pl-6',
     ].join(' '),
     inputIcon: [
       'absolute pointer-events-none p-1',

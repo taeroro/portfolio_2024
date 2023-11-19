@@ -17,7 +17,7 @@ export default function Home() {
         <Who />
       </div>
 
-      <div className='w-full h-screen min-h-[600px] bg-transparent invisible relative' />
+      <div id='footerArea' className='w-full h-screen min-h-[600px] bg-transparent relative' />
 
       <Footer />
     </main>
