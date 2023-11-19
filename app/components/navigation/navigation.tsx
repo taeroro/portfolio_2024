@@ -40,6 +40,7 @@ export default function Navigation() {
     ].join(' '),
   }
 
+  /************** Scroll Handler ***************/
   function scrollHandler() {
     let y: number = window.scrollY;
 
@@ -51,6 +52,7 @@ export default function Navigation() {
     // console.log("y: " + y + ", fP: " + footerPosition + ", isBgDark: " + isOnDarkBg);
   }
 
+  /************** Resize Handler ***************/
   function resizeHandler() {
     const elem = document.getElementById("footerArea");
     if (elem) {

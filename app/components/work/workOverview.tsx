@@ -36,7 +36,7 @@ export default function WorkOverview() {
       slug: 'marriott',
       title: '/marriott',
       highlightDescription: 'Lorem ispum dolor adist.',
-      thumbnailURL: '',
+      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/4GzuMdH5j6Wji2i5JkFV15/c9d69c4667c5c17fed397a6c10ed5f9f/00_HERO_WALK_0030.jpg',
     },
     {
       slug: 'tiktok',
@@ -140,7 +140,7 @@ function SingleWork(props: {workData: workData}) {
   const styles = {
     singleWorkContainer: [
       'flex flex-col gap-4',
-      'hover:text-highlight transition duration-300',
+      'hover:text-highlight group',
       'max-sm:gap-2'
     ].join(' '),
     titleWrapper: [
@@ -153,10 +153,12 @@ function SingleWork(props: {workData: workData}) {
     ].join(' '),
     imgWrapper: [
       'w-full aspect-[5/3] relative overflow-hidden',
-      'bg-gray-300',
+      // 'bg-gray-300',
+      'bg-highlight',
     ].join(' '),
     img: [
       'object-cover',
+      'group-hover:mix-blend-screen group-hover:filter group-hover:grayscale group-hover:opacity-100',
     ].join(' '),
   }
 
