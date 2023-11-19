@@ -175,7 +175,7 @@ function WhoSeach(props: {searchData: searchData}) {
       'max-sm:border-b-[3px] max-sm:pl-6',
     ].join(' '),
     inputIcon: [
-      'absolute pointer-events-none p-1',
+      'absolute pointer-events-none px-1 pt-1.5',
       'font-display font-bold title-text tracking-normal not-italic'
     ].join(' '),
     helper: [

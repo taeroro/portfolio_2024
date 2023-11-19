@@ -30,7 +30,7 @@ export default function WorkOverview() {
       slug: 'microsoft',
       title: '/microsoft',
       highlightDescription: 'Microsoft Surface and Windows global site redesign.',
-      thumbnailURL: '',
+      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/6JtILa6rXRb61JKMBMNlD6/0fc04a34919b336b712142c70f0373bf/thumbnail.jpg',
     },
     {
       slug: 'marriott',
@@ -42,19 +42,19 @@ export default function WorkOverview() {
       slug: 'tiktok',
       title: '/tiktok',
       highlightDescription: 'Prototype that moves.',
-      thumbnailURL: '',
+      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/2WyhcgV9NX8zKATEi8jL2W/e198a0e7599321e289ef9af5cf3ac467/tt4b-1.jpg',
     },
     {
       slug: 'michaelkors',
       title: '/michaelkors',
       highlightDescription: 'Debuted the first digital fashion show with Michael Kors.',
-      thumbnailURL: '',
+      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/1BEwJco8TVgqR4nSJ4vL5a/c682ad8ea6f58a8fc1ae24ba0ffd5ed1/-2021_Sep-Mockup.jpg',
     },
     {
       slug: 'riley',
       title: '/riley',
       highlightDescription: 'Where home meets life.',
-      thumbnailURL: '',
+      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/4GzuMdH5j6Wji2i5JkFV15/c9d69c4667c5c17fed397a6c10ed5f9f/00_HERO_WALK_0030.jpg',
     },
   ]
   
@@ -152,11 +152,11 @@ function SingleWork(props: {workData: workData}) {
       'font-medium body-text',
     ].join(' '),
     imgWrapper: [
-      'w-full aspect-[5/3]',
+      'w-full aspect-[5/3] relative overflow-hidden',
       'bg-gray-300',
     ].join(' '),
     img: [
-      'w-full h-full object-cover',
+      'object-cover',
     ].join(' '),
   }
 
@@ -176,6 +176,7 @@ function SingleWork(props: {workData: workData}) {
         <Image 
           className={styles.img}
           src={props.workData.thumbnailURL}
+          fill={true}
           alt={"Project thumbnail."}
         />
       </div>
