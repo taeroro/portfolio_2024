@@ -112,7 +112,7 @@ export default function Archive() {
     contentContainer: [
       'w-full px-8 mt-16',
       'flex flex-col',
-      'max-sm:px-2 max-sm:mt-8',
+      'max-sm:px-2 max-sm:mt-1',
     ].join(' '),
   }
 
@@ -177,6 +177,7 @@ function SingleArchive(props: {archiveData: archiveData}) {
         'flex flex-row',
         'grid grid-cols-12 gap-8',
         'border-b-4 border-primary',
+        'max-sm:gap-4 max-sm:py-6',
       ].join(' '),
       clientWrapper: [
         'col-span-6',
@@ -189,6 +190,7 @@ function SingleArchive(props: {archiveData: archiveData}) {
         'rounded-full border-2 border-highlight bg-white',
         'rotate-12 -translate-y-2',
         'font-medium leading-none text-highlight body-text whitespace-nowrap',
+        'max-sm:px-1 max-sm:py-1/2 max-sm:-translate-y-1',
       ].join(' '),
       projectWrapper: [
         'self-end col-span-3',

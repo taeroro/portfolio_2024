@@ -28,7 +28,7 @@ export default function Hero() {
     descriptionContainer: [
       'w-full px-8',
       'grid grid-cols-12 gap-8',
-      'max-sm:px-2',
+      'max-sm:px-2 max-sm:gap-4',
     ].join(' '),
     description: [
       'col-span-6',

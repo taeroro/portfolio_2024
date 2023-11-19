@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /************** Root Styles ***************/
 :root {
   --foreground-hex: #343434;
@@ -13,6 +14,7 @@ body {
   color: var(--foreground-hex);
   background: var(--background-hex);
 }
+
 
 /************** Importing Fonts ***************/
 @font-face {
@@ -44,12 +46,15 @@ body {
   font-display: auto;
 }
 
+
+/************** Tailwindcss Customization ***************/
 @layer utilities {
   .h-svh-screen {
     height: 100vh;
     height: 100svh;
   }
 }
+
 
 /************** Type Styles ***************/
 .display-name {
@@ -102,11 +107,13 @@ body {
   letter-spacing: -0.05rem;
 }
 
+
 /************** Container Styles ***************/
 .nav {
   width: calc(100% - theme('spacing.16'));
   border-bottom: 10px solid var(--secondary-hex);
 }
+
 
 /************** Media Query ***************/
 @media only screen and (max-width: theme('screens.sm')) {
@@ -115,7 +122,11 @@ body {
   }
 
   .h2-text {
-    font-size: 2rem;
+    font-size: 1.75rem;
+  }
+
+  .body-text {
+    font-size: 1rem;
   }
 
   .nav {

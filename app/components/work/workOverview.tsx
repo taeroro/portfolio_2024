@@ -78,7 +78,7 @@ export default function WorkOverview() {
       contentContainer: [
         'w-full px-8 mt-16',
         'grid grid-cols-2 gap-x-8 gap-y-16',
-        'max-lg:grid-cols-1 max-sm:px-2 max-sm:mt-8',
+        'max-lg:grid-cols-1 max-sm:px-2 max-sm:mt-8 max-sm:gap-x-4 max-sm:gap-y-8',
       ].join(' '),
     }
 
@@ -141,6 +141,7 @@ function SingleWork(props: {workData: workData}) {
     singleWorkContainer: [
       'flex flex-col gap-4',
       'hover:text-highlight transition duration-300',
+      'max-sm:gap-2'
     ].join(' '),
     titleWrapper: [
       'w-full',
