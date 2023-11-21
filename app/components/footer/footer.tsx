@@ -17,7 +17,7 @@ export default function Footer() {
 
   /************** Defining variables ***************/
   const title: string = "ryan.fan"
-  const copyright: string = "© Ryan Fan " + new Date().getFullYear()
+  const copyright: string = "© Ryan Fan" + " " + new Date().getFullYear()
   const socialData: socialData[] = [
     {
       type: "e",

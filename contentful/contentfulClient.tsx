@@ -1,6 +1,20 @@
 import { createClient } from 'contentful'
+// import getConfig from 'next/config'
 
-const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_PREVIEW_ACCESS_TOKEN } = process.env
+// const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_PREVIEW_ACCESS_TOKEN } = process.env
+
+// const { publicRuntimeConfig } = getConfig()
+// const { CONTENTFUL_SPACE_ID, CONTENTFUL_ACCESS_TOKEN, CONTENTFUL_PREVIEW_ACCESS_TOKEN } = publicRuntimeConfig
+const [
+	CONTENTFUL_SPACE_ID,
+	CONTENTFUL_ACCESS_TOKEN,
+	CONTENTFUL_PREVIEW_ACCESS_TOKEN
+ ] = [
+	'cnddtwgpl8ct', 
+	'Nm57lFUFLOXixHXPGhmjpbnpsLTHqAufu9LUxOKxyl8',
+	'Sr8YV91IJ_pb7CieBMtfttrWRHtidmHqnGgBVzAKHXs'
+]
+
 
 // This is the standard Contentful client. It fetches
 // content that has been published.

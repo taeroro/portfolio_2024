@@ -1,4 +1,4 @@
-import Hero from '@/app/components/hero/hero'
+import HeroLayout from './components/hero/heroLayout'
 import Navigation from '@/app/components/navigation/navigation'
 import Archive from './components/archive/archive'
 import WorkOverview from './components/work/workOverview'
@@ -11,15 +11,15 @@ export default function Home() {
       <Navigation />
 
       <div className="z-10 relative bg-white">
-        <Hero />
+        <HeroLayout />
         <WorkOverview />
         <Archive />
         <Who />
       </div>
 
-      <div id='footerArea' className='w-full h-screen min-h-[600px] bg-transparent relative' />
-
+      <div id='footerArea' className='w-full h-screen min-h-[600px] bg-transparent invisible relative' />
       <Footer />
+
     </main>
   )
 }

@@ -1,7 +1,9 @@
 'use client';
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import { Hero } from "@/contentful/fetchHero";
 
 
 /****************************************************/
@@ -10,12 +12,11 @@ import { useLayoutEffect, useRef } from "react";
 /*                                                  */
 /****************************************************/
 
-export default function Hero() {
-
+export default function HeroUI(props: {heroData: Hero}) {
   /************** Defining variables ***************/
-  const title: string = "ryan.fan"
-  const description: string = "is a New York City based Product Designer and Technologist helping humans understand machines better."
-  
+  const title: string = props.heroData.name
+  const description: string = props.heroData.description
+
   const heroContainerRef = useRef(null)
   const h1DisplayRef = useRef(null)
 
@@ -41,7 +42,7 @@ export default function Hero() {
     ].join(' '),
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const mm = gsap.matchMedia();
@@ -64,7 +65,6 @@ export default function Hero() {
       tl
         .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
     })
-
   }, [])
 
   return (
