@@ -76,7 +76,7 @@ export default function Navigation() {
     else 
       setIsOnDarkBg(false)
 
-    console.log("y: " + y + ", fP: " + footerPosition + ", isBgDark: " + isOnDarkBg);
+    // console.log("y: " + y + ", fP: " + footerPosition + ", isBgDark: " + isOnDarkBg);
   }
 
   /************** Resize Handler ***************/

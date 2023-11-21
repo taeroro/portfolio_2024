@@ -3,7 +3,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
-import { Hero } from "@/contentful/fetchHero";
+import { HeroData } from "@/contentful/fetchHero";
 
 
 /****************************************************/
@@ -12,7 +12,7 @@ import { Hero } from "@/contentful/fetchHero";
 /*                                                  */
 /****************************************************/
 
-export default function HeroUI(props: {heroData: Hero}) {
+export default function Hero(props: {heroData: HeroData}) {
   /************** Defining variables ***************/
   const title: string = props.heroData.name
   const description: string = props.heroData.description

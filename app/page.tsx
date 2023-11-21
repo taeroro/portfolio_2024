@@ -1,6 +1,6 @@
-import HeroLayout from './components/hero/heroLayout'
 import Navigation from '@/app/components/navigation/navigation'
-import Archive from './components/archive/archive'
+import HeroLayout from './components/hero/heroLayout'
+import ArchiveLayout from './components/archive/archiveLayout'
 import WorkOverview from './components/work/workOverview'
 import Who from './components/who/who'
 import Footer from './components/footer/footer'
@@ -13,7 +13,7 @@ export default function Home() {
       <div className="z-10 relative bg-white">
         <HeroLayout />
         <WorkOverview />
-        <Archive />
+        <ArchiveLayout />
         <Who />
       </div>
 

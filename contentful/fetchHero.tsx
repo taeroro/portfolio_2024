@@ -4,12 +4,12 @@ import contentfulClient from './contentfulClient'
 
 type HeroEntry = Entry<TypeHeroSkeleton, undefined, string>
 
-export interface Hero {
+export interface HeroData {
 	name: string
 	description: string
 }
 
-export function parseContentfulHero(heroEntry?: HeroEntry): Hero | null {
+export function parseContentfulHero(heroEntry?: HeroEntry): HeroData | null {
 	if (!heroEntry) {
 		return null
 	}
@@ -20,7 +20,7 @@ export function parseContentfulHero(heroEntry?: HeroEntry): Hero | null {
 	}
 }
 
-export async function fetchHero(): Promise<Hero | null> {
+export async function fetchHero(): Promise<HeroData | null> {
 	const contentful = contentfulClient({ preview: false })
 
 	const heroResult = await contentful.getEntries<TypeHeroSkeleton>({

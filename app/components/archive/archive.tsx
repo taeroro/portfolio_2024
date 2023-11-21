@@ -2,14 +2,15 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
+import { ArchiveListData, ArchiveData } from "@/contentful/fetchArchive";
 
 /************** Temp - TO BE DELETED ***************/
-interface archiveData {
-  client: string,
-  project: string,
-  category: string,
-  isComingSoon: boolean,
-}
+// interface archiveData {
+//   client: string,
+//   project: string,
+//   category: string,
+//   isComingSoon: boolean,
+// }
 /************** Temp - TO BE DELETED ***************/
 
 
@@ -19,78 +20,11 @@ interface archiveData {
 /*                                                  */
 /****************************************************/
 
-export default function Archive() {
+export default function Archive(props: {archiveListData: ArchiveListData}) {
 
   /************** Defining variables ***************/
   const title: string = "/archive"
-  const archiveList: archiveData[] = [
-    {
-      client: 'JPMorgan Chase', 
-      project: 'jpmorganchase.com', 
-      category: 'Visual Direction Define, Product Design (Web), Design System, Prototype',
-      isComingSoon: true,
-    },
-    {
-      client: 'TIAA', 
-      project: 'tiaa.org', 
-      category: 'Visual Direction Define, Product Design (Web), Design System, Prototype',
-      isComingSoon: true,
-    },
-    {
-      client: 'NBC News', 
-      project: 'Interactive Hitboard', 
-      category: 'Visual Direction Define, Product Design (App)',
-      isComingSoon: true,
-    },
-    {
-      client: 'The Ritz-Carlton', 
-      project: 'ritzcarlton.com', 
-      category: 'Prototypes, Motion Design',
-      isComingSoon: false,
-    },
-    {
-      client: 'Citadel', 
-      project: 'citadel.com', 
-      category: 'Prototype, Motion Design',
-      isComingSoon: false,
-    },
-    {
-      client: 'Kaplan', 
-      project: 'kaplan.com', 
-      category: 'Visual Direction Define',
-      isComingSoon: false,
-    },
-    {
-      client: 'Benchling', 
-      project: 'benchling.com', 
-      category: 'Product Design (Web), Design System',
-      isComingSoon: false,
-    },
-    {
-      client: 'KPMG', 
-      project: 'kpmg.com/us', 
-      category: 'Visual Direction Define',
-      isComingSoon: false,
-    },
-    {
-      client: 'JLo Beauty', 
-      project: 'jlobeauty.com', 
-      category: 'Product Design (Web), Prototype, Motion Design',
-      isComingSoon: false,
-    },
-    {
-      client: 'Verlas', 
-      project: 'verlas.com', 
-      category: 'Product Design (Web), Social Campaign',
-      isComingSoon: false,
-    },
-    {
-      client: 'The Quintessential Centrist', 
-      project: 'thequintessentialcentrist.com', 
-      category: 'Product Design & Development (Web)',
-      isComingSoon: false,
-    },
-  ];
+  const archiveList: ArchiveData[] = props.archiveListData.archiveData
   
   const archiveContainerRef = useRef(null)
   const h1DisplayRef = useRef(null)
@@ -168,7 +102,7 @@ export default function Archive() {
 /*                                                  */
 /****************************************************/
 
-function SingleArchive(props: {archiveData: archiveData}) {
+function SingleArchive(props: {archiveData: ArchiveData}) {
 
     /************** Style classNames ***************/
     const styles = {
@@ -229,7 +163,7 @@ function SingleArchive(props: {archiveData: archiveData}) {
 
       <div className={styles.categoryWrapper}>
         <span>
-          { props.archiveData.category }
+          { props.archiveData.category.join(', ') }
         </span>
       </div>
     </div>

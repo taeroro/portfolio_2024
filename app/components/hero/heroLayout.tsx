@@ -1,16 +1,16 @@
-import { fetchHero, Hero } from "@/contentful/fetchHero";
-import HeroUI from "./heroUI";
+import { fetchHero, HeroData } from "@/contentful/fetchHero";
+import Hero from "./hero";
 
 const getData = async () => {
-  const res: Hero | null = await fetchHero();
+  const res: HeroData | null = await fetchHero();
   return res;
 }
 
 export default async function HeroLayout() {
-  const heroData: Hero | null = await getData();
+  const heroData: HeroData | null = await getData();
 
   if (heroData)
-    return <HeroUI heroData={heroData} />
+    return <Hero heroData={heroData} />
   
   return (
     <div>
