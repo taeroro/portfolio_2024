@@ -11,8 +11,6 @@ const config: Config = {
       'display': ['Gradient Premium', 'Helvetica', 'san-serif'],
       'sans': ['Graphik', 'Helvetica', 'san-serif'],
     },
-    fontSize: {
-    },
     letterSpacing: {
       normal: '-0.08rem',
     },

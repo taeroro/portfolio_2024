@@ -1,5 +1,6 @@
 'use client';
 
+import Link from "next/link";
 /****************************************************/
 /*                                                  */
 /* Navigation Component                             */
@@ -99,10 +100,15 @@ export default function Navigation() {
       setIsMenuOpen(false);
       document.body.style.overflow = 'unset';
     }
-
-    console.log(isMenuOpen);
-    
   }
+
+  /************** Link onClick Handler ***************/
+  function linkClickHandler(e: React.SyntheticEvent) {
+    e.stopPropagation();
+    if (isMenuOpen) 
+      menuHandler()
+  }
+
 
   useEffect(() => {
     const elem = document.getElementById("footerArea");
@@ -139,7 +145,11 @@ export default function Navigation() {
         onClick={menuHandler}
       >
         <div className={styles.pathingContainer.concat(isMenuOpen ? styles.pathContainerOpen : '')}>
-          {currentPath.toString()}
+          <Link href="/" legacyBehavior>
+            <a onClick={linkClickHandler}>
+              {currentPath.toString()}
+            </a>
+          </Link>
         </div>
         
         <div className={styles.menuButtonWrapper.concat(isMenuOpen ? styles.menuButtonWrapperOpen : '')}>
