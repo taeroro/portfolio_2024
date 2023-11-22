@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['images.ctfassets.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.ctfassets.net',
+      },
+    ],
+    unoptimized: false
   },
   publicRuntimeConfig: {
     CONTENTFUL_SPACE_ID: process.env.CONTENTFUL_SPACE_ID,

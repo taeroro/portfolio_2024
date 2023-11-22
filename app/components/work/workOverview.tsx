@@ -1,18 +1,10 @@
 'use client';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
+import { WorkListData, WorkData } from "@/contentful/fetchWork";
 import Image from "next/image";
 import Link from "next/link";
-import { useLayoutEffect, useRef } from "react";
-
-/************** Temp - TO BE DELETED ***************/
-interface workData {
-  slug: string,
-  title: string,
-  highlightDescription: string,
-  thumbnailURL: string,
-}
-/************** Temp - TO BE DELETED ***************/
 
 
 /****************************************************/
@@ -21,43 +13,12 @@ interface workData {
 /*                                                  */
 /****************************************************/
 
-export default function WorkOverview() {
+export default function WorkOverview(props: {workListData: WorkListData}) {
 
   /************** Defining variables ***************/
-  const title: string = "/work"
-  const workList: workData[] = [
-    {
-      slug: 'microsoft',
-      title: '/microsoft',
-      highlightDescription: 'Microsoft Surface and Windows global site redesign.',
-      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/6JtILa6rXRb61JKMBMNlD6/0fc04a34919b336b712142c70f0373bf/thumbnail.jpg',
-    },
-    {
-      slug: 'marriott',
-      title: '/marriott',
-      highlightDescription: 'Lorem ispum dolor adist.',
-      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/4GzuMdH5j6Wji2i5JkFV15/c9d69c4667c5c17fed397a6c10ed5f9f/00_HERO_WALK_0030.jpg',
-    },
-    {
-      slug: 'tiktok',
-      title: '/tiktok',
-      highlightDescription: 'Prototype that moves.',
-      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/2WyhcgV9NX8zKATEi8jL2W/e198a0e7599321e289ef9af5cf3ac467/tt4b-1.jpg',
-    },
-    {
-      slug: 'michaelkors',
-      title: '/michaelkors',
-      highlightDescription: 'Debuted the first digital fashion show with Michael Kors.',
-      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/1BEwJco8TVgqR4nSJ4vL5a/c682ad8ea6f58a8fc1ae24ba0ffd5ed1/-2021_Sep-Mockup.jpg',
-    },
-    {
-      slug: 'riley',
-      title: '/riley',
-      highlightDescription: 'Where home meets life.',
-      thumbnailURL: 'https://images.ctfassets.net/i0awqvhf3ypo/4GzuMdH5j6Wji2i5JkFV15/c9d69c4667c5c17fed397a6c10ed5f9f/00_HERO_WALK_0030.jpg',
-    },
-  ]
-  
+  const title: string = props.workListData.sectionTitle
+  const workList: WorkData[] = props.workListData.workData  
+
   const workOverviewContainerRef = useRef(null)
   const h1DisplayRef = useRef(null)
 
@@ -134,7 +95,7 @@ export default function WorkOverview() {
 /*                                                  */
 /****************************************************/
 
-function SingleWork(props: {workData: workData}) {
+function SingleWork(props: {workData: WorkData}) {
 
   /************** Style classNames ***************/
   const styles = {
@@ -171,15 +132,17 @@ function SingleWork(props: {workData: workData}) {
       </div>
 
       <span className={styles.description}>
-        { props.workData.highlightDescription }
+        { props.workData.overview }
       </span>
 
       <div className={styles.imgWrapper}>
         <Image 
           className={styles.img}
-          src={props.workData.thumbnailURL}
-          fill={true}
+          src={props.workData.thumbnail.url}
+          width={props.workData.thumbnail.width}
+          height={props.workData.thumbnail.height}
           alt={"Project thumbnail."}
+          // placeholder={"blur"}
         />
       </div>
     </Link>

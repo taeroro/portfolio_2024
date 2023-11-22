@@ -23,7 +23,7 @@ import { ArchiveListData, ArchiveData } from "@/contentful/fetchArchive";
 export default function Archive(props: {archiveListData: ArchiveListData}) {
 
   /************** Defining variables ***************/
-  const title: string = "/archive"
+  const title: string = props.archiveListData.sectionTitle
   const archiveList: ArchiveData[] = props.archiveListData.archiveData
   
   const archiveContainerRef = useRef(null)

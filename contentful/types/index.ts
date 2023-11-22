@@ -6,3 +6,5 @@ export type { TypeNavigation, TypeNavigationFields, TypeNavigationSkeleton } fro
 export type { TypeSearch, TypeSearchFields, TypeSearchSkeleton } from "./TypeSearch";
 export type { TypeSocial, TypeSocialFields, TypeSocialSkeleton } from "./TypeSocial";
 export type { TypeWho, TypeWhoFields, TypeWhoSkeleton } from "./TypeWho";
+export type { TypeWork, TypeWorkFields, TypeWorkSkeleton } from "./TypeWork";
+export type { TypeWorkList, TypeWorkListFields, TypeWorkListSkeleton } from "./TypeWorkList";
