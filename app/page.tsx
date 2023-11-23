@@ -5,7 +5,7 @@ import WorkOverviewLayout from './components/work/workOverviewLayout'
 import Who from './components/who/who'
 import Footer from './components/footer/footer'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main className="min-h-screen m-0 fullpage overflow-y-auto overflow-x-hidden">
       <Navigation />

@@ -12,6 +12,7 @@ export interface WorkListData {
 
 export interface WorkData {
   slug: string,
+  isPasswordProtected: boolean,
   title: string,
   overview: string,
   thumbnail: ImageData
@@ -26,6 +27,7 @@ export function parseContentfulWorkList(workListEntry?: WorkListEntry): WorkList
   const parsedListData: WorkData[] = resWorkData.map((item: any) => {
     return ({
       slug: item.fields.slug,
+      isPasswordProtected: item.fields.isPasswordProtected,
       title: item.fields.title,
       overview: item.fields.overview,
       thumbnail: parseImage(item.fields.thumbnail.fields.file),
@@ -41,10 +43,10 @@ export function parseContentfulWorkList(workListEntry?: WorkListEntry): WorkList
 export async function fetchWorkList(): Promise<WorkListData | null> {
 	const contentful = contentfulClient({ preview: false })
 
-	const archiveListResult = await contentful.getEntries<TypeWorkListSkeleton>({
+	const workListResult = await contentful.getEntries<TypeWorkListSkeleton>({
 		content_type: 'workList',
 		include: 2,
 	})
 
-	return parseContentfulWorkList(archiveListResult.items[0])
+	return parseContentfulWorkList(workListResult.items[0])
 }

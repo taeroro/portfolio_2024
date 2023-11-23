@@ -7,4 +7,7 @@ export type { TypeSearch, TypeSearchFields, TypeSearchSkeleton } from "./TypeSea
 export type { TypeSocial, TypeSocialFields, TypeSocialSkeleton } from "./TypeSocial";
 export type { TypeWho, TypeWhoFields, TypeWhoSkeleton } from "./TypeWho";
 export type { TypeWork, TypeWorkFields, TypeWorkSkeleton } from "./TypeWork";
+export type { TypeWorkDetail, TypeWorkDetailFields, TypeWorkDetailSkeleton } from "./TypeWorkDetail";
+export type { TypeWorkDetailContent, TypeWorkDetailContentFields, TypeWorkDetailContentSkeleton } from "./TypeWorkDetailContent";
+export type { TypeWorkDetailContentMedia, TypeWorkDetailContentMediaFields, TypeWorkDetailContentMediaSkeleton } from "./TypeWorkDetailContentMedia";
 export type { TypeWorkList, TypeWorkListFields, TypeWorkListSkeleton } from "./TypeWorkList";
