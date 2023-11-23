@@ -1,4 +1,4 @@
-import { TypeWorkSkeleton, TypeWorkDetailSkeleton, TypeWorkDetailContentSkeleton } from './types'
+import { TypeWorkSkeleton, TypeWorkDetailSkeleton, TypeWorkDetailContentSkeleton, TypeWorkDetailContentMediaSkeleton } from './types'
 import { Entry } from 'contentful'
 import contentfulClient from './contentfulClient'
 import { parseImage, ImageData } from './parseImage'
@@ -9,16 +9,25 @@ import { parseImage, ImageData } from './parseImage'
 type FullWorkEntry = Entry<TypeWorkSkeleton, undefined, string>
 type WorkDetailEntry = Entry<TypeWorkDetailSkeleton, undefined, string>
 type WorkDetailContentEntry = Entry<TypeWorkDetailContentSkeleton, undefined, string>
+type WorkDetailContentMediaEntry = Entry<TypeWorkDetailContentMediaSkeleton, undefined, string>
 
 
 /************** Defining Content Interface ***************/
+
+export interface WorkDetailContentMediaData {
+  mediaType: string,
+  size: string,
+  image?: ImageData,
+  videoLink: string,
+  showOutline: boolean
+}
 
 export interface WorkDetailContent {
   title?: string,
   subtitle?: string,
   body?: string,
   bottomMargin: boolean,
-  // workMedia: WorkMedia
+  workMedia: WorkDetailContentMediaData
 }
 
 export interface WorkDetailData {
@@ -29,7 +38,7 @@ export interface WorkDetailData {
   collaborator?: string[],
   deliverable: string[],
   projectLink: string,
-  // workDetailContent: WorkDetailContent
+  workDetailContent: WorkDetailContent[]
 }
 
 export interface FullWorkData {
@@ -44,6 +53,31 @@ export interface FullWorkData {
 
 /************** Parse Content ***************/
 
+export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntry?: WorkDetailContentMediaEntry): WorkDetailContentMediaData {
+  const res: any = workDetailContentMediaEntry!.fields
+  return ({
+    mediaType: res.mediaType,
+    size: res.size,
+    image: res.image ? parseImage(res.image.fields.file) : res.image,
+    videoLink: res.videoLink,
+    showOutline: res.showOutline
+  })
+}
+
+export function parseContentfulWorkDetailContent(workDetailContentEntry?: WorkDetailContentEntry[]): WorkDetailContent[] {
+  const parsedListData: WorkDetailContent[] = workDetailContentEntry!.map((item: any) => {
+    return ({
+      title: item.fields.title,
+      subtitle: item.fields.subtitle,
+      body: item.fields.body,
+      bottomMargin: item.fields.bottomMargin,
+      workMedia: parseContentfulWorkDetailContentMedia(item.fields.workMedia)
+    })
+  })
+  
+  return parsedListData;
+}
+
 export function parseContentfulWorkDetail(workDetailEntry?: WorkDetailEntry): WorkDetailData {
   const res: any = workDetailEntry!.fields
   return ({
@@ -54,6 +88,7 @@ export function parseContentfulWorkDetail(workDetailEntry?: WorkDetailEntry): Wo
     collaborator: res.collaborator ? res.collaborator.join(', ') : res.collaborator,
     deliverable: res.deliverable.join(', '),
     projectLink: res.projectLink,
+    workDetailContent: parseContentfulWorkDetailContent(res.workDetailContent)
   })
 }
 
@@ -83,7 +118,8 @@ export async function fetchWorkDetail({slug}: {slug: string}): Promise<FullWorkD
 		content_type: 'work',
     'fields.slug': slug,
 		include: 3,
-	})
+	})  
+
 
 	return parseContentfulFullWork(res.items[0])
 }

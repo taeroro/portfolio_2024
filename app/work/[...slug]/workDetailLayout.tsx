@@ -7,8 +7,8 @@ const getData = async (slug: string) => {
 
 export default async function WorkDetailLayout({slug}: {slug: string}) {
   const fullWorkData: FullWorkData | null = await getData(slug);
-  console.log(fullWorkData);
-
+  console.dir(fullWorkData, {depth: null});
+  
   return (
     <div>
       {slug}
