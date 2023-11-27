@@ -4,15 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 import { ArchiveListData, ArchiveData } from "@/contentful/fetchArchive";
 
-/************** Temp - TO BE DELETED ***************/
-// interface archiveData {
-//   client: string,
-//   project: string,
-//   category: string,
-//   isComingSoon: boolean,
-// }
-/************** Temp - TO BE DELETED ***************/
-
 
 /****************************************************/
 /*                                                  */

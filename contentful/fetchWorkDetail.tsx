@@ -1,4 +1,4 @@
-import { TypeWorkSkeleton, TypeWorkDetailSkeleton, TypeWorkDetailContentSkeleton, TypeWorkDetailContentMediaSkeleton } from './types'
+import { TypeWorkSkeleton, TypeWorkDetailSkeleton, TypeWorkDetailContentSkeleton, TypeWorkDetailContentMediaSkeleton, TypeContentPwdSkeleton } from './types'
 import { Entry } from 'contentful'
 import contentfulClient from './contentfulClient'
 import { parseImage, ImageData } from './parseImage'
@@ -10,6 +10,7 @@ type FullWorkEntry = Entry<TypeWorkSkeleton, undefined, string>
 type WorkDetailEntry = Entry<TypeWorkDetailSkeleton, undefined, string>
 type WorkDetailContentEntry = Entry<TypeWorkDetailContentSkeleton, undefined, string>
 type WorkDetailContentMediaEntry = Entry<TypeWorkDetailContentMediaSkeleton, undefined, string>
+type PwdEntry = Entry<TypeContentPwdSkeleton, undefined, string>
 
 
 /************** Defining Content Interface ***************/
@@ -32,11 +33,11 @@ export interface WorkDetailContent {
 
 export interface WorkDetailData {
   fullDescription: string,
-  role: string[],
-  category: string[],
-  agency?: string[],
-  collaborator?: string[],
-  deliverable: string[],
+  role: string,
+  category: string,
+  agency?: string,
+  collaborator?: string,
+  deliverable: string,
   projectLink: string,
   workDetailContent: WorkDetailContent[]
 }
@@ -48,6 +49,10 @@ export interface FullWorkData {
   overview: string,
   thumbnail: ImageData,
   workDetailData: WorkDetailData
+}
+
+export interface PwdData {
+	pwd: string
 }
 
 
@@ -82,11 +87,11 @@ export function parseContentfulWorkDetail(workDetailEntry?: WorkDetailEntry): Wo
   const res: any = workDetailEntry!.fields
   return ({
     fullDescription: res.fullDescription,
-    role: res.role.join(', '),
-    category: res.category.join(', '),
-    agency: res.agency ? res.agency.join(', ') : res.agency,
-    collaborator: res.collaborator ? res.collaborator.join(', ') : res.collaborator,
-    deliverable: res.deliverable.join(', '),
+    role: res.role.join('\n'),
+    category: res.category.join('\n'),
+    agency: res.agency ? res.agency.join('\n') : res.agency,
+    collaborator: res.collaborator ? res.collaborator.join('\n') : res.collaborator,
+    deliverable: res.deliverable.join('\n'),
     projectLink: res.projectLink,
     workDetailContent: parseContentfulWorkDetailContent(res.workDetailContent)
   })
@@ -122,4 +127,18 @@ export async function fetchWorkDetail({slug}: {slug: string}): Promise<FullWorkD
 
 
 	return parseContentfulFullWork(res.items[0])
+}
+
+
+/************** Fetch PWD ***************/
+
+export async function fetchPwd(): Promise<PwdData | null> {
+  const contentful = contentfulClient({ preview: false })
+
+	const res = await contentful.getEntries<TypeContentPwdSkeleton>({
+		content_type: 'contentPwd',
+		include: 2,
+	})
+
+	return res.items[0].fields
 }

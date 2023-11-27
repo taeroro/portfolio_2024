@@ -114,6 +114,7 @@ function SingleWork(props: {workData: WorkData}) {
     ].join(' '),
     imgWrapper: [
       'w-full aspect-[5/3] relative overflow-hidden',
+      'flex flex-row justify-center',
       // 'bg-gray-300',
       'bg-highlight',
     ].join(' '),

@@ -81,6 +81,12 @@ body {
   line-height: .695;
 }
 
+.display-microsoft {
+  font-size: 22.9vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+}
+
 .h1-display {
   font-size: 3.5rem;
   letter-spacing: -0.055em;
