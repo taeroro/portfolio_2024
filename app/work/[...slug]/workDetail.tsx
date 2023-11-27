@@ -355,7 +355,7 @@ function Content({contentData}: {contentData: WorkDetailContent}) {
       'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
     ].join(' '),
     bMargin: [
-      ' pb-16'
+      ' !pb-16'
     ].join(' '),
   }
 
