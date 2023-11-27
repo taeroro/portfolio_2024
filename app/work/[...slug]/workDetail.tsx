@@ -69,7 +69,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
 
   return (
     <div>
-      <Title title={title} />
+      <Title slug={slug} title={title} />
       <Overview 
         thumbnail={thumbnail} overview={overview} fullDescription={fullDescription} 
         role={role} category={category} agency={agency} collaborator={collaborator} deliverable={deliverable}
@@ -93,7 +93,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
 /*                                                  */
 /****************************************************/
 
-function Title({title}: {title: string}) {
+function Title({slug, title}: {slug: string, title: string}) {
 
   /************** Defining variables ***************/  
   const heroContainerRef = useRef(null)
@@ -101,17 +101,23 @@ function Title({title}: {title: string}) {
   
 
   /************** Style classNames ***************/
-  const styles = {
+  const styles: any = {
     heroContainer: [
       'w-full h-svh-screen min-h-[600px]',
       'flex flex-col justify-end',
     ].join(' '),
     h1: [
-      'font-display font-bold display-microsoft',
+      'font-display font-bold',
       'select-none pointer-events-none',
     ].join(' '),
+    microsoft: [
+      ' display-microsoft'
+    ].join(' '),
+    tiktok: [
+      ' display-tiktok'
+    ].join(' '),
   }
-
+  const h1ClassName = styles[slug] || ''
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -141,7 +147,10 @@ function Title({title}: {title: string}) {
 
   return (
     <div className={styles.heroContainer} ref={heroContainerRef}>
-      <h1 className={styles.h1} ref={h1DisplayRef}>
+      <h1 
+        className={styles.h1.concat(h1ClassName)}
+        ref={h1DisplayRef}
+      >
         {title}
       </h1>
     </div>
@@ -434,11 +443,13 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     mediaType,
     size,
     image,
+    secondImage,
     videoLink,
     showOutline
   ] : [
     string,
     string,
+    ImageData,
     ImageData,
     string,
     boolean
@@ -446,12 +457,11 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     media.mediaType,
     media.size,
     media.image as ImageData,
+    media.secondImage as ImageData,
     media.videoLink || '',
     media.showOutline
   ]
-
   const [hasWindow, setHasWindow] = useState(false);
-
 
   /************** Style classNames ***************/
   const styles = {
@@ -462,6 +472,14 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'bg-gray-300',
     ].join(' '),
     img: [
+      'object-cover',
+    ].join(' '),
+    imgHalvesWrapper: [
+      'w-full',
+      'grid grid-cols-2 gap-8',
+      'max-xl:grid-cols-1 max-sm:gap-4',
+    ].join(' '),
+    imgHalves: [
       'object-cover',
     ].join(' '),
     videoWrapper: [
@@ -495,6 +513,28 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
             }}
           />
         }
+      </div>
+    )
+  }
+
+  if (size === 'Half') {
+    return (
+      <div className={styles.imgHalvesWrapper}>
+        <Image 
+          className={styles.imgHalves}
+          src={image.url}
+          width={image.width}
+          height={image.height}
+          alt={"Project content image."}
+        />
+
+        <Image 
+          className={styles.imgHalves}
+          src={secondImage.url}
+          width={image.width}
+          height={image.height}
+          alt={"Project content image."}
+        />
       </div>
     )
   }

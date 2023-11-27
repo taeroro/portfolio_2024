@@ -4,6 +4,7 @@ export interface TypeWorkDetailContentMediaFields {
     mediaType: EntryFieldTypes.Symbol<"Image" | "Video">;
     size: EntryFieldTypes.Symbol<"Full" | "Half">;
     image?: EntryFieldTypes.AssetLink;
+    secondImage?: EntryFieldTypes.AssetLink;
     videoLink?: EntryFieldTypes.Symbol;
     showOutline: EntryFieldTypes.Boolean;
 }

@@ -57,6 +57,7 @@ body {
 
 
 /************** Type Styles ***************/
+/* Display */
 .display-name {
   font-size: 31.1vw;
   letter-spacing: -0.055em;
@@ -87,6 +88,13 @@ body {
   line-height: .695;
 }
 
+.display-tiktok {
+  font-size: 33.8vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+}
+
+/* H1 */
 .h1-display {
   font-size: 3.5rem;
   letter-spacing: -0.055em;
@@ -98,16 +106,19 @@ body {
   line-height: 1;
 }
 
+/* H2 */
 .h2-text {
   font-size: 3rem;
   line-height: 1;
 }
 
+/* Title */
 .title-text {
   font-size: clamp(1.25rem ,1.25vw, 2rem);
   line-height: 1;
 }
 
+/* Body */
 .body-text {
   font-size: 1.125rem;
   letter-spacing: -0.05rem;

@@ -18,6 +18,7 @@ export interface WorkDetailContentMediaData {
   mediaType: string,
   size: string,
   image?: ImageData,
+  secondImage?: ImageData,
   videoLink: string,
   showOutline: boolean
 }
@@ -62,7 +63,8 @@ export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntr
   return ({
     mediaType: res.mediaType,
     size: res.size,
-    image: res.image ? parseImage(res.image.fields.file) : res.image,
+    image: res.image && parseImage(res.image.fields.file),
+    secondImage: res.secondImage && parseImage(res.secondImage.fields.file),
     videoLink: res.videoLink,
     showOutline: res.showOutline
   })
@@ -88,8 +90,8 @@ export function parseContentfulWorkDetail(workDetailEntry?: WorkDetailEntry): Wo
     fullDescription: res.fullDescription,
     role: res.role.join('\n'),
     category: res.category.join('\n'),
-    agency: res.agency ? res.agency.join('\n') : res.agency,
-    collaborator: res.collaborator ? res.collaborator.join('\n') : res.collaborator,
+    agency: res.agency && res.agency.join('\n'),
+    collaborator: res.collaborator && res.collaborator.join('\n'),
     deliverable: res.deliverable.join('\n'),
     projectLink: res.projectLink,
     workDetailContent: parseContentfulWorkDetailContent(res.workDetailContent)
