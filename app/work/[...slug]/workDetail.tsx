@@ -6,6 +6,7 @@ import { FullWorkData, WorkDetailContent, WorkDetailContentMediaData } from "@/c
 import { ImageData } from "@/contentful/parseImage";
 import Image from "next/image";
 import ReactPlayer from "react-player/vimeo";
+import Markdown from "react-markdown";
 
 
 /****************************************************/
@@ -286,18 +287,16 @@ function Overview({
       <div className={styles.detailOuterContainer}>
       {
         detailArr.map((e, i) => (
-          e.item ?
-            <div className={styles.singleDetailWrapper} key={i}>
-              <span className={styles.detailTitle}>
-                {e.name}
-              </span>
-    
-              <span>
-                {e.item}
-              </span>
-            </div>
-          :
-          null
+          e.item &&
+          <div className={styles.singleDetailWrapper} key={i}>
+            <span className={styles.detailTitle}>
+              {e.name}
+            </span>
+  
+            <span>
+              {e.item}
+            </span>
+          </div>
         ))
       }
       </div>
@@ -352,22 +351,23 @@ function Content({contentData}: {contentData: WorkDetailContent}) {
     ].join(' '),
     innerContent: [
       'col-span-8',
-      'flex flex-col gap-4',
+      'flex flex-col gap-8',
       'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
+    ].join(' '),
+    bMargin: [
+      ' pb-16'
     ].join(' '),
   }
 
   return (
-    <div className={styles.contentContainer}>
+    <div className={styles.contentContainer.concat(bottomMargin ? styles.bMargin : '')}>
       {
-        title ?
-          <div className={styles.sectionTitleWrapper}>
-            <h2>
-              {title}
-            </h2>
-          </div>
-        :
-          null
+        title &&
+        <div className={styles.sectionTitleWrapper}>
+          <h2>
+            {title}
+          </h2>
+        </div>
       }
 
       <div className={styles.innerContent}>
@@ -392,15 +392,18 @@ function TextContent({subtitle, body}: {subtitle: string, body: string}) {
 
   /************** Style classNames ***************/
   const styles = {
-    subtitleWrapper: [
+    textOuterWrapper: [
       'col-span-8',
-      'font-bold title-text',
+      'flex flex-col gap-4',
       'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
+    subtitleWrapper: [
+      'w-full',
+      'font-bold title-text',
+    ].join(' '),
     bodyWrapper: [
-      'col-span-8',
+      'w-full',
       'font-medium leading-6 body-text whitespace-pre-line',
-      'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
   }
   
@@ -408,7 +411,7 @@ function TextContent({subtitle, body}: {subtitle: string, body: string}) {
     return null
 
   return (
-    <>
+    <div className={styles.textOuterWrapper}>
       {
         subtitle &&
         <div className={styles.subtitleWrapper}>
@@ -417,16 +420,16 @@ function TextContent({subtitle, body}: {subtitle: string, body: string}) {
           </span>
         </div>
       }
-      
+
       {
         body &&
         <div className={styles.bodyWrapper}>
-          <p>
+          <Markdown>
             {body}
-          </p>
+          </Markdown>
         </div>
       }
-    </>
+    </div>
   )
 }
 
