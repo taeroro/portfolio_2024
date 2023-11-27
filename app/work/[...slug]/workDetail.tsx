@@ -116,6 +116,9 @@ function Title({slug, title}: {slug: string, title: string}) {
     tiktok: [
       ' display-tiktok'
     ].join(' '),
+    michaelkors: [
+      ' display-mkc'
+    ].join(' '),
   }
   const h1ClassName = styles[slug] || ''
 
@@ -369,7 +372,7 @@ function Content({contentData}: {contentData: WorkDetailContent}) {
 
       <div className={styles.innerContent}>
         <TextContent subtitle={subtitle} body={body} />
-        <MediaContent media={workMedia} />
+        { workMedia && <MediaContent media={workMedia} /> }
       </div>
 
     </div>

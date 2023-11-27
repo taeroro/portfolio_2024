@@ -77,7 +77,7 @@ export function parseContentfulWorkDetailContent(workDetailContentEntry?: WorkDe
       subtitle: item.fields.subtitle,
       body: item.fields.body,
       bottomMargin: item.fields.bottomMargin,
-      workMedia: parseContentfulWorkDetailContentMedia(item.fields.workMedia)
+      workMedia: item.fields.workMedia && parseContentfulWorkDetailContentMedia(item.fields.workMedia)
     })
   })
   
