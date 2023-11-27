@@ -1,10 +1,11 @@
 'use client';
 
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";import { useEffect, useRef } from "react";
-import { FullWorkData } from "@/contentful/fetchWorkDetail";
+import { ScrollTrigger } from "gsap/ScrollTrigger";import { useEffect, useRef, useState } from "react";
+import { FullWorkData, WorkDetailContent, WorkDetailContentMediaData } from "@/contentful/fetchWorkDetail";
 import { ImageData } from "@/contentful/parseImage";
 import Image from "next/image";
+import ReactPlayer from "react-player/vimeo";
 
 
 /****************************************************/
@@ -30,6 +31,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
     deliverable,
 
     projectLink,
+    detailContent
   ] : [
     string,
     string,
@@ -44,6 +46,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
     string,
 
     string,
+    WorkDetailContent[]
   ]
    = [
     fullWorkData.slug,
@@ -59,9 +62,10 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
     fullWorkData.workDetailData.deliverable,
 
     fullWorkData.workDetailData.projectLink,
+    fullWorkData.workDetailData.workDetailContent
   ]
   
-  // console.dir(fullWorkData, {depth: null});
+  // console.dir(fullWorkData.workDetailData.workDetailContent, {depth: null});
 
   return (
     <div>
@@ -71,6 +75,11 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
         role={role} category={category} agency={agency} collaborator={collaborator} deliverable={deliverable}
         projectLink={projectLink}
       />
+      {
+        detailContent.map((e, i) => (
+          <Content contentData={e} key={i} />
+        ))
+      }
     </div>
   )
 }
@@ -159,8 +168,7 @@ function Overview({
     projectLink: string
   }) {
 
-  /************** Defining variables ***************/  
-  const roleKey = Object.keys({role});
+  /************** Defining variables ***************/
   const detailArr = [
     {
       name: Object.keys({role})[0],
@@ -187,10 +195,9 @@ function Overview({
   /************** Style classNames ***************/
   const styles = {
     overviewContainer: [
-      'w-full px-8 mt-16',
+      'w-full px-8 py-16',
       'grid grid-cols-12 gap-8',
-      'max-sm:px-2 max-sm:mt-8',
-      'pb-16',
+      'max-sm:px-2 max-sm:py-8',
     ].join(' '),
     imgWrapper: [
       'w-full col-span-12',
@@ -285,4 +292,223 @@ function Overview({
 
     </div>
   )
+}
+
+
+
+
+/****************************************************/
+/*                                                  */
+/* Content - Work Detail Page                       */
+/*                                                  */
+/****************************************************/
+
+function Content({contentData}: {contentData: WorkDetailContent}) {
+
+  /************** Defining variables ***************/
+  const [
+    title,
+    subtitle,
+    body,
+    bottomMargin,
+    workMedia
+  ] : [
+    string,
+    string,
+    string,
+    boolean,
+    WorkDetailContentMediaData
+  ] = [
+    contentData.title || '',
+    contentData.subtitle || '',
+    contentData.body || '',
+    contentData.bottomMargin,
+    contentData.workMedia || null
+  ]
+
+  /************** Style classNames ***************/
+  const styles = {
+    contentContainer: [
+      'w-full px-8 pb-8',
+      'grid grid-cols-12',
+      'max-sm:px-2 max-sm:pb-4',
+    ].join(' '),
+    sectionTitleWrapper: [
+      'col-span-8 pb-8',
+      'font-bold h2-text',
+      'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
+    ].join(' '),
+    innerContent: [
+      'col-span-8',
+      'flex flex-col gap-4',
+      'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
+    ].join(' '),
+  }
+
+  return (
+    <div className={styles.contentContainer}>
+      {
+        title ?
+          <div className={styles.sectionTitleWrapper}>
+            <h2>
+              {title}
+            </h2>
+          </div>
+        :
+          null
+      }
+
+      <div className={styles.innerContent}>
+        <TextContent subtitle={subtitle} body={body} />
+        <MediaContent media={workMedia} />
+      </div>
+
+    </div>
+  )
+}
+
+
+
+
+/****************************************************/
+/*                                                  */
+/* Content/Text - Work Detail Page                  */
+/*                                                  */
+/****************************************************/
+
+function TextContent({subtitle, body}: {subtitle: string, body: string}) {
+
+  /************** Style classNames ***************/
+  const styles = {
+    subtitleWrapper: [
+      'col-span-8',
+      'font-bold title-text',
+      'max-lg:col-span-12 max-xl:col-span-10',
+    ].join(' '),
+    bodyWrapper: [
+      'col-span-8',
+      'font-medium leading-6 body-text whitespace-pre-line',
+      'max-lg:col-span-12 max-xl:col-span-10',
+    ].join(' '),
+  }
+  
+  if (!subtitle && !body) 
+    return null
+
+  return (
+    <>
+      {
+        subtitle &&
+        <div className={styles.subtitleWrapper}>
+          <span>
+            {subtitle}
+          </span>
+        </div>
+      }
+      
+      {
+        body &&
+        <div className={styles.bodyWrapper}>
+          <p>
+            {body}
+          </p>
+        </div>
+      }
+    </>
+  )
+}
+
+
+
+
+/****************************************************/
+/*                                                  */
+/* Content/Media - Work Detail Page                  */
+/*                                                  */
+/****************************************************/
+
+function MediaContent({media}: {media: WorkDetailContentMediaData}) {
+
+  /************** Defining variables ***************/
+  const [
+    mediaType,
+    size,
+    image,
+    videoLink,
+    showOutline
+  ] : [
+    string,
+    string,
+    ImageData,
+    string,
+    boolean
+  ] = [
+    media.mediaType,
+    media.size,
+    media.image as ImageData,
+    media.videoLink || '',
+    media.showOutline
+  ]
+
+  const [hasWindow, setHasWindow] = useState(false);
+
+
+  /************** Style classNames ***************/
+  const styles = {
+    imgWrapper: [
+      'w-full col-span-12',
+      'flex flex-row justify-center',
+      'relative overflow-hidden',
+      'bg-gray-300',
+    ].join(' '),
+    img: [
+      'object-cover',
+    ].join(' '),
+    videoWrapper: [
+      'w-full col-span-12',
+    ].join(' '),
+  }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined')
+      setHasWindow(true)
+  }, [])
+
+
+  if (mediaType === 'Video') {
+    return (
+      <div className={styles.videoWrapper}>
+        {
+          hasWindow &&
+          <ReactPlayer
+            url={videoLink}
+            width={'100%'}
+            height={'100%'}
+            config={{
+              playerOptions: {
+                autoplay: true,
+                loop: true,
+                responsive: true,
+                muted: true,
+                title: false,
+              }
+            }}
+          />
+        }
+      </div>
+    )
+  }
+
+  return (
+    <div className={styles.imgWrapper}>
+      <Image 
+        className={styles.img}
+        src={image.url}
+        width={image.width}
+        height={image.height}
+        alt={"Project content image."}
+      />
+    </div>
+  )
+  
 }

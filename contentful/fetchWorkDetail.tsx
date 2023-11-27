@@ -10,7 +10,6 @@ type FullWorkEntry = Entry<TypeWorkSkeleton, undefined, string>
 type WorkDetailEntry = Entry<TypeWorkDetailSkeleton, undefined, string>
 type WorkDetailContentEntry = Entry<TypeWorkDetailContentSkeleton, undefined, string>
 type WorkDetailContentMediaEntry = Entry<TypeWorkDetailContentMediaSkeleton, undefined, string>
-type PwdEntry = Entry<TypeContentPwdSkeleton, undefined, string>
 
 
 /************** Defining Content Interface ***************/

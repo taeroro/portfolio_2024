@@ -8,14 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "types:contentful": "export $(cat .env.local | awk '!/^\\s*#/' | awk '!/^\\s*$/'); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN -o contentful/types -X && prettier --write contentful/types"
-
   },
   "dependencies": {
     "contentful": "^10.6.10",
     "gsap": "^3.12.2",
     "next": "14.0.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-player": "^2.13.0"
   },
   "devDependencies": {
     "@types/node": "^20",
