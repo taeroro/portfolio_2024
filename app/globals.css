@@ -82,6 +82,18 @@ body {
   line-height: .695;
 }
 
+/* .display-not-found {
+  font-size: 48vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+} */
+
+.display-not-found {
+  font-size: 38vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+}
+
 .display-microsoft {
   font-size: 22.9vw;
   letter-spacing: -0.055em;

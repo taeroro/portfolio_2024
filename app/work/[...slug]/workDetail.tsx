@@ -487,6 +487,8 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     imgHalvesWrapper: [
       'w-full',
       'grid grid-cols-2 gap-8',
+      'flex flex-row justify-center',
+      'relative overflow-hidden',
       'max-xl:grid-cols-1 max-sm:gap-4',
     ].join(' '),
     imgHalves: [
