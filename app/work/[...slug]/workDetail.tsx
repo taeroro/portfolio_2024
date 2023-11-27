@@ -48,8 +48,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
 
     string,
     WorkDetailContent[]
-  ]
-   = [
+  ] = [
     fullWorkData.slug,
     fullWorkData.title,
     fullWorkData.overview,
@@ -110,6 +109,7 @@ function Title({slug, title}: {slug: string, title: string}) {
     h1: [
       'font-display font-bold',
       'select-none pointer-events-none',
+      'z-20'
     ].join(' '),
     microsoft: [
       ' display-microsoft'
@@ -119,6 +119,9 @@ function Title({slug, title}: {slug: string, title: string}) {
     ].join(' '),
     michaelkors: [
       ' display-mkc'
+    ].join(' '),
+    riley: [
+      ' display-riley'
     ].join(' '),
   }
   const h1ClassName = styles[slug] || ''
@@ -220,6 +223,7 @@ function Overview({
       'max-sm:aspect-[3/4] max-lg:aspect-[3/2] max-xl:aspect-[5/3]',
     ].join(' '),
     img: [
+      'h-full',
       'object-cover',
     ].join(' '),
     sectionTitleWrapper: [
@@ -508,6 +512,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
             url={videoLink}
             width={'100%'}
             height={'100%'}
+            controls={true}
             config={{
               playerOptions: {
                 autoplay: true,
