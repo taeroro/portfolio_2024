@@ -266,9 +266,9 @@ function Overview({
 
       <div className={styles.detailOuterContainer}>
       {
-        detailArr.map((e) => (
+        detailArr.map((e, i) => (
           e.item ?
-            <div className={styles.singleDetailWrapper}>
+            <div className={styles.singleDetailWrapper} key={i}>
               <span className={styles.detailTitle}>
                 {e.name}
               </span>
@@ -278,7 +278,7 @@ function Overview({
               </span>
             </div>
           :
-          <></>
+          null
         ))
       }
       </div>
