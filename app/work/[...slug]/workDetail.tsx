@@ -223,7 +223,7 @@ function Overview({
       'max-sm:aspect-[3/4] max-lg:aspect-[3/2] max-xl:aspect-[5/3]',
     ].join(' '),
     img: [
-      'h-full',
+      'w-full h-full',
       'object-cover',
     ].join(' '),
     sectionTitleWrapper: [
