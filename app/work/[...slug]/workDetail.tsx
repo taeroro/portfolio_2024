@@ -487,6 +487,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'max-lg:col-span-12',
     ].join(' '),
     img: [
+      'w-full h-full',
       'object-cover',
     ].join(' '),
     imgHalvesWrapper: [
@@ -497,6 +498,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'max-xl:grid-cols-1 max-lg:col-span-12 max-sm:gap-4 ',
     ].join(' '),
     imgHalves: [
+      'w-full h-full',
       'object-cover',
     ].join(' '),
     videoWrapper: [
