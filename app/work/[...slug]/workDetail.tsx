@@ -65,7 +65,7 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
     fullWorkData.workDetailData.workDetailContent
   ]
   
-  // console.dir(fullWorkData.workDetailData.workDetailContent, {depth: null});
+  console.dir(fullWorkData.workDetailData.workDetailContent, {depth: null});
 
   return (
     <div>

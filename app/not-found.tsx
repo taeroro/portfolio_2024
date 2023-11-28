@@ -20,8 +20,9 @@ export default function NotFoundPage() {
       'max-sm:col-span-7',
     ].join(' '),
 		h1Wrapper: [
-			'w-full pr-14',
-			'flex flex-row justify-evenly'
+			'w-full px-8',
+			'flex flex-row',
+			'max-sm:px-2',
 		].join(' '),
 		imgWrapper: [
 			'w-full',
@@ -33,7 +34,7 @@ export default function NotFoundPage() {
 			'-rotate-12'
 		].join(' '),
     h1: [
-      'font-display font-bold display-not-found',
+      'font-display font-bold display-not-found pr-[0.055em]',
       'select-none pointer-events-none',
     ].join(' '),
 	}
