@@ -512,7 +512,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       setHasWindow(true)
   }, [])
 
-
+  
   if (mediaType === 'Video') {
     return (
       <div className={styles.videoWrapper}>
