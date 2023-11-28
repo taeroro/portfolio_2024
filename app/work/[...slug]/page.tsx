@@ -8,7 +8,7 @@ export default function WorkDetailPage({ params }: { params: { slug: string } })
     <main className="min-h-screen m-0 fullpage overflow-y-auto overflow-x-hidden">
       <Navigation />
 
-      <div className="z-10 relative bg-white">
+      <div className="z-10 relative bg-white overflow-y-hidden">
         <WorkDetailLayout slug={params.slug[0]} />
       </div>
 

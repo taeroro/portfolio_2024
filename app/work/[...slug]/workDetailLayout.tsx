@@ -18,21 +18,25 @@ const getWorkList = async () => {
   return res && workListToSlug(res)
 }
 
+/************** Slug list ***************/
 function workListToSlug(data: WorkListData): string[] {
   let res: string[] = []
-  
   data.workData.forEach((e) => {
     res.push(e.slug)
   })
-
   return res
 }
 
 export default async function WorkDetailLayout({slug}: {slug: string}) {
   const workList: string[] | null = await getWorkList()
 
+  /************** Render Work Detail ***************/
   if (workList && workList.includes(slug)) {
     const fullWorkData: FullWorkData | null = await getWorkData(slug)
+
+    const slugIndex = workList.indexOf(slug) + 1
+    const nextSlug: string = workList[slugIndex] || workList[0]
+
     const isPasswordProtected: boolean = fullWorkData?.isPasswordProtected!
     // let checksum: PwdData | null = null;
   
@@ -42,13 +46,15 @@ export default async function WorkDetailLayout({slug}: {slug: string}) {
     // }
   
     if (fullWorkData)
-      return <WorkDetail fullWorkData={fullWorkData} />
+      return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} />
   }
 
+  /************** Capture 404 ***************/
   if (workList && !workList.includes(slug)) {
     redirect('/404')
   }
 
+  /************** When Data is null ***************/
   return (
     <div>
       <p>Loading...</p>

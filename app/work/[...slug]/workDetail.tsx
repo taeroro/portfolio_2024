@@ -15,9 +15,9 @@ import Markdown from "react-markdown";
 /*                                                  */
 /****************************************************/
 
-export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}) {
+export default function WorkDetail({fullWorkData, nextSlug} : {fullWorkData: FullWorkData, nextSlug: string}) {
 
-  /************** Defining variables ***************/  
+  /************** Defining variables ***************/
   const [
     slug,
     title,
@@ -65,10 +65,10 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
     fullWorkData.workDetailData.workDetailContent
   ]
   
-  console.dir(fullWorkData.workDetailData.workDetailContent, {depth: null});
+  // console.dir(fullWorkData.workDetailData.workDetailContent, {depth: null});
 
   return (
-    <div>
+    <>
       <Title slug={slug} title={title} />
       <Overview 
         thumbnail={thumbnail} overview={overview} fullDescription={fullDescription} 
@@ -80,7 +80,8 @@ export default function WorkDetail({fullWorkData} : {fullWorkData: FullWorkData}
           <Content contentData={e} key={i} />
         ))
       }
-    </div>
+      <NextWork nextSlug={nextSlug} />
+    </>
   )
 }
 
@@ -113,6 +114,9 @@ function Title({slug, title}: {slug: string, title: string}) {
     ].join(' '),
     microsoft: [
       ' display-microsoft'
+    ].join(' '),
+    marriott: [
+      ' display-marriott'
     ].join(' '),
     tiktok: [
       ' display-tiktok'
@@ -354,9 +358,8 @@ function Content({contentData}: {contentData: WorkDetailContent}) {
       'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
     ].join(' '),
     innerContent: [
-      'col-span-8',
-      'flex flex-col gap-8',
-      'max-lg:col-span-12 max-xl:col-span-10 max-sm:pb-4',
+      'col-span-12',
+      'grid grid-cols-12 gap-8',
     ].join(' '),
     bMargin: [
       ' !pb-16'
@@ -402,11 +405,11 @@ function TextContent({subtitle, body}: {subtitle: string, body: string}) {
       'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
     subtitleWrapper: [
-      'w-full',
+      'col-span-8',
       'font-bold title-text',
     ].join(' '),
     bodyWrapper: [
-      'w-full',
+      'col-span-8',
       'font-medium leading-6 body-text whitespace-pre-line',
     ].join(' '),
   }
@@ -476,26 +479,28 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
   /************** Style classNames ***************/
   const styles = {
     imgWrapper: [
-      'w-full col-span-12',
+      'col-span-10',
       'flex flex-row justify-center',
       'relative overflow-hidden',
       'bg-gray-300',
+      'max-lg:col-span-12',
     ].join(' '),
     img: [
       'object-cover',
     ].join(' '),
     imgHalvesWrapper: [
-      'w-full',
+      'col-span-10',
       'grid grid-cols-2 gap-8',
       'flex flex-row justify-center',
       'relative overflow-hidden',
-      'max-xl:grid-cols-1 max-sm:gap-4',
+      'max-xl:grid-cols-1 max-lg:col-span-12 max-sm:gap-4 ',
     ].join(' '),
     imgHalves: [
       'object-cover',
     ].join(' '),
     videoWrapper: [
-      'w-full col-span-12',
+      'col-span-10',
+      'max-lg:col-span-12',
     ].join(' '),
   }
 
@@ -562,6 +567,70 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
         alt={"Project content image."}
       />
     </div>
+  )  
+}
+
+
+
+
+
+/****************************************************/
+/*                                                  */
+/* Next Work - Work Detail Page                     */
+/*                                                  */
+/****************************************************/
+
+function NextWork({nextSlug}: {nextSlug: string}) {
+const styles: any = {
+  outerContainer: [
+    'w-full',
+    'flex flex-col',
+    // 'max-sm:px-4 max-sm:pb-8',
+  ].join(' '),
+  titleContainer: [
+    'w-full px-8',
+    'max-sm:px-2 max-sm:gap-4',
+  ].join(' '),
+  title: [
+    'w-full',
+    'font-bold h2-text',
+    'max-lg:col-span-12 max-xl:col-span-10',
+  ].join(' '),
+  h1: [
+    'w-full',
+    'font-display font-bold pt-[5vw]',
+    'select-none pointer-events-none',
+  ].join(' '),
+  microsoft: [
+    ' display-microsoft'
+  ].join(' '),
+  marriott: [
+    ' display-marriott'
+  ].join(' '),
+  tiktok: [
+    ' display-tiktok'
+  ].join(' '),
+  michaelkors: [
+    ' display-mkc'
+  ].join(' '),
+  riley: [
+    ' display-riley !pt-[9vw]'
+  ].join(' '),
+}
+
+const h1ClassName = styles[nextSlug] || ''
+
+  return (
+    <div className={styles.outerContainer}>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>
+          Next project
+        </h2>
+      </div>
+
+      <h1 className={styles.h1.concat(h1ClassName)}>
+        /{nextSlug}
+      </h1>
+    </div>
   )
-  
 }
