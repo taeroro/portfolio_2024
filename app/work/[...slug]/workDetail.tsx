@@ -7,6 +7,7 @@ import { ImageData } from "@/contentful/parseImage";
 import Image from "next/image";
 import ReactPlayer from "react-player/vimeo";
 import Markdown from "react-markdown";
+import Link from "next/link";
 
 
 /****************************************************/
@@ -581,47 +582,48 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
 /****************************************************/
 
 function NextWork({nextSlug}: {nextSlug: string}) {
-const styles: any = {
-  outerContainer: [
-    'w-full',
-    'flex flex-col',
-    // 'max-sm:px-4 max-sm:pb-8',
-  ].join(' '),
-  titleContainer: [
-    'w-full px-8',
-    'max-sm:px-2 max-sm:gap-4',
-  ].join(' '),
-  title: [
-    'w-full',
-    'font-bold h2-text',
-    'max-lg:col-span-12 max-xl:col-span-10',
-  ].join(' '),
-  h1: [
-    'w-full',
-    'font-display font-bold pt-[5vw]',
-    'select-none pointer-events-none',
-  ].join(' '),
-  microsoft: [
-    ' display-microsoft'
-  ].join(' '),
-  marriott: [
-    ' display-marriott'
-  ].join(' '),
-  tiktok: [
-    ' display-tiktok'
-  ].join(' '),
-  michaelkors: [
-    ' display-mkc'
-  ].join(' '),
-  riley: [
-    ' display-riley !pt-[9vw]'
-  ].join(' '),
-}
+  const styles: any = {
+    outerContainer: [
+      'w-full',
+      'flex flex-col',
+      'hover:text-highlight group'
+      // 'max-sm:px-4 max-sm:pb-8',
+    ].join(' '),
+    titleContainer: [
+      'w-full px-8',
+      'max-sm:px-2 max-sm:gap-4',
+    ].join(' '),
+    title: [
+      'w-full',
+      'font-bold h2-text',
+      'max-lg:col-span-12 max-xl:col-span-10',
+    ].join(' '),
+    h1: [
+      'w-full',
+      'font-display font-bold pt-[5vw]',
+      'select-none pointer-events-none',
+    ].join(' '),
+    microsoft: [
+      ' display-microsoft'
+    ].join(' '),
+    marriott: [
+      ' display-marriott'
+    ].join(' '),
+    tiktok: [
+      ' display-tiktok'
+    ].join(' '),
+    michaelkors: [
+      ' display-mkc'
+    ].join(' '),
+    riley: [
+      ' display-riley !pt-[9vw]'
+    ].join(' '),
+  }
 
-const h1ClassName = styles[nextSlug] || ''
+  const h1ClassName = styles[nextSlug] || ''
 
   return (
-    <div className={styles.outerContainer}>
+    <Link className={styles.outerContainer} href={"/work/" + nextSlug}>
       <div className={styles.titleContainer}>
         <h2 className={styles.title}>
           Next project
@@ -631,6 +633,6 @@ const h1ClassName = styles[nextSlug] || ''
       <h1 className={styles.h1.concat(h1ClassName)}>
         /{nextSlug}
       </h1>
-    </div>
+    </Link>
   )
 }
