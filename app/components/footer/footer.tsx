@@ -1,3 +1,10 @@
+'use client';
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef } from "react";
+import Image from "next/image"
+
 /************** Temp - TO BE DELETED ***************/
 interface socialData {
   type: string,
@@ -16,7 +23,6 @@ interface socialData {
 export default function Footer() {
 
   /************** Defining variables ***************/
-  const title: string = "ryan.fan"
   const copyright: string = "© Ryan Fan" + " " + new Date().getFullYear()
   const socialData: socialData[] = [
     {
@@ -40,7 +46,11 @@ export default function Footer() {
       url: "https://www.instagram.com/ryanfandesign/"
     },
   ]
-  
+  const titleImgPath: string = '/img/rf_white.svg'
+
+  const titleImgRef = useRef(null)
+  const animOverlayRef = useRef(null)
+
   /************** Style classNames ***************/
   const styles = {
     footerContainer: [
@@ -70,11 +80,48 @@ export default function Footer() {
       'hover:border-highlight hover:bg-highlight font-white',
       'max-sm:border-b-2',
     ].join(' '),
-    h1: [
-      'font-display font-bold text-white display-name',
+    imgWrapper: [
+      'w-full px-8 -mb-[6.9vw]',
+      'relative overflow-hidden origin-bottom',
+      'max-sm:px-2',
+    ].join(' '),
+    img: [
+      'w-full h-full object-contain object-left',
+      'select-none pointer-events-none',
+    ].join(' '),
+    animOverlay: [
+      'w-full h-full absolute bg-black opacity-60',
       'select-none pointer-events-none',
     ].join(' '),
   }
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#footerArea",
+        start: "-=100%",
+        end: "top",
+        scrub: 0.3,
+      }
+    })
+
+    mm.add({
+      isMobile: "(max-width: 640px)",
+      isDesktop: "(min-width: 641px)",
+    }, (context)=> {
+      let cdt = false;
+      if(context.conditions) cdt = context.conditions.isMobile;
+      
+      tl
+        .fromTo(titleImgRef.current, { y: cdt ? '15%' : '15%', scale: cdt ? '.98' : '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
+        .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
+
+    })
+  }, [])
+
 
   return (
     <div className={styles.footerContainer}>
@@ -102,9 +149,19 @@ export default function Footer() {
         </div>
       </div>
 
-      <h1 className={styles.h1}>
-        {title}
-      </h1>
+      <div className={styles.imgWrapper} ref={titleImgRef}>
+        <Image
+          className={styles.img}
+          src={titleImgPath}
+          width={2000}
+          height={650}
+          priority
+          alt={"ryan.fan"}
+        />
+      </div>
+
+      <div className={styles.animOverlay} ref={animOverlayRef} />
+
     </div>
   )
 }

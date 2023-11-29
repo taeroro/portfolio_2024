@@ -37,17 +37,14 @@ export default function Hero(props: {heroData: HeroData}) {
       'font-bold title-text',
       'max-sm:col-span-7',
     ].join(' '),
-    h1: [
-      'font-display font-bold display-name',
-      'select-none pointer-events-none',
-    ].join(' '),
     imgWrapper: [
       'w-full px-8 -mb-[6.9vw]',
       'relative overflow-hidden',
       'max-sm:px-2',
     ].join(' '),
     img: [
-      'w-full h-full object-contain object-left-top'
+      'w-full h-full object-contain object-left',
+      'select-none pointer-events-none',
     ].join(' '),
   }
 
