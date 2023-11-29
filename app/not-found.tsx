@@ -4,6 +4,12 @@ import Image from "next/image"
 
 export default function NotFoundPage() {
 
+	/************** Defining variables ***************/
+	const notFoundIcon: string = '/img/248.png'
+	const notFoundMessage: string = '/404'
+	const description: string = 'Uh oh! This page could not be found. \n\n Try something else.'
+
+	/************** Style classNames ***************/
 	const styles = {
     heroContainer: [
       'w-full h-svh-screen min-h-[600px] overflow-y-hidden',
@@ -38,9 +44,6 @@ export default function NotFoundPage() {
       'select-none pointer-events-none',
     ].join(' '),
 	}
-	const notFoundIcon: string = '/248.png'
-	const notFoundMessage: string = '/404'
-	const description: string = 'Uh oh! This page could not be found. \n\n Try something else.'
 
 	return (
 		<main className="min-h-screen m-0 fullpage overflow-y-auto overflow-x-hidden">

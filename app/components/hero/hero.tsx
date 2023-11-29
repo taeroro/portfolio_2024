@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { HeroData } from "@/contentful/fetchHero";
+import Image from "next/image";
 
 
 /****************************************************/
@@ -14,11 +15,11 @@ import { HeroData } from "@/contentful/fetchHero";
 
 export default function Hero(props: {heroData: HeroData}) {
   /************** Defining variables ***************/
-  const title: string = props.heroData.name
   const description: string = props.heroData.description
+  const titleImgPath: string = '/img/rf_black.svg'
 
   const heroContainerRef = useRef(null)
-  const h1DisplayRef = useRef(null)
+  const titleImgRef = useRef(null)
 
   /************** Style classNames ***************/
   const styles = {
@@ -39,6 +40,14 @@ export default function Hero(props: {heroData: HeroData}) {
     h1: [
       'font-display font-bold display-name',
       'select-none pointer-events-none',
+    ].join(' '),
+    imgWrapper: [
+      'w-full px-8 -mb-[6.9vw]',
+      'relative overflow-hidden',
+      'max-sm:px-2',
+    ].join(' '),
+    img: [
+      'w-full h-full object-contain object-left-top'
     ].join(' '),
   }
 
@@ -61,9 +70,10 @@ export default function Hero(props: {heroData: HeroData}) {
     }, (context)=> {
       let cdt = false;
       if(context.conditions) cdt = context.conditions.isMobile;
-
+      
       tl
-        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+        .to(titleImgRef.current, { height: cdt ? '2.25rem' : '3.5rem' })
+
     })
   }, [])
 
@@ -75,9 +85,17 @@ export default function Hero(props: {heroData: HeroData}) {
         </span>
       </div>
 
-      <h1 className={styles.h1} ref={h1DisplayRef}>
-        {title}
-      </h1>
+      <div className={styles.imgWrapper} ref={titleImgRef}>
+        <Image
+          className={styles.img}
+          src={titleImgPath}
+          width={2000}
+          height={650}
+          priority
+          alt={"ryan.fan"}
+        />
+      </div>
+
     </div>  
   )
 }
