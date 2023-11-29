@@ -38,7 +38,7 @@ export default function Hero(props: {heroData: HeroData}) {
       'max-sm:col-span-7',
     ].join(' '),
     imgWrapper: [
-      'w-full px-8 -mb-[6.9vw]',
+      'w-full px-8 -mb-[7vw]',
       'relative overflow-hidden',
       'max-sm:px-2',
     ].join(' '),

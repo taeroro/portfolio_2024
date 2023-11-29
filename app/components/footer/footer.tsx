@@ -81,7 +81,7 @@ export default function Footer() {
       'max-sm:border-b-2',
     ].join(' '),
     imgWrapper: [
-      'w-full px-8 -mb-[6.9vw]',
+      'w-full px-8 -mb-[7vw]',
       'relative overflow-hidden origin-bottom',
       'max-sm:px-2',
     ].join(' '),
