@@ -3,7 +3,7 @@ import Footer from "@/app/components/footer/footer"
 import Image from "next/image"
 
 export default function NotFoundPage() {
-
+	
 	/************** Defining variables ***************/
 	const notFoundIcon: string = '/img/248.png'
 	const notFoundMessage: string = '/404'

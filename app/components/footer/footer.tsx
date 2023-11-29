@@ -90,7 +90,7 @@ export default function Footer() {
       'select-none pointer-events-none',
     ].join(' '),
     animOverlay: [
-      'w-full h-full absolute bg-black opacity-60',
+      'w-full h-full absolute bg-black opacity-0',
       'select-none pointer-events-none',
     ].join(' '),
   }
@@ -102,24 +102,15 @@ export default function Footer() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#footerArea",
-        start: "-=100%",
-        end: "top",
+        start: "-=75%",
+        end: "+=50%",
         scrub: 0.3,
       }
     })
 
-    mm.add({
-      isMobile: "(max-width: 640px)",
-      isDesktop: "(min-width: 641px)",
-    }, (context)=> {
-      let cdt = false;
-      if(context.conditions) cdt = context.conditions.isMobile;
-      
-      tl
-        .fromTo(titleImgRef.current, { y: cdt ? '15%' : '15%', scale: cdt ? '.98' : '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
-        .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
-
-    })
+    tl
+      .fromTo(titleImgRef.current, { y: '15%', scale: '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
+      .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
   }, [])
 
 
