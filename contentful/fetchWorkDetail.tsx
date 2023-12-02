@@ -59,7 +59,8 @@ export interface PwdData {
 /************** Parse Content ***************/
 
 export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntry?: WorkDetailContentMediaEntry): WorkDetailContentMediaData {
-  const res: any = workDetailContentMediaEntry!.fields
+  const res: any = workDetailContentMediaEntry!.fields  
+
   return ({
     mediaType: res.mediaType,
     size: res.size,

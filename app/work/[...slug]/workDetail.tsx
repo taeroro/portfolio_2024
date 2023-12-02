@@ -488,7 +488,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ].join(' '),
     img: [
       'w-full h-full',
-      'object-cover',
+      'object-contain object-top',
     ].join(' '),
     imgHalvesWrapper: [
       'col-span-10',
@@ -499,7 +499,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ].join(' '),
     imgHalves: [
       'w-full h-full',
-      'object-cover',
+      'object-contain object-top',
     ].join(' '),
     videoWrapper: [
       'col-span-10',
@@ -549,13 +549,16 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
           alt={"Project content image."}
         />
 
-        <Image 
-          className={styles.imgHalves}
-          src={secondImage.url}
-          width={image.width}
-          height={image.height}
-          alt={"Project content image."}
-        />
+        {
+          secondImage &&
+          <Image 
+            className={styles.imgHalves}
+            src={secondImage.url}
+            width={image.width}
+            height={image.height}
+            alt={"Project content image."}
+          />
+        }
       </div>
     )
   }
