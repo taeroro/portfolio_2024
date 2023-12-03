@@ -1,4 +1,4 @@
-import Navigation from "@/app/components/navigation/navigation"
+import NavigationLayout from "./components/navigation/navigationLayout"
 import Footer from "@/app/components/footer/footer"
 import Image from "next/image"
 
@@ -47,7 +47,7 @@ export default function NotFoundPage() {
 
 	return (
 		<main className="min-h-screen m-0 fullpage overflow-y-auto overflow-x-hidden">
-			<Navigation />
+			<NavigationLayout />
 	
 			<div className="z-10 relative bg-white">
 				<div className={styles.heroContainer}>
