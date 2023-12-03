@@ -69,7 +69,7 @@ export default function Archive(props: {archiveListData: ArchiveListData}) {
 
   return (
     <div className={styles.archiveContainer} ref={archiveContainerRef}>
-      <div className={styles.sectionTitleContainer}>
+      <div className={styles.sectionTitleContainer} id='archive'>
         <h1 className={styles.h1} ref={h1DisplayRef}>
           {title}
         </h1>

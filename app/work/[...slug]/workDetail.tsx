@@ -487,8 +487,9 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'max-lg:col-span-12',
     ].join(' '),
     img: [
-      'w-full h-full',
+      'w-full',
       'object-contain object-top',
+      'bg-gray-300',
     ].join(' '),
     imgHalvesWrapper: [
       'col-span-10',
@@ -498,8 +499,9 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'max-xl:grid-cols-1 max-lg:col-span-12 max-sm:gap-4 ',
     ].join(' '),
     imgHalves: [
-      'w-full h-full',
+      'w-full',
       'object-contain object-top',
+      'bg-gray-300',
     ].join(' '),
     videoWrapper: [
       'col-span-10',
@@ -605,7 +607,7 @@ function NextWork({nextSlug}: {nextSlug: string}) {
     ].join(' '),
     h1: [
       'w-full',
-      'font-display font-bold pt-[5vw]',
+      'font-display font-bold pt-[6vw]',
       'select-none pointer-events-none',
     ].join(' '),
     microsoft: [

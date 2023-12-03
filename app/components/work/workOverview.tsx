@@ -71,7 +71,7 @@ export default function WorkOverview(props: {workListData: WorkListData}) {
 
   return (
     <div className={styles.workOverviewContainer} ref={workOverviewContainerRef}>
-      <div className={styles.sectionTitleContainer}>
+      <div className={styles.sectionTitleContainer} id="work">
         <h1 className={styles.h1} ref={h1DisplayRef}>
           {title}
         </h1>

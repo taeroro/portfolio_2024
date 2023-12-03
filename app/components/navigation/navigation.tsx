@@ -1,5 +1,6 @@
 'use client';
 
+import { NavData, SocialData } from "@/contentful/fetchNav";
 import Link from "next/link";
 /****************************************************/
 /*                                                  */
@@ -9,16 +10,16 @@ import Link from "next/link";
 
 import { useEffect, useRef, useState } from "react"
 
-export default function Navigation() {
+export default function Navigation({navData} : {navData: NavData}) {
 
   /************** Defining variables ***************/
   const [footerPosition, setFooterPosition] = useState(-1)
   const [isOnDarkBg, setIsOnDarkBg] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
-  const currentPath: string[] = ["ryan.fan"]
-  const activePath: string = "/"
-  const menuGlyph: string = "+"
+  const currentPath: string[] = [navData.name]
+  // const activePath: string = "/"
+  const menuGlyph: string = navData.menuIcon
 
   const navRef = useRef<HTMLInputElement>(null)
   
@@ -130,6 +131,7 @@ export default function Navigation() {
     
   }, [footerPosition, isOnDarkBg, isMenuOpen])
     
+
   return (
     <div className={styles.navigationOuterContainer.concat(
         (isOnDarkBg
@@ -158,9 +160,96 @@ export default function Navigation() {
       </div>
 
       <div className={styles.menuContainer.concat(isMenuOpen ? styles.menuContainerOpen : '')}>
-
+        <Menu menuLinks={navData.navigationLinks} socialLinks={navData.socialData} />
       </div>
 
     </div>
   )
+}
+
+
+
+
+/****************************************************/
+/*                                                  */
+/* Nav Menu Component                               */
+/*                                                  */
+/****************************************************/
+
+function Menu({menuLinks, socialLinks}: {menuLinks: string[], socialLinks: SocialData[] | null }) {
+
+  /************** Defining variables ***************/
+
+  
+  /************** Style classNames ***************/
+  const styles = {
+    outerContainer: [
+      'h-full',
+      'grid grid-cols-12 gap-8',
+      'py-8 mx-8',
+      'max-sm:mx-2 max-sm:pt-1',
+    ].join(' '),
+    menuLinksContainer: [
+      'col-span-6',
+      'flex flex-col justify-end items-start gap-4',
+    ].join(' '),
+    menuItem: [
+      'font-display font-bold display-menu text-white',
+      'transition duration-300 select-none',
+      'hover:bg-highlight',
+    ].join(' '),
+    socialLinksContainer: [
+      'col-span-6',
+      'flex flex-row justify-end content-end flex-wrap gap-x-4 gap-y-2',
+    ].join(' '),
+    socialItem: [
+      'font-bold title-text text-white',
+    ].join(' '),
+    link: [
+      'no-underline border-solid border-white border-b-4',
+      'transition duration-300',
+      'hover:border-highlight hover:bg-highlight color-white',
+      'max-sm:border-b-2',
+    ].join(' '),
+  }
+
+
+  return (
+    <div className={styles.outerContainer}>
+      <div className={styles.menuLinksContainer}>
+        {
+          menuLinks &&
+          menuLinks.map((e, i) => {
+            return (
+              <Link className={styles.menuItem} key={i} href={'/#'.concat(e.slice(1))}>
+                {e.concat(' →')}
+              </Link>
+            )
+          })
+        }
+      </div>
+
+      <div className={styles.socialLinksContainer}>
+        {
+          socialLinks &&
+          socialLinks.map((e, i) => {
+            return (
+              <div className={styles.socialItem} key={i}>
+                <span>
+                  { e.type.concat(": ") }
+                </span>
+                <a
+                  className={styles.link}
+                  href={e.link} target="_blank" rel="noopener noreferrer"
+                >
+                  { e.displayContent }
+                </a>
+            </div>
+            )
+          })
+        }
+      </div>
+    </div>
+  )
+
 }

@@ -13,6 +13,7 @@ interface socialData {
 }
 /************** Temp - TO BE DELETED ***************/
 
+
 /****************************************************/
 /*                                                  */
 /* Footer Component                                 */
@@ -77,7 +78,7 @@ export default function Footer() {
     link: [
       'no-underline border-solid border-white border-b-4',
       'transition duration-300',
-      'hover:border-highlight hover:bg-highlight font-white',
+      'hover:border-highlight hover:bg-highlight color-white',
       'max-sm:border-b-2',
     ].join(' '),
     imgWrapper: [

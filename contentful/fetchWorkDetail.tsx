@@ -127,7 +127,6 @@ export async function fetchWorkDetail({slug}: {slug: string}): Promise<FullWorkD
 		include: 3,
 	})  
 
-
 	return parseContentfulFullWork(res.items[0])
 }
 

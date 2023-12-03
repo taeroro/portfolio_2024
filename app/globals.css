@@ -82,6 +82,12 @@ body {
   line-height: .695;
 }
 
+.display-menu {
+  font-size: max(3.5rem, 8.5vw);
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
 .display-not-found {
   font-size: 38vw;
   letter-spacing: -0.055em;
@@ -138,7 +144,7 @@ body {
 
 /* Title */
 .title-text {
-  font-size: clamp(1.25rem ,1.25vw, 2rem);
+  font-size: clamp(1.25rem, 1.25vw, 2rem);
   line-height: 1;
 }
 

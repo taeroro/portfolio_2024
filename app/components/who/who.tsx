@@ -90,7 +90,7 @@ export default function Who() {
 
   return (
     <div className={styles.whoContainer} ref={whoContainerRef}>
-      <div className={styles.sectionTitleContainer}>
+      <div className={styles.sectionTitleContainer} id='who?'>
         <h1 className={styles.h1} ref={h1DisplayRef}>
           {title}
         </h1>
