@@ -10,6 +10,8 @@ import Markdown from "react-markdown";
 import Link from "next/link";
 
 
+
+
 /****************************************************/
 /*                                                  */
 /* Work Detail Page                                 */
