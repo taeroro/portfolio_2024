@@ -135,7 +135,7 @@ export default function Navigation({navData} : {navData: NavData}) {
   return (
     <div className={styles.navigationOuterContainer.concat(
         (isOnDarkBg
-        ? ' bg-transparent'
+        ? ' bg-white'
         : ' bg-white').concat(
           isMenuOpen
           ? styles.navigationOuterContainerOpen

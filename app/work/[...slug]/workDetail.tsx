@@ -507,7 +507,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ].join(' '),
     videoWrapper: [
       'col-span-10',
-      'max-lg:col-span-12',
+      'max-lg:col-span-12 aspect-video',
     ].join(' '),
   }
 

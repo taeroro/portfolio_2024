@@ -40,7 +40,7 @@ export default async function WorkDetailLayout({slug}: {slug: string}) {
     const slugIndex = workList.indexOf(slug) + 1
     const nextSlug: string = workList[slugIndex] || workList[0]
 
-    const isPasswordProtected: boolean = fullWorkData?.isPasswordProtected!
+    // const isPasswordProtected: boolean = fullWorkData?.isPasswordProtected!
     // let checksum: PwdData | null = null;
   
     // if (isPasswordProtected) {
@@ -48,17 +48,17 @@ export default async function WorkDetailLayout({slug}: {slug: string}) {
     //   // console.log(checksum?.pwd);
     // }
   
-    if (fullWorkData) {
-      const cookiesStore = cookies();
-      const loginCookies = cookiesStore.get(process.env.PASSWORD_COOKIE_NAME!);
-      const isLoggedIn = !!loginCookies?.value;
+    // if (fullWorkData) {
+    //   const cookiesStore = cookies();
+    //   const loginCookies = cookiesStore.get(process.env.PASSWORD_COOKIE_NAME!);
+    //   const isLoggedIn = !!loginCookies?.value;
      
-      if (!isLoggedIn) {
-        return <PasswordPromptDialog />;
-      }
+    //   if (!isLoggedIn) {
+    //     return <PasswordPromptDialog />;
+    //   }
 
       return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} />
-    }
+    // }
   }
 
   /************** Capture 404 ***************/
