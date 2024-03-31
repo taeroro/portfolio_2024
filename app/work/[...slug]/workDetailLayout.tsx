@@ -37,7 +37,8 @@ export default async function WorkDetailLayout({slug}: {slug: string}) {
     const slugIndex = workList.indexOf(slug) + 1
     const nextSlug: string = workList[slugIndex] || workList[0]
 
-    return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} />
+    if (fullWorkData)
+      return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} />
   }
 
   /************** Capture 404 ***************/
