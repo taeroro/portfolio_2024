@@ -18,9 +18,12 @@ import Link from "next/link";
 /*                                                  */
 /****************************************************/
 
-export default function WorkDetail({fullWorkData, nextSlug} : {fullWorkData: FullWorkData, nextSlug: string}) {
+export default function WorkDetail(props: {fullWorkData: FullWorkData, nextSlug: string}) {
 
   /************** Defining variables ***************/
+  const fullWorkData = props.fullWorkData
+  const nextSlug = props.nextSlug
+
   const [
     slug,
     title,
