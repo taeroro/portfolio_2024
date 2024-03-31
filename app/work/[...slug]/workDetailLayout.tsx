@@ -3,8 +3,8 @@ import WorkDetail from "./workDetail";
 import { WorkListData, fetchWorkList } from "@/contentful/fetchWork";
 import { redirect } from "next/navigation";
 
-import { cookies } from 'next/headers'
-import PasswordPromptDialog from "@/app/components/password/passwordPromptDialog";
+// import { cookies } from 'next/headers'
+// import PasswordPromptDialog from "@/app/components/password/passwordPromptDialog";
 
 const getWorkData = async (slug: string) => {
   const res: FullWorkData | null = await fetchWorkDetail({slug: slug});
