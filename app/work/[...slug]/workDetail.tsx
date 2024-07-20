@@ -226,7 +226,7 @@ function Overview({
       'max-sm:px-2 max-sm:py-8',
     ].join(' '),
     imgWrapper: [
-      'w-full col-span-12',
+      'w-full col-span-12 rounded-[48px]',
       'flex flex-row justify-center',
       'aspect-[2/1] relative overflow-hidden',
       'bg-gray-300',

@@ -49,6 +49,7 @@ export default function Who() {
     ].join(' '),
     sectionTitleContainer: [
       'w-full h-svh-screen',
+      'w-full',
       'flex flex-col justify-end',
     ].join(' '),
     h1: [
@@ -115,7 +116,7 @@ function WhoContent(props: {whoContentData: whoContentData}) {
   /************** Style classNames ***************/
   const styles = {
     contentContainer: [
-      'w-full min-h-screen px-8 my-16',
+      'w-full px-8 mt-16 mb-24',
       'grid grid-cols-12 auto-rows-min gap-8',
       'max-sm:px-2 max-sm:my-8 max-sm:gap-4',
     ].join(' '),

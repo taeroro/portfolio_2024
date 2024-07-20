@@ -14,7 +14,8 @@ export default function Navigation({navData} : {navData: NavData}) {
 
   /************** Defining variables ***************/
   const [footerPosition, setFooterPosition] = useState(-1)
-  const [isOnDarkBg, setIsOnDarkBg] = useState(false)
+  const [heroHeight, setHeroHeight] = useState(-1)
+  const [isOnDarkBg, setIsOnDarkBg] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   const currentPath: string[] = [navData.name]
@@ -69,30 +70,44 @@ export default function Navigation({navData} : {navData: NavData}) {
     ].join(' '),
   }
 
-  /************** Scroll Handler ***************/
-  function scrollHandler() {
-    let y: number = window.scrollY;
-
-    if (footerPosition >= 0 && y >= footerPosition)
-      setIsOnDarkBg(true)
-    else 
-      setIsOnDarkBg(false)
-
-    // console.log("y: " + y + ", fP: " + footerPosition + ", isBgDark: " + isOnDarkBg);
-  }
-
-  /************** Resize Handler ***************/
-  function resizeHandler() {
+  /************** Check Element Renders ***************/
+  const renderCheck = () => {
+    const hero = document.getElementById("hpHero");
     const elem = document.getElementById("footerArea");
-    if (elem) {
-      const fY = elem.getBoundingClientRect().y
-      setFooterPosition(fY);
-      scrollHandler();
+    const navElem = navRef.current
+    const { scrollY } = window;
+
+    if (elem && hero && navElem) {
+      const hHeight = hero.getBoundingClientRect().height;
+      const fY = elem.getBoundingClientRect().y + scrollY;
+      const navHeight = navElem.clientHeight;
+
+      setHeroHeight(hHeight);
+      setFooterPosition(fY - navHeight);
     }
   }
 
+  /************** Scroll Handler ***************/
+  const scrollHandler = () => {
+    const { scrollY } = window;
+
+    setIsOnDarkBg(
+      scrollY < heroHeight ? true :
+      scrollY >= heroHeight && scrollY < footerPosition ? false :
+      scrollY >= footerPosition ? true : false
+    )
+
+    console.log("y: ", scrollY, "hero: ", heroHeight, "footer: ", footerPosition, "isBgDark: ", isOnDarkBg);
+    
+  }
+
+  /************** Resize Handler ***************/
+  const resizeHandler = () => {
+    renderCheck();
+  }
+
   /************** Menu Handler ***************/
-  function menuHandler() {
+  const menuHandler = () => {
     if (!isMenuOpen) {
       setIsMenuOpen(true);
       document.body.style.overflow = 'hidden';
@@ -104,38 +119,31 @@ export default function Navigation({navData} : {navData: NavData}) {
   }
 
   /************** Link onClick Handler ***************/
-  function linkClickHandler(e: React.SyntheticEvent) {
+  const linkClickHandler = (e: React.SyntheticEvent) => {
     e.stopPropagation();
     if (isMenuOpen) 
       menuHandler()
   }
 
-
+  /************** useEffect Function ***************/
   useEffect(() => {
-    const elem = document.getElementById("footerArea");
-    const navElem = navRef.current
-
-    if (elem && navElem && footerPosition == -1) {
-      const fY = elem.getBoundingClientRect().y
-      const navH = navElem.clientHeight;
-      setFooterPosition(fY - navH);
-    }
+    renderCheck();
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
     window.addEventListener('resize', resizeHandler);
 
     return () => {
-        window.removeEventListener('resize', scrollHandler);
+        window.removeEventListener('resize', resizeHandler);
         window.removeEventListener('scroll', scrollHandler);
     };
     
-  }, [footerPosition, isOnDarkBg, isMenuOpen])
+  }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen])
     
 
   return (
     <div className={styles.navigationOuterContainer.concat(
         (isOnDarkBg
-        ? ' bg-white'
+        ? ' bg-transparent'
         : ' bg-white').concat(
           isMenuOpen
           ? styles.navigationOuterContainerOpen
