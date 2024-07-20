@@ -15,6 +15,7 @@ export default function Navigation({navData} : {navData: NavData}) {
   /************** Defining variables ***************/
   const [footerPosition, setFooterPosition] = useState(-1)
   const [heroHeight, setHeroHeight] = useState(-1)
+  const [hideNavOnHero, setHideNavOnHero] = useState(true)
   const [isOnDarkBg, setIsOnDarkBg] = useState(true)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
@@ -38,6 +39,12 @@ export default function Navigation({navData} : {navData: NavData}) {
       'flex flex-row justify-between',
       'cursor-pointer group transition duration-300 hover:border-primary',
       'max-sm:mx-2 max-sm:pt-1 max-sm:border-b-[6px]',
+    ].join(' '),
+    hideNavBorder: [
+      ' !border-0'
+    ].join(' '),
+    hideNavLogo: [
+      ' opacity-0',
     ].join(' '),
     navigationContainerOpen: [
       ' !border-white'
@@ -73,18 +80,18 @@ export default function Navigation({navData} : {navData: NavData}) {
   /************** Check Element Renders ***************/
   const renderCheck = () => {
     const hero = document.getElementById("hpHero");
-    const elem = document.getElementById("footerArea");
+    const footer = document.getElementById("footerArea");
     const navElem = navRef.current
     const { scrollY } = window;
 
-    if (elem && hero && navElem) {
-      const hHeight = hero.getBoundingClientRect().height;
-      const fY = elem.getBoundingClientRect().y + scrollY;
-      const navHeight = navElem.clientHeight;
-
-      setHeroHeight(hHeight);
-      setFooterPosition(fY - navHeight);
-    }
+    const navHeight = navElem!.clientHeight;
+    setHeroHeight(hero ? hero.getBoundingClientRect().height : -1);
+    setFooterPosition(footer ? footer.getBoundingClientRect().y + scrollY - navHeight : -1);
+    setHideNavOnHero(
+      hero ? 
+        scrollY < hero.getBoundingClientRect().height ? true : false
+      : false
+    )
   }
 
   /************** Scroll Handler ***************/
@@ -97,8 +104,8 @@ export default function Navigation({navData} : {navData: NavData}) {
       scrollY >= footerPosition ? true : false
     )
 
-    console.log("y: ", scrollY, "hero: ", heroHeight, "footer: ", footerPosition, "isBgDark: ", isOnDarkBg);
-    
+    // console.log(hideNavOnHero);
+    // console.log("y: ", scrollY, "hero: ", heroHeight, "footer: ", footerPosition, "isBgDark: ", isOnDarkBg);
   }
 
   /************** Resize Handler ***************/
@@ -137,7 +144,7 @@ export default function Navigation({navData} : {navData: NavData}) {
         window.removeEventListener('scroll', scrollHandler);
     };
     
-  }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen])
+  }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen, hideNavOnHero])
     
 
   return (
@@ -151,10 +158,19 @@ export default function Navigation({navData} : {navData: NavData}) {
         )
     )} ref={navRef}>
       <div className={
-        styles.navigationContainer.concat(isMenuOpen ? styles.navigationContainerOpen : '')} 
+        styles.navigationContainer.concat(
+          isMenuOpen ? styles.navigationContainerOpen : ''
+        ).concat(
+          hideNavOnHero ? styles.hideNavBorder : ''
+        )} 
         onClick={menuHandler}
       >
-        <div className={styles.pathingContainer.concat(isMenuOpen ? styles.pathContainerOpen : '')}>
+        <div className={styles.pathingContainer.concat(
+          isMenuOpen ? styles.pathContainerOpen : ''
+          ).concat(
+            hideNavOnHero ? styles.hideNavLogo : ''
+          )
+        }>
           <Link href="/" legacyBehavior>
             <a onClick={linkClickHandler}>
               {currentPath.toString()}
