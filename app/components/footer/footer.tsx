@@ -45,11 +45,6 @@ export default function Footer() {
       displayContent: "ryan.fan",
       url: "https://read.cv/ryan.fan"
     },
-    // {
-    //   type: "ig",
-    //   displayContent: "@ryanfandesign",
-    //   url: "https://www.instagram.com/ryanfandesign/"
-    // },
   ]
   const titleImgPath: string = '/img/rf_white.svg'
 
@@ -101,12 +96,6 @@ export default function Footer() {
   }
 
   const animation = () => {
-    if (tl) {
-      ScrollTrigger.refresh();
-      console.log("refresh");
-      return;
-    }
-
     tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#footerArea",
@@ -133,6 +122,7 @@ export default function Footer() {
     const footerY = footer ? footer.getBoundingClientRect().y + scrollY : -1
     if (footerPosition !== footerY) {
       setFooterPosition(footerY)
+      ScrollTrigger.refresh();
       animation();
     }
   }
