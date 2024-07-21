@@ -1,7 +1,7 @@
 'use client';
 
 import { gsap } from "gsap";
-// import type GSAPTimeline from 'gsap';
+import type GSAPTimeline from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image"
@@ -26,7 +26,7 @@ export default function Footer() {
   
   /************** Defining variables ***************/
   const [footerPosition, setFooterPosition] = useState(-1)
-  let tl = null;
+  let tl: GSAPTimeline;
 
   const copyright: string = "© Ryan Fan" + " " + new Date().getFullYear()
   const socialData: socialData[] = [
