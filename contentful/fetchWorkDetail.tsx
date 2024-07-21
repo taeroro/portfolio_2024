@@ -20,7 +20,8 @@ export interface WorkDetailContentMediaData {
   image?: ImageData,
   secondImage?: ImageData,
   videoLink: string,
-  showOutline: boolean
+  showOutline: boolean,
+  span: string[]
 }
 
 export interface WorkDetailContent {
@@ -67,7 +68,8 @@ export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntr
     image: res.image && parseImage(res.image.fields.file),
     secondImage: res.secondImage && parseImage(res.secondImage.fields.file),
     videoLink: res.videoLink,
-    showOutline: res.showOutline
+    showOutline: res.showOutline,
+    span: res.span
   })
 }
 

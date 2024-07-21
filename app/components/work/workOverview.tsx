@@ -101,7 +101,8 @@ function SingleWork(props: {workData: WorkData}) {
   const styles = {
     singleWorkContainer: [
       'flex flex-col gap-4',
-      'hover:text-highlight group',
+      'group transition duration-300',
+      'hover:text-highlight',
       'max-sm:gap-2'
     ].join(' '),
     titleWrapper: [
@@ -120,7 +121,8 @@ function SingleWork(props: {workData: WorkData}) {
     ].join(' '),
     img: [
       'object-cover',
-      'group-hover:mix-blend-screen group-hover:filter group-hover:grayscale group-hover:opacity-100',
+      'group-hover:scale-105 transition duration-300'
+      // 'group-hover:mix-blend-lighten group-hover:filter group-hover:grayscale group-hover:opacity-100',
     ].join(' '),
   }
 

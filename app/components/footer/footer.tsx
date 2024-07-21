@@ -1,7 +1,7 @@
 'use client';
 
 import { gsap } from "gsap";
-import type GSAPTimeline from 'gsap';
+// import type GSAPTimeline from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image"
@@ -26,7 +26,7 @@ export default function Footer() {
   
   /************** Defining variables ***************/
   const [footerPosition, setFooterPosition] = useState(-1)
-  let tl: GSAPTimeline;
+  let tl = null;
 
   const copyright: string = "© Ryan Fan" + " " + new Date().getFullYear()
   const socialData: socialData[] = [
@@ -45,11 +45,11 @@ export default function Footer() {
       displayContent: "ryan.fan",
       url: "https://read.cv/ryan.fan"
     },
-    {
-      type: "ig",
-      displayContent: "@ryanfandesign",
-      url: "https://www.instagram.com/ryanfandesign/"
-    },
+    // {
+    //   type: "ig",
+    //   displayContent: "@ryanfandesign",
+    //   url: "https://www.instagram.com/ryanfandesign/"
+    // },
   ]
   const titleImgPath: string = '/img/rf_white.svg'
 
@@ -101,21 +101,27 @@ export default function Footer() {
   }
 
   const animation = () => {
-    // intialize, if tl exists then revert back to original state
-    tl && tl.revert();
-    
+    if (tl) {
+      ScrollTrigger.refresh();
+      console.log("refresh");
+      return;
+    }
+
     tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#footerArea",
         start: "-=75%",
         end: "+=50%",
         scrub: 0.3,
+        invalidateOnRefresh: true,
+        // markers: {startColor:"green", endColor:"red", fontSize:"12px"}
       }
     })
 
     tl
       .fromTo(titleImgRef.current, { y: '15%', scale: '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
       .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
+    
   }
 
 
@@ -134,8 +140,8 @@ export default function Footer() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
     animation();
+
     window.addEventListener('scroll', scrollHandler, { passive: true });
 
     return () => {

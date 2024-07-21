@@ -39,7 +39,7 @@ export default function Navigation({navData} : {navData: NavData}) {
     navigationContainer: [
       'pt-4 mx-8 nav border-b-[10px] border-secondary',
       'flex flex-row justify-between',
-      'cursor-pointer group transition duration-300 hover:border-primary',
+      'cursor-pointer group transition duration-300',
       'max-sm:mx-2 max-sm:pt-1 max-sm:border-b-[6px]',
     ].join(' '),
     hideNavBorder: [
@@ -51,20 +51,28 @@ export default function Navigation({navData} : {navData: NavData}) {
     navigationContainerOpen: [
       ' !border-white'
     ].join(' '),
+
     pathingContainer: [
       'font-display font-bold text-secondary h1-display',
       'transition duration-300',
       'select-none',
-      'group-hover:text-primary',
     ].join(' '),
     pathContainerOpen: [
       ' !text-white !group-hover:text-white',
     ].join(' '),
+
+    hoverOnDark: [
+      ' group-hover:text-white hover:border-white',
+    ].join(' '),
+    hoverOnWhite: [
+      ' group-hover:text-primary hover:border-primary',
+    ].join(' '),
+    
     menuButtonWrapper: [
       'font-bold text-secondary h1-text',
       'transition-none origin-[50%_55%]',
       'select-none transition-colors duration-300',
-      'group-hover:transition-all group-hover:duration-300 group-hover:text-primary group-hover:rotate-90',
+      'group-hover:transition-all group-hover:duration-300 group-hover:rotate-90',
     ].join(' '),
     menuButtonWrapperOpen: [
       ' !text-white !group-hover:text-white',
@@ -164,17 +172,24 @@ export default function Navigation({navData} : {navData: NavData}) {
         )
     )} ref={navRef}>
       <div className={
-        styles.navigationContainer.concat(
-          isMenuOpen ? styles.navigationContainerOpen : ''
-        ).concat(
-          hideNavOnHero ? styles.hideNavBorder : ''
-        )} 
+        styles.navigationContainer
+          .concat(
+            isMenuOpen ? styles.navigationContainerOpen : ''
+          ).concat(
+            hideNavOnHero && !isMenuOpen ? styles.hideNavBorder : ''
+          ).concat(
+            isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
+          )
+        } 
         onClick={menuHandler}
       >
-        <div className={styles.pathingContainer.concat(
-          isMenuOpen ? styles.pathContainerOpen : ''
+        <div className={styles.pathingContainer
+          .concat(
+            isMenuOpen ? styles.pathContainerOpen : ''
           ).concat(
-            hideNavOnHero ? styles.hideNavLogo : ''
+            hideNavOnHero && !isMenuOpen ? styles.hideNavLogo : ''
+          ).concat(
+            isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
           )
         }>
           <Link href="/" legacyBehavior>
@@ -184,7 +199,13 @@ export default function Navigation({navData} : {navData: NavData}) {
           </Link>
         </div>
         
-        <div className={styles.menuButtonWrapper.concat(isMenuOpen ? styles.menuButtonWrapperOpen : '')}>
+        <div className={styles.menuButtonWrapper
+          .concat(
+            isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
+          ).concat(
+            isMenuOpen ? styles.menuButtonWrapperOpen : ''
+          )
+        }>
           <h1>{menuGlyph}</h1>
         </div>
       </div>

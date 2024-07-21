@@ -375,6 +375,7 @@ function Content({contentData}: {contentData: WorkDetailContent}) {
     ].join(' '),
   }
 
+
   return (
     <div className={styles.contentContainer.concat(bottomMargin ? styles.bMargin : '')}>
       {
@@ -467,21 +468,24 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     image,
     secondImage,
     videoLink,
-    showOutline
+    showOutline,
+    span,
   ] : [
     string,
     string,
     ImageData,
     ImageData,
     string,
-    boolean
+    boolean,
+    string[],
   ] = [
     media.mediaType,
     media.size,
     media.image as ImageData,
     media.secondImage as ImageData,
     media.videoLink || '',
-    media.showOutline
+    media.showOutline,
+    media.span
   ]
   const [hasWindow, setHasWindow] = useState(false);
 
@@ -501,7 +505,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ].join(' '),
     imgHalvesWrapper: [
       'col-span-10',
-      'grid grid-cols-2 gap-8',
+      'grid grid-cols-10 gap-8',
       'flex flex-row justify-center',
       'relative overflow-hidden',
       'max-xl:grid-cols-1 max-lg:col-span-12 max-sm:gap-4 ',
@@ -546,28 +550,35 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
         }
       </div>
     )
-  }
+  }  
 
   if (size === 'Half') {
+    console.log("w:", image.width, "h:", image.height);
+    
+
     return (
       <div className={styles.imgHalvesWrapper}>
-        <Image 
-          className={styles.imgHalves}
-          src={image.url}
-          width={image.width}
-          height={image.height}
-          alt={"Project content image."}
-        />
-
-        {
-          secondImage &&
+        <div className={''.concat('col-span-', span.length !== 0 ? span[0]: '10')}>
           <Image 
             className={styles.imgHalves}
-            src={secondImage.url}
+            src={image.url}
             width={image.width}
             height={image.height}
             alt={"Project content image."}
           />
+        </div>
+
+        {
+          secondImage &&
+          <div className={''.concat('col-span-', span.length !== 0 ? span[1]: '10')}>
+            <Image 
+              className={styles.imgHalves}
+              src={secondImage.url}
+              width={image.width}
+              height={image.height}
+              alt={"Project content image."}
+            />
+          </div>
         }
       </div>
     )
@@ -617,6 +628,9 @@ function NextWork({nextSlug}: {nextSlug: string}) {
       'w-full',
       'font-display font-bold pt-[6vw]',
       'select-none pointer-events-none',
+    ].join(' '),
+    jpmorganchase: [
+      ' display-jpmc',
     ].join(' '),
     microsoft: [
       ' display-microsoft'
