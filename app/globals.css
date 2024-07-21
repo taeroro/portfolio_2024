@@ -94,32 +94,38 @@ body {
   line-height: .695;
 }
 
+.display-jpmc {
+  font-size: 14.5vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+}
+
 .display-microsoft {
-  font-size: 22.9vw;
+  font-size: 22.5vw;
   letter-spacing: -0.055em;
   line-height: .695;
 }
 
 .display-marriott {
-  font-size: 25.8vw;
+  font-size: 25.2vw;
   letter-spacing: -0.055em;
   line-height: .695;
 }
 
 .display-tiktok {
-  font-size: 33.8vw;
+  font-size: 31.7vw;
   letter-spacing: -0.055em;
   line-height: .695;
 }
 
 .display-mkc {
-  font-size: 18.8vw;
+  font-size: 18.5vw;
   letter-spacing: -0.055em;
   line-height: .695;
 }
 
 .display-riley {
-  font-size: 45.5vw;
+  font-size: 40.9vw;
   letter-spacing: -0.055em;
   line-height: .695;
 }

@@ -1,4 +1,3 @@
-import Navigation from '@/app/components/navigation/navigation'
 import HeroLayout from './components/hero/heroLayout'
 import ArchiveLayout from './components/archive/archiveLayout'
 import WorkOverviewLayout from './components/work/workOverviewLayout'

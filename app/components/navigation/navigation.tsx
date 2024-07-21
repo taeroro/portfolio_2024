@@ -2,13 +2,14 @@
 
 import { NavData, SocialData } from "@/contentful/fetchNav";
 import Link from "next/link";
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState } from "react"
 /****************************************************/
 /*                                                  */
 /* Navigation Component                             */
 /*                                                  */
 /****************************************************/
 
-import { useEffect, useRef, useState } from "react"
 
 export default function Navigation({navData} : {navData: NavData}) {
 
@@ -20,6 +21,7 @@ export default function Navigation({navData} : {navData: NavData}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   const currentPath: string[] = [navData.name]
+  const pathname = usePathname()
   // const activePath: string = "/"
   const menuGlyph: string = navData.menuIcon
 
@@ -44,7 +46,7 @@ export default function Navigation({navData} : {navData: NavData}) {
       ' !border-0'
     ].join(' '),
     hideNavLogo: [
-      ' opacity-0',
+      ' opacity-0 pointer-events-none',
     ].join(' '),
     navigationContainerOpen: [
       ' !border-white'
@@ -82,11 +84,15 @@ export default function Navigation({navData} : {navData: NavData}) {
     const hero = document.getElementById("hpHero");
     const footer = document.getElementById("footerArea");
     const navElem = navRef.current
-    const { scrollY } = window;
+    const { scrollY } = window;    
 
     const navHeight = navElem!.clientHeight;
     setHeroHeight(hero ? hero.getBoundingClientRect().height : -1);
-    setFooterPosition(footer ? footer.getBoundingClientRect().y + scrollY - navHeight : -1);
+    setFooterPosition(footer ? pathname == "/" ?
+        footer.getBoundingClientRect().y + scrollY - navHeight
+        : footer.getBoundingClientRect().y + scrollY
+      : -1
+    );
     setHideNavOnHero(
       hero ? 
         scrollY < hero.getBoundingClientRect().height ? true : false
@@ -140,8 +146,8 @@ export default function Navigation({navData} : {navData: NavData}) {
     window.addEventListener('resize', resizeHandler);
 
     return () => {
-        window.removeEventListener('resize', resizeHandler);
-        window.removeEventListener('scroll', scrollHandler);
+      window.removeEventListener('resize', resizeHandler);
+      window.removeEventListener('scroll', scrollHandler);
     };
     
   }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen, hideNavOnHero])

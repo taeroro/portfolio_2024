@@ -118,6 +118,9 @@ function Title({slug, title}: {slug: string, title: string}) {
       'select-none pointer-events-none',
       'z-20'
     ].join(' '),
+    jpmorganchase: [
+      ' display-jpmc',
+    ].join(' '),
     microsoft: [
       ' display-microsoft'
     ].join(' '),
@@ -510,7 +513,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ].join(' '),
     videoWrapper: [
       'col-span-10',
-      'max-lg:col-span-12 aspect-video',
+      'max-lg:col-span-12 aspect-auto',
     ].join(' '),
   }
 

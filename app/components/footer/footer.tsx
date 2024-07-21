@@ -1,8 +1,9 @@
 'use client';
 
 import { gsap } from "gsap";
+import type GSAPTimeline from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image"
 
 /************** Temp - TO BE DELETED ***************/
@@ -22,8 +23,11 @@ interface socialData {
 
 
 export default function Footer() {
-
+  
   /************** Defining variables ***************/
+  const [footerPosition, setFooterPosition] = useState(-1)
+  let tl: GSAPTimeline;
+
   const copyright: string = "© Ryan Fan" + " " + new Date().getFullYear()
   const socialData: socialData[] = [
     {
@@ -96,11 +100,11 @@ export default function Footer() {
     ].join(' '),
   }
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const mm = gsap.matchMedia();
-    const tl = gsap.timeline({
+  const animation = () => {
+    // intialize, if tl exists then revert back to original state
+    tl && tl.revert();
+    
+    tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#footerArea",
         start: "-=75%",
@@ -112,7 +116,32 @@ export default function Footer() {
     tl
       .fromTo(titleImgRef.current, { y: '15%', scale: '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
       .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
-  }, [])
+  }
+
+
+  /************** Scroll Handler ***************/
+  const scrollHandler = () => {
+    const footer = document.getElementById("footerArea");
+    const { scrollY } = window;
+
+    const footerY = footer ? footer.getBoundingClientRect().y + scrollY : -1
+    if (footerPosition !== footerY) {
+      setFooterPosition(footerY)
+      animation();
+    }
+  }
+
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    animation();
+    window.addEventListener('scroll', scrollHandler, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler);
+    };
+  }, [footerPosition])
 
 
   return (

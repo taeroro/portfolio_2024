@@ -22,6 +22,7 @@ export default function Hero(props: {heroData: HeroData}) {
 
   const heroContainerRef = useRef(null)
   const titleImgRef = useRef(null)
+  const arrowRef = useRef(null)
 
   /************** Style classNames ***************/
   const styles = {
@@ -76,7 +77,11 @@ export default function Hero(props: {heroData: HeroData}) {
     ].join(' '),
   }
 
-  // useEffect(() => {
+  useEffect(() => {
+    const tl = gsap.timeline({ repeat: -1 })
+    tl.to(arrowRef.current, { y: -10,  duration: 1.2, ease: "power2.in"})
+    tl.to(arrowRef.current, { y: 0,  duration: 1.1, ease: "bounce.out"})
+
   //   gsap.registerPlugin(ScrollTrigger);
 
   //   const mm = gsap.matchMedia();
@@ -100,7 +105,7 @@ export default function Hero(props: {heroData: HeroData}) {
   //       .to(titleImgRef.current, { height: cdt ? '2.25rem' : '3.5rem' })
 
   //   })
-  // }, [])
+  }, [])
 
   return (
     <div className={styles.heroContainer} ref={heroContainerRef} id={'hpHero'}>
@@ -129,7 +134,7 @@ export default function Hero(props: {heroData: HeroData}) {
 
       <div className={styles.bottomContainer}>
         <div className={styles.moreIndicator}>
-          <span className={styles.moreArrow}>
+          <span className={styles.moreArrow} ref={arrowRef} >
             ↓
           </span>
           <span className={styles.moreText}>
