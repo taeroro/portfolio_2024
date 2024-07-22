@@ -550,15 +550,13 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
         }
       </div>
     )
-  }  
+  }
 
+  
   if (size === 'Half') {
-    console.log("w:", image.width, "h:", image.height);
-    
-
     return (
       <div className={styles.imgHalvesWrapper}>
-        <div className={''.concat('col-span-', span.length !== 0 ? span[0]: '10')}>
+        <div className={span[0]}>
           <Image 
             className={styles.imgHalves}
             src={image.url}
@@ -570,7 +568,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
 
         {
           secondImage &&
-          <div className={''.concat('col-span-', span.length !== 0 ? span[1]: '10')}>
+          <div className={span[1]}>
             <Image 
               className={styles.imgHalves}
               src={secondImage.url}
@@ -596,7 +594,6 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     </div>
   )  
 }
-
 
 
 

@@ -69,7 +69,7 @@ export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntr
     secondImage: res.secondImage && parseImage(res.secondImage.fields.file),
     videoLink: res.videoLink,
     showOutline: res.showOutline,
-    span: res.span
+    span: res.span.map((i: string) => `col-span-${i}`)
   })
 }
 

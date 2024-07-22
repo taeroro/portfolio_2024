@@ -6,6 +6,11 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    {
+        pattern: /col-span-./,
+    }
+  ],
   theme: {
     fontFamily: {
       'display': ['Gradient Premium', 'Helvetica', 'san-serif'],

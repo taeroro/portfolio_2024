@@ -1,7 +1,7 @@
 'use client';
 
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { HeroData } from "@/contentful/fetchHero";
 import Image from "next/image";
