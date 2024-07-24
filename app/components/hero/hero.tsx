@@ -17,6 +17,7 @@ export default function Hero(props: {heroData: HeroData}) {
   /************** Defining variables ***************/
   const description: string = props.heroData.description
   const titleImgPath: string = '/img/rf_white.svg'
+  const titleMobileImgPath: string = '/img/rf_white_vertical.svg'
 
   const copyright: string = "©" + " " + new Date().getFullYear()
 
@@ -29,30 +30,38 @@ export default function Hero(props: {heroData: HeroData}) {
     heroContainer: [
       'w-full h-svh-screen min-h-[600px]',
       'flex flex-col justify-start',
-      'bg-primary',
+      'bg-primary relative',
+      'max-sm:flex-row'
     ].join(' '),
     imgWrapper: [
       'w-full px-8 pt-8 -mb-[7vw]',
-      'relative overflow-hidden',
-      'max-sm:px-2',
+      'relative overflow-hidden block',
+      'max-sm:px-2 max-sm:hidden',
+    ].join(' '),
+    mobileImageWrapper: [
+      'hidden',
+      'h-full overflow-hidden',
+      'max-sm:block max-sm:pb-4 max-sm:pt-12 max-sm:pl-2 max-sm:-mr-[10%]'
     ].join(' '),
     img: [
-      'w-full h-full object-contain object-left',
+      'h-full object-contain object-left',
       'select-none pointer-events-none',
+      'max-sm:object-contain max-sm:h-full max-sm:object-left-top',
     ].join(' '),
     descriptionContainer: [
       'w-full px-8 pt-8',
       'grid grid-cols-12 gap-8',
-      'max-sm:px-2 max-sm:gap-4',
+      'max-sm:px-2 max-sm:pt-12 max-sm:gap-4 max-sm:grid-cols-none',
     ].join(' '),
     description: [
       'col-span-4 col-start-9',
       'font-bold title-text text-white text-right',
-      'max-sm:col-span-7',
+      'max-sm:col-span-7 max-sm:text-right',
     ].join(' '),
 
     topContainer: [
       'absolute pl-8 pt-8',
+      'max-sm:px-2 max-sm:pt-3',
     ].join(' '),
     copyright: [
       'font-medium leading-6 text-white body-text',
@@ -60,10 +69,12 @@ export default function Hero(props: {heroData: HeroData}) {
 
     bottomContainer: [
       'grow flex flex-row justify-between items-end',
-      'px-8 pb-8'
+      'px-8 pb-8',
+      'max-sm:absolute max-sm:bottom-0 max-sm:right-0 max-sm:px-2 max-sm:pb-4'
     ].join(' '),
     moreIndicator: [
-      'flex flex-col'
+      'flex flex-col',
+      'max-sm:items-end'
     ].join(' '),
     moreArrow: [
       'font-display text-white font-bold h3-text',
@@ -74,6 +85,7 @@ export default function Hero(props: {heroData: HeroData}) {
     scrollPositionIndicator: [
       'relative',
       'w-8 h-8 rounded-full border-4',
+      'max-sm:hidden'
     ].join(' '),
   }
 
@@ -81,30 +93,6 @@ export default function Hero(props: {heroData: HeroData}) {
     const tl = gsap.timeline({ repeat: -1 })
     tl.to(arrowRef.current, { y: -10,  duration: 1.2, ease: "power2.in"})
     tl.to(arrowRef.current, { y: 0,  duration: 1.1, ease: "bounce.out"})
-
-  //   gsap.registerPlugin(ScrollTrigger);
-
-  //   const mm = gsap.matchMedia();
-  //   const tl = gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: heroContainerRef.current,
-  //       start: "top",
-  //       end: "+=100%",
-  //       scrub: 0.3,
-  //     }
-  //   })
-
-  //   mm.add({
-  //     isMobile: "(max-width: 640px)",
-  //     isDesktop: "(min-width: 641px)",
-  //   }, (context)=> {
-  //     let cdt = false;
-  //     if(context.conditions) cdt = context.conditions.isMobile;
-      
-  //     tl
-  //       .to(titleImgRef.current, { height: cdt ? '2.25rem' : '3.5rem' })
-
-  //   })
   }, [])
 
   return (
@@ -121,6 +109,17 @@ export default function Hero(props: {heroData: HeroData}) {
           src={titleImgPath}
           width={2000}
           height={650}
+          priority
+          alt={"ryan.fan"}
+        />
+      </div>
+
+      <div className={styles.mobileImageWrapper}>
+        <Image
+          className={styles.img}
+          src={titleMobileImgPath}
+          width={650}
+          height={2000}
           priority
           alt={"ryan.fan"}
         />
