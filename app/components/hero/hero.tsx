@@ -40,11 +40,12 @@ export default function Hero(props: {heroData: HeroData}) {
     ].join(' '),
     mobileImageWrapper: [
       'hidden',
-      'h-full overflow-hidden',
-      'max-sm:block max-sm:pb-4 max-sm:pt-12 max-sm:pl-2 max-sm:-mr-[10%]'
+      'h-full overflow-hidden w-full',
+      'pb-4 pt-12 pl-2 -mr-[10%]',
+      'max-sm:block'
     ].join(' '),
     img: [
-      'h-full object-contain object-left',
+      'h-full w-full object-contain object-left',
       'select-none pointer-events-none',
       'max-sm:object-contain max-sm:h-full max-sm:object-left-top',
     ].join(' '),
