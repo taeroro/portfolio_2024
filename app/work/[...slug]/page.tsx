@@ -12,7 +12,9 @@ export default function WorkDetailPage({ params }: { params: { slug: string } })
         <WorkDetailLayout slug={params.slug[0]} />
       </div>
 
-      <div id='footerArea' className='w-full h-screen min-h-[600px] bg-transparent invisible relative' />
+      <div id='footerArea' 
+        className='w-full h-[80svh] min-h-[600px] bg-transparent invisible relative max-sm:h-[35svh] max-sm:min-h-[320px]'
+      />
       <Footer />
 
     </main>

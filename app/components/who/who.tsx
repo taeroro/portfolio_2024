@@ -84,7 +84,7 @@ export default function Who() {
       if(context.conditions) cdt = context.conditions.isMobile;
 
       tl
-        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem', rotation: cdt ? '10deg' : '5deg' })
     })
 
   }, [])

@@ -54,9 +54,10 @@ export default function Footer() {
   /************** Style classNames ***************/
   const styles = {
     footerContainer: [
-      'w-full h-screen min-h-[600px] bg-primary',
+      'w-full h-[80svh] min-h-[600px] bg-primary',
       'fixed bottom-0 z-0',
       'flex flex-col justify-end overflow-hidden',
+      'max-sm:h-[35svh] max-sm:min-h-[320px]',
     ].join(' '),
     footerTextContainer: [
       'w-full px-8',
@@ -99,8 +100,8 @@ export default function Footer() {
     tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#footerArea",
-        start: "-=75%",
-        end: "+=50%",
+        start: "top-=20% bottom-=30%",
+        end: "bottom 100%",
         scrub: 0.3,
         invalidateOnRefresh: true,
         // markers: {startColor:"green", endColor:"red", fontSize:"12px"}

@@ -65,7 +65,7 @@ export default function WorkOverview(props: {workListData: WorkListData}) {
       if(context.conditions) cdt = context.conditions.isMobile;
 
       tl
-        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem', rotation: cdt ? '10deg' : '5deg' })
     })
       
   }, [])
@@ -119,6 +119,7 @@ function SingleWork(props: {workData: WorkData}) {
       'flex flex-row justify-center',
       // 'bg-gray-300',
       'bg-highlight rounded-[32px]',
+      'max-sm:rounded-[24px]',
     ].join(' '),
     img: [
       'object-cover',

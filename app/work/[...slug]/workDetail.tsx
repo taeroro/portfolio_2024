@@ -160,7 +160,7 @@ function Title({slug, title}: {slug: string, title: string}) {
       if(context.conditions) cdt = context.conditions.isMobile;
 
       tl
-        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem' })
+        .to(h1DisplayRef.current, { x: cdt ? 8 : 32, fontSize: cdt ? '2.25rem' : '3.5rem', rotation: cdt ? '10deg' : '5deg' })
     })
   }, [])
 
@@ -233,7 +233,7 @@ function Overview({
       'flex flex-row justify-center',
       'aspect-[2/1] relative overflow-hidden',
       'bg-gray-300',
-      'max-sm:aspect-[3/4] max-lg:aspect-[3/2] max-xl:aspect-[5/3]',
+      'max-sm:aspect-[3/4] max-lg:aspect-[3/2] max-xl:aspect-[5/3] max-sm:rounded-[24px]',
     ].join(' '),
     img: [
       'w-full h-full',
