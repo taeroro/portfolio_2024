@@ -51,9 +51,10 @@ export default function WorkOverview(props: {workListData: WorkListData}) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: workOverviewContainerRef.current,
-        start: "top",
+        start: "top+=10%",
         end: "+=100%",
         scrub: 0.3,
+        // markers: {startColor:"green", endColor:"red", fontSize:"12px"}
       }
     })
 

@@ -70,7 +70,7 @@ export default function Who() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: whoContainerRef.current,
-        start: "top",
+        start: "top+=10%",
         end: "+=100%",
         scrub: 0.3,
       }

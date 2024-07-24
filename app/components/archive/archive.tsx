@@ -48,7 +48,7 @@ export default function Archive(props: {archiveListData: ArchiveListData}) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: archiveContainerRef.current,
-        start: "top",
+        start: "top+=10%",
         end: "+=100%",
         scrub: 0.3,
       }

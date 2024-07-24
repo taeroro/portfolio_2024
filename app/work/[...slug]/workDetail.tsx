@@ -146,7 +146,7 @@ function Title({slug, title}: {slug: string, title: string}) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: heroContainerRef.current,
-        start: "top",
+        start: "top+=30%",
         end: "+=100%",
         scrub: 0.3,
       }
