@@ -1,7 +1,7 @@
 import HeroLayout from './components/hero/heroLayout'
 import ArchiveLayout from './components/archive/archiveLayout'
 import WorkOverviewLayout from './components/work/workOverviewLayout'
-import Who from './components/who/who'
+import WhoLayout from './components/who/whoLayout'
 import Footer from './components/footer/footer'
 import NavigationLayout from './components/navigation/navigationLayout'
 
@@ -14,7 +14,7 @@ export default function HomePage() {
         <HeroLayout />
         <WorkOverviewLayout />
         <ArchiveLayout />
-        <Who />
+        <WhoLayout />
       </div>
 
       <div id='footerArea' 

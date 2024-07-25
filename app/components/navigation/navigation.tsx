@@ -117,9 +117,6 @@ export default function Navigation({navData} : {navData: NavData}) {
       scrollY >= heroHeight && scrollY < footerPosition ? false :
       scrollY >= footerPosition ? true : false
     )
-
-    // console.log(hideNavOnHero);
-    // console.log("y: ", scrollY, "hero: ", heroHeight, "footer: ", footerPosition, "isBgDark: ", isOnDarkBg);
   }
 
   /************** Resize Handler ***************/

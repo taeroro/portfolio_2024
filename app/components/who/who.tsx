@@ -2,6 +2,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
+import Image from "next/image"
 
 /************** Temp - TO BE DELETED ***************/
 interface whoContentData {
@@ -27,14 +28,14 @@ interface searchData {
 export default function Who() {
 
   /************** Defining variables ***************/
-  const title: string = "/who?"
+  const title: string = "/about"
   const whoContentData: whoContentData = {
-    subtitle: 'Who is Ryan?',
-    description: 'Unleash the power of AI and see what it can do.',
+    subtitle: '',
+    description: 'Ryan Fan is an award-winning Product Designer in New York. He currently works at Code and Theory with clients such as JPMorganChase, Microsoft, TikTok, and Marriott on crafting the best-in-class digital products, experiences, and design systems. Previously, he was a Product Designer at Wondersauce, and a freelance Product Designer & Developer worked with clients including Michael Kors and JLo. \n\n His background and experience enable him to create a harmonious paradigm between design and engineering teams to create cohesive, thoughtful experiences that tailor user needs, excel in problem-solving, and achieve business goals.',
     search: {
-      placeholder: 'Type in any question about me here...',
-      prompt: 'Try: “Look up ryan’s experience and background”',
-      result: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id leo nunc. Mauris a dictum libero. Aliquam sed lacus dui. Donec vitae pulvinar libero. Suspendisse vulputate congue mi, quis rhoncus massa fermentum tristique. Suspendisse potenti. Fusce tristique lacus ante, ut iaculis nibh blandit ac. Duis nisi ipsum, condimentum a vehicula pellentesque, tristique vel lorem. Fusce vulputate egestas felis, posuere bibendum arcu scelerisque sit amet. \n\n Donec id urna vitae elit ornare suscipit non a diam. Nam tempor lacinia est, vitae laoreet magna laoreet a. Etiam vestibulum nibh vel libero consectetur, quis aliquet odio commodo. In posuere lorem pellentesque dolor sagittis, ut tincidunt ipsum accumsan. In ut consequat nibh, eu tincidunt quam. In nec nisi sollicitudin, varius metus id, ultrices orci.",
+      placeholder: '',
+      prompt: '',
+      result: "",
     },
   }
   
@@ -53,7 +54,7 @@ export default function Who() {
       'flex flex-col justify-end',
     ].join(' '),
     h1: [
-      'font-display font-bold display-who',
+      'font-display font-bold display-about',
       'select-none pointer-events-none',
     ].join(' '),
     contentContainer: [
@@ -112,13 +113,15 @@ export default function Who() {
 /****************************************************/
 
 function WhoContent(props: {whoContentData: whoContentData}) {
+
+  const smileImgPath: string = '/img/ryan_smiley.svg'
   
   /************** Style classNames ***************/
   const styles = {
     contentContainer: [
-      'w-full px-8 mt-16 mb-24',
+      'w-full px-8 mt-20 mb-40',
       'grid grid-cols-12 auto-rows-min gap-8',
-      'max-sm:px-2 max-sm:my-8 max-sm:gap-4',
+      'max-sm:px-2 max-sm:mt-8 max-sm:mb-12 max-sm:gap-4',
     ].join(' '),
     introTextWrapper: [
       'col-span-8',
@@ -129,23 +132,48 @@ function WhoContent(props: {whoContentData: whoContentData}) {
       'font-bold h2-text',
     ].join(' '),
     description: [
-      'font-medium leading-6 body-text',
+      'font-medium leading-normal large-body-text whitespace-pre-line',
+    ].join(' '),
+    smileContainer: [
+      'col-span-4',
+      'grid grid-cols-4',
+      'max-sm:col-span-12 max-sm:grid-cols-12',
+    ].join(' '),
+    img: [
+      'col-span-2 w-full object-contain',
+      'select-none pointer-events-none',
+      'max-sm:col-span-4 max-sm:col-start-9'
     ].join(' '),
   }
 
   return (
     <div className={styles.contentContainer}>
       <div className={styles.introTextWrapper}>
-        <h2 className={styles.subtitle}>
-          { props.whoContentData.subtitle }
-        </h2>
+        {
+          props.whoContentData.subtitle 
+          ? 
+            <h2 className={styles.subtitle}>
+              { props.whoContentData.subtitle }
+            </h2>
+          : <></>
+        }
 
         <p className={styles.description}>
           { props.whoContentData.description }
         </p>
       </div>
 
-      <WhoSeach searchData={props.whoContentData.search} />
+      <div className={styles.smileContainer}>
+        <Image
+          className={styles.img}
+          src={smileImgPath}
+          width={150}
+          height={150}
+          alt={"a portrait of me"}
+        />
+      </div>
+
+      {/* <WhoSeach searchData={props.whoContentData.search} /> */}
 
     </div>
   )
