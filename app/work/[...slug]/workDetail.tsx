@@ -513,7 +513,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     imgHalves: [
       'w-full',
       'object-contain object-top',
-      'bg-gray-300',
+      // 'bg-gray-300',
     ].join(' '),
     videoWrapper: [
       'col-span-10',
@@ -552,18 +552,25 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     )
   }
 
+  console.log(media);
   
+
   if (size === 'Half') {
     return (
       <div className={styles.imgHalvesWrapper}>
         <div className={span[0]}>
-          <Image 
-            className={styles.imgHalves}
-            src={image.url}
-            width={image.width}
-            height={image.height}
-            alt={"Project content image."}
-          />
+          {
+            image ?
+            <Image 
+              className={styles.imgHalves}
+              src={image.url}
+              width={image.width}
+              height={image.height}
+              alt={"Project content image."}
+            />
+            :
+            <></>
+          }
         </div>
 
         {
@@ -572,8 +579,8 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
             <Image 
               className={styles.imgHalves}
               src={secondImage.url}
-              width={image.width}
-              height={image.height}
+              width={secondImage.width}
+              height={secondImage.height}
               alt={"Project content image."}
             />
           </div>
