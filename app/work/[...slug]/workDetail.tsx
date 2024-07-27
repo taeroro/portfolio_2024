@@ -551,9 +551,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       </div>
     )
   }
-
-  console.log(media);
-  
+    
 
   if (size === 'Half') {
     return (

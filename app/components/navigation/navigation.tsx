@@ -126,21 +126,21 @@ export default function Navigation({navData} : {navData: NavData}) {
 
   /************** Menu Handler ***************/
   const menuHandler = () => {
-    if (!isMenuOpen) {
-      setIsMenuOpen(true);
-      document.body.style.overflow = 'hidden';
-    }
-    else {
-      setIsMenuOpen(false);
-      document.body.style.overflow = 'unset';
-    }
+    // if (!isMenuOpen) {
+    //   setIsMenuOpen(true);
+    //   document.body.style.overflow = 'hidden';
+    // }
+    // else {
+    //   setIsMenuOpen(false);
+    //   document.body.style.overflow = 'unset';
+    // }
   }
 
   /************** Link onClick Handler ***************/
   const linkClickHandler = (e: React.SyntheticEvent) => {
     e.stopPropagation();
-    if (isMenuOpen) 
-      menuHandler()
+  //   if (isMenuOpen) 
+  //     menuHandler()
   }
 
   /************** useEffect Function ***************/
