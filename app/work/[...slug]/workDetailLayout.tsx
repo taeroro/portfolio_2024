@@ -18,6 +18,11 @@ const getWorkList = async () => {
   return res && workListToSlug(res)
 }
 
+const getTitleList = async () => {
+  const res: WorkListData | null = await fetchWorkList();
+  return res && workListToTitle(res)
+}
+
 /************** Slug list ***************/
 function workListToSlug(data: WorkListData): string[] {
   let res: string[] = []
@@ -27,8 +32,20 @@ function workListToSlug(data: WorkListData): string[] {
   return res
 }
 
+/************** Title list ***************/
+function workListToTitle(data: WorkListData): string[] {
+  let res: string[] = []
+  data.workData.forEach((e) => {
+    res.push(e.title)
+  })
+  return res
+}
+
+
+
 export default async function WorkDetailLayout({slug}: {slug: string}) {
   const workList: string[] | null = await getWorkList()
+  const titleList: string[] | null = await getTitleList()
 
   /************** Render Work Detail ***************/
   if (workList && workList.includes(slug)) {
@@ -36,9 +53,10 @@ export default async function WorkDetailLayout({slug}: {slug: string}) {
 
     const slugIndex = workList.indexOf(slug) + 1
     const nextSlug: string = workList[slugIndex] || workList[0]
-
+    const nextTitle: string = titleList ? (titleList[slugIndex] || titleList[0]) : nextSlug
+    
     if (fullWorkData)
-      return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} />
+      return <WorkDetail fullWorkData={fullWorkData} nextSlug={nextSlug} nextTitle={nextTitle} />
   }
 
   /************** Capture 404 ***************/

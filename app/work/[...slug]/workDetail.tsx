@@ -18,11 +18,12 @@ import Link from "next/link";
 /*                                                  */
 /****************************************************/
 
-export default function WorkDetail(props: {fullWorkData: FullWorkData, nextSlug: string}) {
+export default function WorkDetail(props: {fullWorkData: FullWorkData, nextSlug: string, nextTitle: string}) {
 
   /************** Defining variables ***************/
   const fullWorkData = props.fullWorkData
   const nextSlug = props.nextSlug
+  const nextTitle = props.nextTitle
 
   const [
     slug,
@@ -86,7 +87,7 @@ export default function WorkDetail(props: {fullWorkData: FullWorkData, nextSlug:
           <Content contentData={e} key={i} />
         ))
       }
-      <NextWork nextSlug={nextSlug} />
+      <NextWork nextSlug={nextSlug} nextTitle={nextTitle} />
     </>
   )
 }
@@ -551,7 +552,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       </div>
     )
   }
-    
+
 
   if (size === 'Half') {
     return (
@@ -609,7 +610,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
 /*                                                  */
 /****************************************************/
 
-function NextWork({nextSlug}: {nextSlug: string}) {
+function NextWork({nextSlug, nextTitle}: {nextSlug: string, nextTitle: string}) {
   const styles: any = {
     outerContainer: [
       'w-full',
@@ -662,7 +663,7 @@ function NextWork({nextSlug}: {nextSlug: string}) {
       </div>
 
       <h1 className={styles.h1.concat(h1ClassName)}>
-        /{nextSlug}
+        {nextTitle}
       </h1>
     </Link>
   )

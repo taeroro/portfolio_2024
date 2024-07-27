@@ -37,10 +37,13 @@ export default function Navigation({navData} : {navData: NavData}) {
       ' !bg-primary h-svh-screen',
     ].join(' '),
     navigationContainer: [
-      'pt-4 mx-8 nav border-b-[10px] border-secondary',
+      'pt-2 mx-8 nav',
       'flex flex-row justify-between',
       'cursor-pointer group transition duration-300',
-      'max-sm:mx-2 max-sm:pt-1 max-sm:border-b-[6px]',
+      'max-sm:mx-2 max-sm:pt-1',
+      
+      'border-b-[8px] border-secondary',
+      'max-sm:border-b-[6px]',
     ].join(' '),
     hideNavBorder: [
       ' !border-0'
