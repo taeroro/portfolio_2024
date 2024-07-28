@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.4.19",
     "contentful": "^10.6.10",
+    "cookie": "^0.6.0",
     "gsap": "^3.12.2",
     "next": "14.0.2",
     "react": "^18",

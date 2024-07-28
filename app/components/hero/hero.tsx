@@ -70,7 +70,7 @@ export default function Hero(props: {heroData: HeroData}) {
 
     bottomContainer: [
       'grow flex flex-row justify-between items-end',
-      'px-8 pb-8',
+      'px-8 pb-6',
       'max-sm:absolute max-sm:bottom-0 max-sm:right-0 max-sm:px-2 max-sm:pb-4'
     ].join(' '),
     moreIndicator: [

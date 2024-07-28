@@ -148,6 +148,8 @@ export default function Navigation({navData} : {navData: NavData}) {
 
   /************** useEffect Function ***************/
   useEffect(() => {
+    if (pathname !== '/') setIsOnDarkBg(false)
+      
     renderCheck();
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
