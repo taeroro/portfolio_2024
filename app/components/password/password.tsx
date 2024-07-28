@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { FormEvent } from 'react'
 
@@ -13,8 +14,11 @@ export default function Password() {
 
   /************** Defining variables ***************/
   const title = "Do you have the password?"
-  const description = "This content is protected. Please enter the password below to access."
+  const description = "This content is protected. Please enter the password below to access.\n To request access, please contact "
+  const contact = "hello@ryan.fan"
   const inputPlaceholder = "Enter password here..."
+  const iconPath: string = '/img/key.svg'
+  const helperMessage = "Password is incorrect."
 
   const [password, setPassword] = useState('')
   const [passwordIncorrect, setPasswordIncorrect] = useState(false)
@@ -29,7 +33,8 @@ export default function Password() {
     ].join(' '),
     contentContainer: [
       'py-16',
-      'grid grid-cols-12 gap-8 auto-rows-auto',
+      'grid grid-cols-12 gap-8 gap-y-8',
+      'max-sm:py-10 max-sm:gap-y-4'
     ].join(' '),
     sectionTitleWrapper: [
       'col-span-6',
@@ -52,19 +57,19 @@ export default function Password() {
       'flex flex-col gap-2',
     ].join(' '),
     inputContainer: [
-      'w-full py-1 pl-8 rounded-none',
+      'w-full py-1 pl-9 rounded-none',
       'border-b-4 border-primary',
       'font-bold title-text tracking-normal',
       'placeholder:text-secondary',
       'focus:outline-none',
-      'max-sm:border-b-[3px] max-sm:pl-6',
+      'max-sm:border-b-[3px]',
     ].join(' '),
     pwdIcon: [
       'absolute pointer-events-none px-1 pt-1.5',
-      'font-display font-bold title-text tracking-normal not-italic'
+      'max-sm:pt-1'
     ].join(' '),
     helper: [
-      'font-medium leading-6 text-secondary body-text',
+      'font-medium leading-6 text-red-600 body-text',
     ].join(' '),
     resultContainer: [
       'w-full',
@@ -82,8 +87,10 @@ export default function Password() {
       method: "POST",
     });
  
-    if (await request.status !== 200) 
+    if (await request.status !== 200) {
+      (e.target as HTMLFormElement).reset()
       return setPasswordIncorrect(true), setLoading(false);
+    }
     else 
       window.location.reload();
   }
@@ -99,14 +106,20 @@ export default function Password() {
         </div>
 
         <div className={styles.descriptionWrapper}>
-          <p>{description}</p>
+          <p className="inline">{description}</p>
+          <a className="inline underline" href={contact}>{contact}</a>  
         </div>
 
         <div className={styles.searchContainer}>
           <div className={styles.innerContainer}>
             <form onSubmit={handleSubmit}>
               <i className={styles.pwdIcon}>
-                →
+                <Image
+                  src={iconPath}
+                  width={24}
+                  height={24}
+                  alt={"key icon"}
+                />
               </i>
               <input
                 className={styles.inputContainer}
@@ -115,6 +128,14 @@ export default function Password() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </form>
+
+            {
+              passwordIncorrect &&
+              <span className={styles.helper}>
+                { helperMessage }
+              </span>
+            }
+
           </div>
         </div>
 
