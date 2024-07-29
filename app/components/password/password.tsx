@@ -46,6 +46,12 @@ export default function Password() {
       'font-medium leading-6 body-text whitespace-pre-line',
       'max-lg:col-span-12 max-xl:col-span-10',
     ].join(' '),
+    emailLink: [
+      'no-underline border-solid border-primary border-b-2',
+      'transition duration-300',
+      'hover:border-highlight hover:bg-highlight hover:text-white',
+      // 'max-sm:border-b-2',
+    ].join(' '),
 
     searchContainer: [
       'col-span-6 row-start-3',
@@ -107,7 +113,7 @@ export default function Password() {
 
         <div className={styles.descriptionWrapper}>
           <p className="inline">{description}</p>
-          <a className="inline underline" href={contact}>{contact}</a>  
+          <a className={styles.emailLink} href={contact}>{contact}</a>  
         </div>
 
         <div className={styles.searchContainer}>

@@ -39,7 +39,8 @@ export default function Navigation({navData} : {navData: NavData}) {
     navigationContainer: [
       'pt-2 mx-8 nav',
       'flex flex-row justify-between',
-      'cursor-pointer group transition duration-300',
+      'group transition duration-300',
+      // 'cursor-pointer',
       'max-sm:mx-2 max-sm:pt-1',
       
       'border-b-[8px] border-secondary',
@@ -149,7 +150,7 @@ export default function Navigation({navData} : {navData: NavData}) {
   /************** useEffect Function ***************/
   useEffect(() => {
     if (pathname !== '/') setIsOnDarkBg(false)
-      
+
     renderCheck();
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
