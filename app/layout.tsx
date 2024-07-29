@@ -13,6 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+        <head>
+          <link rel="stylesheet" href="https://use.typekit.net/gug7byo.css" />
+        </head>
       <body className="font-sans tracking-normal overflow-x-hidden">{children}</body>
     </html>
   )

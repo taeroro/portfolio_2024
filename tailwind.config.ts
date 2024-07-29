@@ -14,10 +14,12 @@ const config: Config = {
   theme: {
     fontFamily: {
       'display': ['Gradient Premium', 'Helvetica', 'san-serif'],
-      'sans': ['Graphik', 'Helvetica', 'san-serif'],
+      // 'sans': ['Graphik', 'Helvetica', 'san-serif'],
+      'sans': ['neue-haas-unica', 'Helvetica', 'san-serif'],
     },
     letterSpacing: {
-      normal: '-0.08rem',
+      // normal: '-0.08rem',
+      normal: '-0.06rem',
     },
     extend: {
       colors: {

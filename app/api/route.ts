@@ -12,7 +12,7 @@ export async function POST(request: Request, params: { slug: string }) {
       httpOnly: true,
       path: "/",
       expires: new Date(Date.now() + expireTime),
-      secure: true, //uncomment when publishing the site
+      // secure: true, //uncomment when publishing the site
     }
   );
 
