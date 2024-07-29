@@ -2,6 +2,7 @@ import WorkDetailLayout from "./workDetailLayout"
 import Footer from "@/app/components/footer/footer"
 import NavigationLayout from "@/app/components/navigation/navigationLayout"
 
+
 export default function WorkDetailPage({ params }: { params: { slug: string } }) {
 
   return (

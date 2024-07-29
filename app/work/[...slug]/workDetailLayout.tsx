@@ -4,7 +4,7 @@ import WorkDetail from "./workDetail";
 import { WorkListData, fetchWorkList } from "@/contentful/fetchWork";
 import { redirect } from "next/navigation";
 import { cookies } from 'next/headers'
-import { usePathname } from 'next/navigation'
+
 
 const getWorkData = async (slug: string) => {
   const res: FullWorkData | null = await fetchWorkDetail({slug: slug});

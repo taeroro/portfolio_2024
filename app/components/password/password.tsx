@@ -65,8 +65,8 @@ export default function Password() {
       'max-sm:border-b-[3px]',
     ].join(' '),
     pwdIcon: [
-      'absolute pointer-events-none px-1 pt-1.5',
-      'max-sm:pt-1'
+      'absolute pointer-events-none px-1 pt-3',
+      'max-sm:pt-2'
     ].join(' '),
     helper: [
       'font-medium leading-6 text-red-600 body-text',
