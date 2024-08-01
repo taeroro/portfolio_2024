@@ -25,7 +25,8 @@ export default function Navigation({navData} : {navData: NavData}) {
   const pathname = usePathname()
   // const activePath: string = "/"
   // const menuGlyph: string = navData.menuIcon
-  const menuGlyph: string = '/img/hand.png'
+  const handImg: string = '/img/hand.png'
+  const hoverHandImg: string = '/img/palm.png'
 
   const navRef = useRef<HTMLInputElement>(null)
   const handRef = useRef<HTMLImageElement>(null)
@@ -82,14 +83,24 @@ export default function Navigation({navData} : {navData: NavData}) {
       // 'group-hover:transition-all group-hover:duration-300 group-hover:rotate-90',
       'flex flex-row items-center',
     ].join(' '),
-    menuButtonWrapperOpen: [
-      // ' !text-white !group-hover:text-white',
-      // '!rotate-45 !group-hover:rotate-135',
+    handImageContainer: [
+      'relative group',
+      'w-12 h-12',
+      'max-sm:w-8 max-sm:h-8',
     ].join(' '),
     handImage: [
+      'block absolute opacity-100',
       'w-12 h-12',
       'select-none cursor-pointer',
       'max-sm:w-8 max-sm:h-8',
+      'group-hover:opacity-0',
+    ].join(' '),
+    palmImage: [
+      'block absolute opacity-0',
+      'w-12 h-12',
+      'select-none cursor-pointer',
+      'max-sm:w-8 max-sm:h-8',
+      'group-hover:opacity-100',
     ].join(' '),
   }
 
@@ -211,21 +222,27 @@ export default function Navigation({navData} : {navData: NavData}) {
           </Link>
         </div>
         
-        <div className={styles.menuButtonWrapper
-          .concat(
-            isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
-          )
-        }>
-          <Image
-            className={styles.handImage}
-            src={menuGlyph}
-            width={128}
-            height={128}
-            priority
-            alt={"god mode"}
-            ref={handRef}
-          />
+        <div className={styles.menuButtonWrapper}>
+          <div className={styles.handImageContainer} ref={handRef}>
+            <Image
+              className={styles.handImage}
+              src={handImg}
+              width={128}
+              height={128}
+              priority
+              alt={"god mode"}
+            />
+            <Image
+              className={styles.palmImage}
+              src={hoverHandImg}
+              width={128}
+              height={128}
+              priority
+              alt={"god mode"}
+            />
+          </div>
         </div>
+
       </div>
 
     </div>
