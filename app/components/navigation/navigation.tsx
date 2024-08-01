@@ -84,7 +84,7 @@ export default function Navigation({navData} : {navData: NavData}) {
       'flex flex-row items-center',
     ].join(' '),
     handImageContainer: [
-      'relative group',
+      'relative group/hand',
       'w-12 h-12',
       'max-sm:w-8 max-sm:h-8',
     ].join(' '),
@@ -93,14 +93,14 @@ export default function Navigation({navData} : {navData: NavData}) {
       'w-12 h-12',
       'select-none cursor-pointer',
       'max-sm:w-8 max-sm:h-8',
-      'group-hover:opacity-0',
+      'group-hover/hand:opacity-0',
     ].join(' '),
     palmImage: [
       'block absolute opacity-0',
       'w-12 h-12',
       'select-none cursor-pointer',
       'max-sm:w-8 max-sm:h-8',
-      'group-hover:opacity-100',
+      'group-hover/hand:opacity-100',
     ].join(' '),
   }
 
