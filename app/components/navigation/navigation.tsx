@@ -1,6 +1,7 @@
 'use client';
 
 import { NavData, SocialData } from "@/contentful/fetchNav";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from "react"
@@ -23,9 +24,11 @@ export default function Navigation({navData} : {navData: NavData}) {
   const currentPath: string[] = [navData.name]
   const pathname = usePathname()
   // const activePath: string = "/"
-  const menuGlyph: string = navData.menuIcon
+  // const menuGlyph: string = navData.menuIcon
+  const menuGlyph: string = '/img/hand.png'
 
   const navRef = useRef<HTMLInputElement>(null)
+  const handRef = useRef<HTMLImageElement>(null)
   
   /************** Style classNames ***************/
   const styles = {
@@ -71,23 +74,22 @@ export default function Navigation({navData} : {navData: NavData}) {
     hoverOnWhite: [
       ' group-hover:text-primary hover:border-primary',
     ].join(' '),
-    
+
     menuButtonWrapper: [
-      'font-bold text-secondary h1-text',
-      'transition-none origin-[50%_55%]',
-      'select-none transition-colors duration-300',
-      'group-hover:transition-all group-hover:duration-300 group-hover:rotate-90',
+      // 'font-bold text-secondary h1-text',
+      // 'transition-none origin-[50%_55%]',
+      // 'select-none transition-colors duration-300',
+      // 'group-hover:transition-all group-hover:duration-300 group-hover:rotate-90',
+      'flex flex-row items-center',
     ].join(' '),
     menuButtonWrapperOpen: [
-      ' !text-white !group-hover:text-white',
-      '!rotate-45 !group-hover:rotate-135',
+      // ' !text-white !group-hover:text-white',
+      // '!rotate-45 !group-hover:rotate-135',
     ].join(' '),
-    menuContainer: [
-      'w-full h-0 invisible',
-      'transition duration-300',
-    ].join(' '),
-    menuContainerOpen: [
-      ' !h-full !visible',
+    handImage: [
+      'w-12 h-12',
+      'select-none cursor-pointer',
+      'max-sm:w-8 max-sm:h-8',
     ].join(' '),
   }
 
@@ -128,16 +130,19 @@ export default function Navigation({navData} : {navData: NavData}) {
     renderCheck();
   }
 
-  /************** Menu Handler ***************/
-  const menuHandler = () => {
-    // if (!isMenuOpen) {
-    //   setIsMenuOpen(true);
-    //   document.body.style.overflow = 'hidden';
-    // }
-    // else {
-    //   setIsMenuOpen(false);
-    //   document.body.style.overflow = 'unset';
-    // }
+  /************** Mouse Handler ***************/
+  const mouseHandler = (e: MouseEvent) => {
+    if (!handRef.current) return;
+
+    var handRect = handRef.current.getBoundingClientRect();
+
+    var dx = e.clientX - (handRect.x + handRect.width / 2);
+    var dy = e.clientY - (handRect.y + handRect.height / 2);
+
+    var theta = Math.atan2(dy, dx)
+    var angle = theta * (180 / Math.PI) + 180;
+
+    handRef.current.style.transform = `rotate(${angle}deg)`    
   }
 
   /************** Link onClick Handler ***************/
@@ -155,14 +160,18 @@ export default function Navigation({navData} : {navData: NavData}) {
 
     window.addEventListener('scroll', scrollHandler, { passive: true });
     window.addEventListener('resize', resizeHandler);
+    window.addEventListener('mousemove', mouseHandler);
 
     return () => {
+      window.removeEventListener('mousemove', mouseHandler);
       window.removeEventListener('resize', resizeHandler);
       window.removeEventListener('scroll', scrollHandler);
     };
     
   }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen, hideNavOnHero])
     
+
+
 
   return (
     <div className={styles.navigationOuterContainer.concat(
@@ -184,7 +193,7 @@ export default function Navigation({navData} : {navData: NavData}) {
             isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
           )
         } 
-        onClick={menuHandler}
+        // onClick={menuHandler}
       >
         <div className={styles.pathingContainer
           .concat(
@@ -205,105 +214,22 @@ export default function Navigation({navData} : {navData: NavData}) {
         <div className={styles.menuButtonWrapper
           .concat(
             isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
-          ).concat(
-            isMenuOpen ? styles.menuButtonWrapperOpen : ''
           )
         }>
-          <h1>{menuGlyph}</h1>
+          <Image
+            className={styles.handImage}
+            src={menuGlyph}
+            width={128}
+            height={128}
+            priority
+            alt={"god mode"}
+            ref={handRef}
+          />
         </div>
       </div>
 
-      <div className={styles.menuContainer.concat(isMenuOpen ? styles.menuContainerOpen : '')}>
-        <Menu menuLinks={navData.navigationLinks} socialLinks={navData.socialData} />
-      </div>
-
     </div>
   )
 }
 
 
-
-
-/****************************************************/
-/*                                                  */
-/* Nav Menu Component                               */
-/*                                                  */
-/****************************************************/
-
-function Menu({menuLinks, socialLinks}: {menuLinks: string[], socialLinks: SocialData[] | null }) {
-
-  /************** Defining variables ***************/
-
-  
-  /************** Style classNames ***************/
-  const styles = {
-    outerContainer: [
-      'h-full',
-      'grid grid-cols-12 gap-8',
-      'py-8 mx-8',
-      'max-sm:mx-2 max-sm:pt-1',
-    ].join(' '),
-    menuLinksContainer: [
-      'col-span-6',
-      'flex flex-col justify-end items-start gap-4',
-    ].join(' '),
-    menuItem: [
-      'font-display font-bold display-menu text-white',
-      'transition duration-300 select-none',
-      'hover:bg-highlight',
-    ].join(' '),
-    socialLinksContainer: [
-      'col-span-6',
-      'flex flex-row justify-end content-end flex-wrap gap-x-4 gap-y-2',
-    ].join(' '),
-    socialItem: [
-      'font-bold title-text text-white',
-    ].join(' '),
-    link: [
-      'no-underline border-solid border-white border-b-4',
-      'transition duration-300',
-      'hover:border-highlight hover:bg-highlight color-white',
-      'max-sm:border-b-2',
-    ].join(' '),
-  }
-
-
-  return (
-    <div className={styles.outerContainer}>
-      <div className={styles.menuLinksContainer}>
-        {
-          menuLinks &&
-          menuLinks.map((e, i) => {
-            return (
-              <Link className={styles.menuItem} key={i} href={'/#'.concat(e.slice(1))}>
-                {e.concat(' →')}
-              </Link>
-            )
-          })
-        }
-      </div>
-
-      <div className={styles.socialLinksContainer}>
-        {
-          socialLinks &&
-          socialLinks.map((e, i) => {
-            return (
-              <div className={styles.socialItem} key={i}>
-                <span>
-                  { e.type.concat(": ") }
-                </span>
-                <a
-                  className={styles.link}
-                  href={e.link} target="_blank" rel="noopener noreferrer"
-                >
-                  { e.displayContent }
-                </a>
-            </div>
-            )
-          })
-        }
-      </div>
-    </div>
-  )
-
-}
