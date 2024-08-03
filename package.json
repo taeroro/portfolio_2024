@@ -10,6 +10,7 @@
     "types:contentful": "export $(cat .env.local | awk '!/^\\s*#/' | awk '!/^\\s*$/'); cf-content-types-generator --spaceId $CONTENTFUL_SPACE_ID --token $CONTENTFUL_MANAGEMENT_TOKEN -o contentful/types -X && prettier --write contentful/types"
   },
   "dependencies": {
+    "@next/third-parties": "^14.0.5-canary.59",
     "autoprefixer": "^10.4.19",
     "contentful": "^10.6.10",
     "cookie": "^0.6.0",

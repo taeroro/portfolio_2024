@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from "react"
+
 /****************************************************/
 /*                                                  */
 /* Navigation Component                             */
@@ -19,7 +20,6 @@ export default function Navigation({navData} : {navData: NavData}) {
   const [heroHeight, setHeroHeight] = useState(-1)
   const [hideNavOnHero, setHideNavOnHero] = useState(true)
   const [isOnDarkBg, setIsOnDarkBg] = useState(true)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
   
   const currentPath: string[] = [navData.name]
   const pathname = usePathname()
@@ -44,7 +44,6 @@ export default function Navigation({navData} : {navData: NavData}) {
       'pt-2 mx-8 nav',
       'flex flex-row justify-between',
       'group transition duration-300',
-      // 'cursor-pointer',
       'max-sm:mx-2 max-sm:pt-1',
       
       'border-b-[8px] border-secondary',
@@ -77,10 +76,6 @@ export default function Navigation({navData} : {navData: NavData}) {
     ].join(' '),
 
     menuButtonWrapper: [
-      // 'font-bold text-secondary h1-text',
-      // 'transition-none origin-[50%_55%]',
-      // 'select-none transition-colors duration-300',
-      // 'group-hover:transition-all group-hover:duration-300 group-hover:rotate-90',
       'flex flex-row items-center',
     ].join(' '),
     handImageContainer: [
@@ -179,7 +174,7 @@ export default function Navigation({navData} : {navData: NavData}) {
       window.removeEventListener('scroll', scrollHandler);
     };
     
-  }, [heroHeight, footerPosition, isOnDarkBg, isMenuOpen, hideNavOnHero])
+  }, [heroHeight, footerPosition, isOnDarkBg, hideNavOnHero])
     
 
 
@@ -188,18 +183,12 @@ export default function Navigation({navData} : {navData: NavData}) {
     <div className={styles.navigationOuterContainer.concat(
         (isOnDarkBg
         ? ' bg-transparent'
-        : ' bg-white').concat(
-          isMenuOpen
-          ? styles.navigationOuterContainerOpen
-          : ''
-        )
+        : ' bg-white')
     )} ref={navRef}>
       <div className={
         styles.navigationContainer
           .concat(
-            isMenuOpen ? styles.navigationContainerOpen : ''
-          ).concat(
-            hideNavOnHero && !isMenuOpen ? styles.hideNavBorder : ''
+            hideNavOnHero ? styles.hideNavBorder : ''
           ).concat(
             isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
           )
@@ -208,9 +197,7 @@ export default function Navigation({navData} : {navData: NavData}) {
       >
         <div className={styles.pathingContainer
           .concat(
-            isMenuOpen ? styles.pathContainerOpen : ''
-          ).concat(
-            hideNavOnHero && !isMenuOpen ? styles.hideNavLogo : ''
+            hideNavOnHero ? styles.hideNavLogo : ''
           ).concat(
             isOnDarkBg ? styles.hoverOnDark : styles.hoverOnWhite
           )
