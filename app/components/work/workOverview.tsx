@@ -18,7 +18,7 @@ export default function WorkOverview(props: {workListData: WorkListData}) {
 
   /************** Defining variables ***************/
   const title: string = props.workListData.sectionTitle
-  const workList: WorkData[] = props.workListData.workData  
+  const workList: WorkData[] = props.workListData.workData 
 
   const workOverviewContainerRef = useRef(null)
   const h1DisplayRef = useRef(null)
