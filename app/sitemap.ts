@@ -17,7 +17,7 @@ function workListToSlug(data: WorkListData): string[] {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const defaultPages = [
     {
-      url: `https://${process.env.VERCEL_URL}`,
+      url: `https://ryan.fan`,
       lastModified: new Date(),
       priority: 1
     },
@@ -28,7 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const sitemap = [
     ...defaultPages,
     ...workSlugs.map((e: any) => ({
-      url: `https://${process.env.VERCEL_URL}/work/${e}`,
+      url: `https://ryan.fan/work/${e}`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8

@@ -3,7 +3,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(`https://${process.env.VERCEL_URL}`),
+  metadataBase: new URL(`https://ryan.fan`),
   title: 'Ryan Fan',
   description: 'Ryan Fan is a New York based Product Designer helping humans understand machines better.',
   keywords: 'senior product designer, product designer in new york',
