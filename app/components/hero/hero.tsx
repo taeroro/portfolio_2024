@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { HeroData } from "@/contentful/fetchHero";
 import Image from "next/image";
+import Rive, { Layout, Fit, Alignment } from '@rive-app/react-canvas';
 
 
 /****************************************************/
@@ -18,6 +19,7 @@ export default function Hero(props: {heroData: HeroData}) {
   const description: string = props.heroData.description
   const titleImgPath: string = '/img/rf_white.svg'
   const titleMobileImgPath: string = '/img/rf_white_vertical.svg'
+  const titleRivePath: string = '/rive/ryanfan.riv'
 
   const copyright: string = "©" + " " + new Date().getFullYear()
 
@@ -34,7 +36,7 @@ export default function Hero(props: {heroData: HeroData}) {
       'max-sm:flex-row'
     ].join(' '),
     imgWrapper: [
-      'w-full px-8 pt-8 -mb-[7vw]',
+      'w-full px-8 pt-8 -mb-[7vw] aspect-[1000/309]',
       'relative overflow-hidden block',
       'max-sm:px-2 max-sm:hidden',
     ].join(' '),
@@ -90,11 +92,13 @@ export default function Hero(props: {heroData: HeroData}) {
     ].join(' '),
   }
 
+
   useEffect(() => {
     const tl = gsap.timeline({ repeat: -1 })
     tl.to(arrowRef.current, { y: -10,  duration: 1.2, ease: "power2.in"})
     tl.to(arrowRef.current, { y: 0,  duration: 1.1, ease: "bounce.out"})
   }, [])
+
 
   return (
     <div className={styles.heroContainer} ref={heroContainerRef} id={'hpHero'}>
@@ -105,13 +109,18 @@ export default function Hero(props: {heroData: HeroData}) {
       </div>
 
       <div className={styles.imgWrapper} ref={titleImgRef}>
-        <Image
+        {/* <Image
           className={styles.img}
           src={titleImgPath}
           width={2000}
           height={650}
           priority
           alt={"ryan.fan"}
+        /> */}
+        <Rive
+          src={titleRivePath}
+          stateMachines="State Machine 1"
+          layout={new Layout({ fit: Fit.Contain, alignment: Alignment.TopCenter })}
         />
       </div>
 

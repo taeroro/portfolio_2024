@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.0.5-canary.59",
+    "@rive-app/react-canvas": "^4.13.6",
     "autoprefixer": "^10.4.19",
     "contentful": "^10.6.10",
     "cookie": "^0.6.0",
