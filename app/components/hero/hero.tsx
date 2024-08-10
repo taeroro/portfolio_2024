@@ -19,7 +19,7 @@ export default function Hero(props: {heroData: HeroData}) {
   const description: string = props.heroData.description
   const titleImgPath: string = '/img/rf_white.svg'
   const titleMobileImgPath: string = '/img/rf_white_vertical.svg'
-  const titleRivePath: string = '/rive/ryanfan.riv'
+  const titleRivePath: string = '/rive/rf.riv'
 
   const copyright: string = "©" + " " + new Date().getFullYear()
 
@@ -119,7 +119,7 @@ export default function Hero(props: {heroData: HeroData}) {
         /> */}
         <Rive
           src={titleRivePath}
-          stateMachines="State Machine 1"
+          stateMachines="main"
           layout={new Layout({ fit: Fit.Contain, alignment: Alignment.TopCenter })}
         />
       </div>
