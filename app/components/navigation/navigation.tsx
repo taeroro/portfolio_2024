@@ -218,6 +218,7 @@ export default function Navigation({navData} : {navData: NavData}) {
               height={128}
               priority
               alt={"god mode"}
+              draggable={false}
             />
             <Image
               className={styles.palmImage}
@@ -226,6 +227,7 @@ export default function Navigation({navData} : {navData: NavData}) {
               height={128}
               priority
               alt={"god mode"}
+              draggable={false}
             />
           </div>
         </div>
