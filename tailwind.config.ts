@@ -13,7 +13,7 @@ const config: Config = {
   ],
   theme: {
     fontFamily: {
-      'display': ['Gradient Bold', 'Helvetica', 'san-serif'],
+      'display': ['Gradient', 'Helvetica', 'san-serif'],
       // 'sans': ['Graphik', 'Helvetica', 'san-serif'],
       'sans': ['neue-haas-unica', 'Helvetica', 'san-serif'],
     },
