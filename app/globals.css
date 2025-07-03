@@ -138,6 +138,12 @@ body {
   line-height: .695;
 }
 
+.display-expedia {
+  font-size: 27.6vw;
+  letter-spacing: -0.055em;
+  line-height: .695;
+}
+
 /* H1 */
 .h1-display {
   font-size: 3.5rem;

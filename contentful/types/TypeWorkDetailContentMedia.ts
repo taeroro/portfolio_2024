@@ -6,6 +6,7 @@ export interface TypeWorkDetailContentMediaFields {
     image?: EntryFieldTypes.AssetLink;
     secondImage?: EntryFieldTypes.AssetLink;
     videoLink?: EntryFieldTypes.Symbol;
+    isVideoRightAlign?: EntryFieldTypes.Boolean;
     showOutline: EntryFieldTypes.Boolean;
 }
 

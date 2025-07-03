@@ -119,6 +119,9 @@ function Title({slug, title}: {slug: string, title: string}) {
       'select-none pointer-events-none',
       'z-20'
     ].join(' '),
+    expedia: [
+      ' display-expedia'
+    ].join(' '),
     jpmorganchase: [
       ' display-jpmc',
     ].join(' '),
@@ -128,14 +131,14 @@ function Title({slug, title}: {slug: string, title: string}) {
     marriott: [
       ' display-marriott'
     ].join(' '),
-    tiktok: [
-      ' display-tiktok'
-    ].join(' '),
     michaelkors: [
       ' display-mkc'
     ].join(' '),
     riley: [
       ' display-riley'
+    ].join(' '),
+    tiktok: [
+      ' display-tiktok'
     ].join(' '),
   }
   const h1ClassName = styles[slug] || ''
@@ -469,6 +472,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     image,
     secondImage,
     videoLink,
+    isVideoRightAlign,
     showOutline,
     span,
   ] : [
@@ -478,6 +482,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     ImageData,
     string,
     boolean,
+    boolean,
     string[],
   ] = [
     media.mediaType,
@@ -485,6 +490,7 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
     media.image as ImageData,
     media.secondImage as ImageData,
     media.videoLink || '',
+    media.isVideoRightAlign,
     media.showOutline,
     media.span
   ]
@@ -520,6 +526,10 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
       'col-span-10',
       'max-lg:col-span-12 aspect-auto',
     ].join(' '),
+    videoRightAlignWrapper: [
+      'flex flex-row justify-end relative overflow-hidden',
+      'max-xl:grid-cols-1 max-lg:col-span-12 max-sm:gap-4',
+    ].join(' '),
   }
 
   useEffect(() => {
@@ -529,6 +539,32 @@ function MediaContent({media}: {media: WorkDetailContentMediaData}) {
 
   
   if (mediaType === 'Video') {
+    if (isVideoRightAlign) {
+      var cs = parseInt(span[0].match(/\d+/)?.[0] || '0') + 1;
+
+      return (
+        <div className={span[0] + ' col-start-' + cs + ' ' + styles.videoRightAlignWrapper}>
+          {
+            hasWindow &&
+            <ReactPlayer
+              url={videoLink}
+              width={'100%'}
+              height={'100%'}
+              controls={true}
+              config={{
+                playerOptions: {
+                  autoplay: true,
+                  loop: true,
+                  responsive: true,
+                  muted: true,
+                  title: false,
+                }
+              }}
+            />
+          }
+        </div>
+      )
+    }
     return (
       <div className={styles.videoWrapper}>
         {

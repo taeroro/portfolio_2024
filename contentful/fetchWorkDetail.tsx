@@ -20,6 +20,7 @@ export interface WorkDetailContentMediaData {
   image?: ImageData,
   secondImage?: ImageData,
   videoLink: string,
+  isVideoRightAlign: boolean,
   showOutline: boolean,
   span: string[]
 }
@@ -68,6 +69,7 @@ export function parseContentfulWorkDetailContentMedia(workDetailContentMediaEntr
     image: res.image && parseImage(res.image.fields.file),
     secondImage: res.secondImage && parseImage(res.secondImage.fields.file),
     videoLink: res.videoLink,
+    isVideoRightAlign: res.isVideoRightAlign,
     showOutline: res.showOutline,
     span: res.span.map((i: string) => `col-span-${i}`)
   })
@@ -121,7 +123,7 @@ export function parseContentfulFullWork(fullWorkEntry?: FullWorkEntry): FullWork
 /************** Fetch Content from CMS ***************/
 
 export async function fetchWorkDetail({slug}: {slug: string}): Promise<FullWorkData | null> {
-	const contentful = contentfulClient({ preview: false })
+	const contentful = contentfulClient({ preview: true })
 
 	const res = await contentful.getEntries<TypeWorkSkeleton>({
 		content_type: 'work',
