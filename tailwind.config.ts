@@ -8,8 +8,11 @@ const config: Config = {
   ],
   safelist: [
     {
-        pattern: /col-span-./,
-    }
+      pattern: /col-span-./,
+    },
+    {
+      pattern: /^col-start-(1[0-2]|[1-9])$/,
+    },
   ],
   theme: {
     fontFamily: {
