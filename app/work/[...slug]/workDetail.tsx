@@ -677,14 +677,14 @@ function NextWork({nextSlug, nextTitle}: {nextSlug: string, nextTitle: string}) 
     marriott: [
       ' display-marriott'
     ].join(' '),
-    tiktok: [
-      ' display-tiktok'
-    ].join(' '),
     michaelkors: [
       ' display-mkc'
     ].join(' '),
     riley: [
       ' display-riley !pt-[9vw]'
+    ].join(' '),
+    expedia: [
+      ' display-expedia'
     ].join(' '),
   }
 
