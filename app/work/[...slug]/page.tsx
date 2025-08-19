@@ -10,7 +10,7 @@ type Props = {
 // TODO When adding new project please update here
 const pageTitles = {
   expedia: "Expedia",
-  jpmorganchase: "JPMorgan Chase",
+  jpmorganchase: "JPMorganChase",
   microsoft: "Microsoft",
   marriott: "Marriott",
   tiktok: "Tiktok",
