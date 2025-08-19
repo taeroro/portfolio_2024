@@ -102,7 +102,7 @@ function SingleWork(props: {workData: WorkData}) {
   /************** Style classNames ***************/
   const styles = {
     singleWorkContainer: [
-      'flex flex-col gap-4',
+      'flex flex-col gap-2.5',
       'group transition duration-300',
       'hover:text-highlight',
       'max-sm:gap-2'
@@ -114,6 +114,7 @@ function SingleWork(props: {workData: WorkData}) {
     description: [
       'w-full',
       'font-medium body-text',
+      'mb-2 max-sm:mb-0',
     ].join(' '),
     imgWrapper: [
       'w-full aspect-[5/3] relative overflow-hidden',
