@@ -17,13 +17,14 @@
     "@rive-app/react-canvas": "^4.13.6",
     "autoprefixer": "^10.4.19",
     "contentful": "^10.6.10",
-    "cookie": "^0.6.0",
+    "cookie": "^1.0.2",
     "gsap": "^3.12.2",
-    "next": "14.0.2",
+    "next": "^14.2.32",
     "react": "^18",
     "react-dom": "^18",
     "react-markdown": "^9.0.1",
-    "react-player": "^2.13.0"
+    "react-player": "^2.13.0",
+    "unicornstudio-react": "^1.4.29-1"
   },
   "devDependencies": {
     "@types/cookie": "^0.6.0",
