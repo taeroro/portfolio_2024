@@ -1,11 +1,11 @@
 'use client';
 
 import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 import { HeroData } from "@/contentful/fetchHero";
 import Image from "next/image";
 import Rive, { Layout, Fit, Alignment } from '@rive-app/react-canvas';
+import UnicornScene from "unicornstudio-react/next";
 
 
 /****************************************************/
@@ -36,14 +36,14 @@ export default function Hero(props: {heroData: HeroData}) {
       'max-sm:flex-row'
     ].join(' '),
     imgWrapper: [
-      'w-full px-8 pt-8 -mb-[7vw] aspect-[1000/309]',
-      'relative overflow-hidden block',
+      'w-full px-8 pt-8 -mb-[7vw] aspect-[1000/315]',
+      'relative overflow-hidden block z-10',
       'max-sm:px-2 max-sm:hidden',
     ].join(' '),
     mobileImageWrapper: [
       'hidden',
       'h-full overflow-hidden w-full',
-      'pb-4 pt-12 pl-2 -mr-[10%]',
+      'pb-4 pt-12 pl-2 -mr-[10%] z-10',
       'max-sm:block'
     ].join(' '),
     img: [
@@ -53,7 +53,7 @@ export default function Hero(props: {heroData: HeroData}) {
     ].join(' '),
     descriptionContainer: [
       'w-full px-8 pt-8',
-      'grid grid-cols-12 gap-8',
+      'grid grid-cols-12 gap-8 z-10',
       'max-sm:px-2 max-sm:pt-12 max-sm:gap-4 max-sm:grid-cols-none',
     ].join(' '),
     description: [
@@ -63,7 +63,7 @@ export default function Hero(props: {heroData: HeroData}) {
     ].join(' '),
 
     topContainer: [
-      'absolute pl-8 pt-8',
+      'absolute pl-8 pt-8 z-10',
       'max-sm:px-2 max-sm:pt-3',
     ].join(' '),
     copyright: [
@@ -72,7 +72,7 @@ export default function Hero(props: {heroData: HeroData}) {
 
     bottomContainer: [
       'grow flex flex-row justify-between items-end',
-      'px-8 pb-6',
+      'px-8 pb-6 z-10',
       'max-sm:absolute max-sm:bottom-0 max-sm:right-0 max-sm:px-2 max-sm:pb-4'
     ].join(' '),
     moreIndicator: [
@@ -89,6 +89,10 @@ export default function Hero(props: {heroData: HeroData}) {
       'relative',
       'w-8 h-8 rounded-full border-4',
       'max-sm:hidden'
+    ].join(' '),
+    unicornSceneWrapper: [
+      'absolute top-0 left-0 z-0',
+      'w-full h-full',
     ].join(' '),
   }
 
@@ -109,14 +113,6 @@ export default function Hero(props: {heroData: HeroData}) {
       </div>
 
       <div className={styles.imgWrapper} ref={titleImgRef}>
-        {/* <Image
-          className={styles.img}
-          src={titleImgPath}
-          width={2000}
-          height={650}
-          priority
-          alt={"ryan.fan"}
-        /> */}
         <Rive
           src={titleRivePath}
           stateMachines="main"
@@ -153,6 +149,14 @@ export default function Hero(props: {heroData: HeroData}) {
 
         <div className={styles.scrollPositionIndicator} />
       </div>
+
+      {/* <div className={styles.unicornSceneWrapper}>
+        <UnicornScene
+          projectId="Yp6XIFIMQUqykklABIG2"
+          width="100%"
+          height="100%"
+        />
+      </div> */}
 
     </div>  
   )
