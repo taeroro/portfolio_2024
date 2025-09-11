@@ -169,6 +169,7 @@ export default function Hero(props: {heroData: HeroData}) {
           height="100%"
           placeholder={shaderPlaceholderPath}
           showPlaceholderWhileLoading={false}
+          showPlaceholderOnError={true}
           onLoad={() => {
             crossfadeUnicornScene()
           }}
