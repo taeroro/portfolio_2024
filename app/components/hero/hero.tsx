@@ -20,12 +20,15 @@ export default function Hero(props: {heroData: HeroData}) {
   const titleImgPath: string = '/img/rf_white.svg'
   const titleMobileImgPath: string = '/img/rf_white_vertical.svg'
   const titleRivePath: string = '/rive/rf.riv'
+  const shaderPath: string = '/shader/RF_BG.json'
+  const shaderPlaceholderPath: string = 'img/shader_placeholder.jpg'
 
   const copyright: string = "©" + " " + new Date().getFullYear()
 
   const heroContainerRef = useRef(null)
   const titleImgRef = useRef(null)
   const arrowRef = useRef(null)
+  const unicornSceneRef = useRef(null)
 
   /************** Style classNames ***************/
   const styles = {
@@ -93,6 +96,7 @@ export default function Hero(props: {heroData: HeroData}) {
     unicornSceneWrapper: [
       'absolute top-0 left-0 z-0',
       'w-full h-full',
+      'opacity-0',
     ].join(' '),
   }
 
@@ -102,6 +106,14 @@ export default function Hero(props: {heroData: HeroData}) {
     tl.to(arrowRef.current, { y: -10,  duration: 1.2, ease: "power2.in"})
     tl.to(arrowRef.current, { y: 0,  duration: 1.1, ease: "bounce.out"})
   }, [])
+
+  const crossfadeUnicornScene = () => {
+    gsap.to(unicornSceneRef.current, {
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out"
+    })
+  }
 
 
   return (
@@ -150,13 +162,18 @@ export default function Hero(props: {heroData: HeroData}) {
         <div className={styles.scrollPositionIndicator} />
       </div>
 
-      {/* <div className={styles.unicornSceneWrapper}>
+      <div className={styles.unicornSceneWrapper} ref={unicornSceneRef}>
         <UnicornScene
-          projectId="Yp6XIFIMQUqykklABIG2"
+          jsonFilePath={shaderPath}
           width="100%"
           height="100%"
+          placeholder={shaderPlaceholderPath}
+          showPlaceholderWhileLoading={false}
+          onLoad={() => {
+            crossfadeUnicornScene()
+          }}
         />
-      </div> */}
+      </div>
 
     </div>  
   )

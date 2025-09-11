@@ -110,7 +110,7 @@ export default function Footer() {
 
     tl
       .fromTo(titleImgRef.current, { y: '15%', scale: '.98' }, { y: '0', scale: '1', ease: "sine.inOut" })
-      .fromTo(animOverlayRef.current, { opacity: '.60' }, { opacity: '0', ease: "sine.inOut" })
+      .fromTo(animOverlayRef.current, { opacity: '.60', backdropFilter: 'blur(8px)' }, { opacity: '0', backdropFilter: 'blur(0px)', ease: "sine.inOut" })
     
   }
 
