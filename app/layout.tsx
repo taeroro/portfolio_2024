@@ -5,12 +5,12 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL(`https://ryan.fan`),
   title: 'Ryan Fan',
-  description: 'Ryan Fan is a New York based Product Designer helping humans understand machines better.',
-  keywords: 'senior product designer, product designer in new york',
+  description: 'Ryan Fan is an LA based Product Designer helping humans understand machines better.',
+  keywords: 'designer, product designer, ux designer, product designer in LA, Los Angeles',
   robots: 'index, follow',
   openGraph: {
     title: 'Ryan Fan',
-    description: 'Ryan Fan is a New York based Product Designer helping humans understand machines better.',
+    description: 'Ryan Fan is an LA based Product Designer helping humans understand machines better.',
     url: 'https://ryan.fan',
     siteName: 'Ryan Fan',
     type: 'website',
