@@ -31,7 +31,7 @@ export default function Who() {
   const title: string = "/about"
   const whoContentData: whoContentData = {
     subtitle: '',
-    description: 'Ryan Fan is an award-winning Product Designer in New York. He currently works at Code and Theory with clients such as JPMorganChase, Microsoft, TikTok, and Marriott on crafting the best-in-class digital products, experiences, and design systems. Previously, he was a Product Designer at Wondersauce, and a freelance Product Designer & Developer worked with clients including Michael Kors and JLo. \n\n His background and experience enable him to create a harmonious paradigm between design and engineering teams to create cohesive, thoughtful experiences that tailor user needs, excel in problem-solving, and achieve business goals.',
+    description: 'Ryan Fan is an award-winning Product Designer in Los Angeles. He currently works at Google on Search products. Previously, he worked as a Designer & Developer in New York with clients including JPMorganChase, Microsoft, and Expedia on crafting the best-in-class digital products. \n\n His background and experience enable him to create a harmonious paradigm between design and engineering teams to create cohesive, thoughtful experiences that tailor user needs, excel in problem-solving, and achieve business goals.',
     search: {
       placeholder: '',
       prompt: '',
