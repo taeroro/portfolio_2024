@@ -10,6 +10,10 @@
   --secondary-hex: #9a9a9a;
 }
 
+html {
+    overscroll-behavior-y: none;
+  }
+
 body {
   color: var(--primary-hex);
   background: var(--background-hex);
